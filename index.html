@@ -58,6 +58,8 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
 .diam{width:8px;height:8px;background:var(--gold);transform:rotate(45deg);}
 .dcard{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:6px;padding:18px;display:flex;align-items:center;gap:14px;transition:transform .25s,box-shadow .25s;}
 .dcard:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.08);}
+.dcard-media{width:84px;height:84px;border-radius:8px;overflow:hidden;flex-shrink:0;background:var(--gd);}
+.dcard-media img{width:100%;height:100%;object-fit:cover;display:block;}
 .dico{width:44px;height:44px;flex-shrink:0;background:var(--gd);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;}
 .dname{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:var(--gd2);line-height:1.2;margin-bottom:4px;}
 .dprice{font-size:13px;font-weight:700;color:var(--gold);}
@@ -107,7 +109,6 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     <a class="nl" href="#cafes-quentes">Caf&#233;s Quentes</a>
     <a class="nl" href="#cafes-gelados">Caf&#233;s Gelados</a>
     <a class="nl" href="#chas-gelados">Ch&#225;s Gelados</a>
-    <a class="nl" href="#drinks">Drinks</a>
     <a class="nl" href="#cuscuz">Cuscuz</a>
     <a class="nl" href="#coffee-shakes">Coffee Shakes</a>
   </div>
@@ -627,6 +628,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="dcard fi">
+      <div class="dcard-media"><img src="fotos%20de%20pratos/Caf%C3%A9%20Filtrado.jpeg" alt="Caf&#233; Filtrado" loading="lazy"></div>
       <div class="almoco-meta">
         <div class="dname">Caf&#233; Filtrado</div>
       </div>
@@ -634,6 +636,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="dcard fi">
+      <div class="dcard-media"><img src="fotos%20de%20pratos/Caf%C3%A9%20com%20Leite%2C%20expresso%20e%20capuccino.jpeg" alt="Caf&#233; com Leite" loading="lazy"></div>
       <div class="almoco-meta">
         <div class="dname">Caf&#233; com Leite</div>
       </div>
@@ -655,6 +658,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="dcard fi">
+      <div class="dcard-media"><img src="fotos%20de%20pratos/Vienense.jpeg" alt="Capuccino Vienense" loading="lazy"></div>
       <div class="almoco-meta">
         <div class="dname">Capuccino Vienense</div>
         <p class="almoco-text">Nutella, caf&#233; expresso, leite vaporizado, finalizado com chantilly</p>
@@ -663,6 +667,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="dcard fi">
+      <div class="dcard-media"><img src="fotos%20de%20pratos/Mocha%20Doce%20de%20Leite.jpeg" alt="Mocha Doce de Leite" loading="lazy"></div>
       <div class="almoco-meta">
         <div class="dname">Mocha Doce de Leite</div>
         <p class="almoco-text">Doce de leite, caf&#233; expresso e leite vaporizado</p>
@@ -684,6 +689,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="dcard fi">
+      <div class="dcard-media"><img src="fotos%20de%20pratos/Amarelo%20Picante.jpeg" alt="Amarelo Picante" loading="lazy"></div>
       <div class="almoco-meta">
         <div class="dname">Amarelo Picante</div>
         <p class="almoco-text">Xarope de maracuj&#225;, xarope de pimenta, caf&#233; gelado e espuma de lim&#227;o</p>
@@ -700,6 +706,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="dcard fi">
+      <div class="dcard-media"><img src="fotos%20de%20pratos/Laranja%20Toffee.jpeg" alt="Laranja Toffee" loading="lazy"></div>
       <div class="almoco-meta">
         <div class="dname">Laranja Toffee</div>
         <p class="almoco-text">Xarope de laranja, sumo de lim&#227;o, caf&#233; expresso e espuma de lim&#227;o</p>
@@ -708,6 +715,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="dcard fi">
+      <div class="dcard-media"><img src="fotos%20de%20pratos/Nutella%20Latte.jpeg" alt="Nutella Latte" loading="lazy"></div>
       <div class="almoco-meta">
         <div class="dname">Nutella Latte</div>
         <p class="almoco-text">Leite, Nutella, caf&#233; expresso e chantilly</p>
@@ -740,42 +748,6 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
         <div class="dname">Folhas de Amora com Morangos</div>
       </div>
       <div class="dprice">R$ 18,00</div>
-    </div>
-  </div>
-</section>
-
-<section id="drinks" class="sec">
-  <div class="sh fi"><div><span class="stag">Coquet&#233;is</span><h2 class="stitle">Drinks</h2></div></div>
-  <div class="grid grid2">
-    <div class="dcard fi">
-      <div class="almoco-meta">
-        <div class="dname">Caipiroscas</div>
-      </div>
-      <div class="dprice">R$ 22,00</div>
-    </div>
-
-    <div class="dcard fi">
-      <div class="almoco-meta">
-        <div class="dname">Maracujito</div>
-        <p class="almoco-text">Xarope de maracuj&#225;, morangos, sumo de lim&#227;o, vodka e &#225;gua com g&#225;s</p>
-      </div>
-      <div class="dprice">R$ 28,00</div>
-    </div>
-
-    <div class="dcard fi">
-      <div class="almoco-meta">
-        <div class="dname">Abacaxi Mule</div>
-        <p class="almoco-text">Xarope de abacaxi, xarope de gengibre, vodka, &#225;gua com g&#225;s e espuma de lim&#227;o</p>
-      </div>
-      <div class="dprice">R$ 28,00</div>
-    </div>
-
-    <div class="dcard fi">
-      <div class="almoco-meta">
-        <div class="dname">Morango Tropical</div>
-        <p class="almoco-text">Morango fresco, sumo de lim&#227;o, vodka, &#225;gua com g&#225;s e espuma de lim&#227;o</p>
-      </div>
-      <div class="dprice">R$ 28,00</div>
     </div>
   </div>
 </section>
