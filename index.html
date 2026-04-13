@@ -35,7 +35,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
 .nrow{display:flex;min-width:max-content;max-width:960px;margin:0 auto;padding:0 12px;}
 .nl{padding:16px 18px;font-size:9px;letter-spacing:3px;text-transform:uppercase;font-weight:700;color:rgba(255,255,255,.38);text-decoration:none;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;}
 .nl:hover,.nl.on{color:var(--gold);border-bottom-color:var(--gold);}
-.sec{max-width:960px;margin:0 auto;padding:64px 22px 0;}
+.sec{max-width:960px;margin:0 auto;padding:64px 22px 0;scroll-margin-top:78px;}
 .sec:last-of-type{padding-bottom:80px;}
 .sh{display:flex;align-items:flex-end;gap:18px;margin-bottom:40px;}
 .sh::after{content:'';flex:1;height:1px;background:linear-gradient(to right,var(--gold),transparent);margin-bottom:5px;}
@@ -43,6 +43,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
 .stitle{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,42px);font-weight:700;color:var(--gd2);line-height:1;white-space:nowrap;}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:22px;}
 .grid2{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;}
+.media-grid{grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;}
 .card{background:#fff;border-radius:6px;overflow:hidden;border:1px solid rgba(0,0,0,.07);box-shadow:0 2px 14px rgba(0,0,0,.05);display:flex;flex-direction:column;transition:transform .3s,box-shadow .3s;}
 .card:hover{transform:translateY(-5px);box-shadow:0 18px 50px rgba(0,0,0,.1);}
 .cib{position:relative;height:210px;overflow:hidden;flex-shrink:0;background:var(--gd);}
@@ -56,16 +57,19 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
 .cprice{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--gd2);}
 .cprice sup{font-family:'Montserrat',sans-serif;font-size:11px;color:var(--txt2);font-weight:400;}
 .diam{width:8px;height:8px;background:var(--gold);transform:rotate(45deg);}
-.dcard{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:6px;padding:18px;display:flex;align-items:center;gap:14px;transition:transform .25s,box-shadow .25s;}
+.dcard{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:6px;padding:18px;display:flex;align-items:flex-start;gap:14px;transition:transform .25s,box-shadow .25s;}
 .dcard:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.08);}
 .dcard-media{width:84px;height:84px;border-radius:8px;overflow:hidden;flex-shrink:0;background:var(--gd);}
 .dcard-media img{width:100%;height:100%;object-fit:cover;display:block;}
+.dcard-photo{padding:14px;flex-direction:column;gap:14px;}
+.dcard-photo .dcard-media{width:100%;height:180px;border-radius:10px;}
+.dcard-photo .dprice{margin-top:auto;padding-top:12px;border-top:1px solid var(--cream2);width:100%;text-align:right;}
 .dico{width:44px;height:44px;flex-shrink:0;background:var(--gd);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;}
 .dname{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:var(--gd2);line-height:1.2;margin-bottom:4px;}
-.dprice{font-size:13px;font-weight:700;color:var(--gold);}
+.dprice{font-size:13px;font-weight:700;color:var(--gold);white-space:nowrap;flex-shrink:0;}
 .almoco-card .cib{height:190px;}
 .almoco-card .cdesc{margin-bottom:12px;}
-.almoco-meta{display:flex;flex-direction:column;gap:4px;}
+.almoco-meta{display:flex;flex-direction:column;gap:4px;flex:1;min-width:0;}
 .almoco-status{grid-column:1/-1;padding:20px;}
 .almoco-text{font-size:12px;color:var(--txt2);line-height:1.7;}
 .footer{background:var(--gd);padding:60px 20px;text-align:center;}
@@ -75,7 +79,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
 .ftel{font-family:'Playfair Display',serif;font-size:20px;font-style:italic;color:var(--gold2);margin-top:14px;}
 .fi{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease;}
 .fi.in{opacity:1;transform:translateY(0);}
-@media(max-width:600px){.grid{grid-template-columns:1fr;}.grid2{grid-template-columns:1fr 1fr;}.nl{padding:14px 11px;font-size:8px;letter-spacing:2px;}}
+@media(max-width:600px){.grid,.grid2,.media-grid{grid-template-columns:1fr;}.nl{padding:14px 11px;font-size:8px;letter-spacing:2px;}.dcard{padding:16px;}.dcard-media{width:72px;height:72px;}}
 </style>
 </head>
 <body>
@@ -619,7 +623,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
 
 <section id="cafes-quentes" class="sec">
   <div class="sh fi"><div><span class="stag">Cafeteria</span><h2 class="stitle">Caf&#233;s Quentes</h2></div></div>
-  <div class="grid grid2">
+  <div class="grid media-grid">
     <div class="dcard fi">
       <div class="almoco-meta">
         <div class="dname">Caf&#233; Expresso</div>
@@ -627,7 +631,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
       <div class="dprice">P R$ 10,00 / G R$ 13,00 / Chantilly R$ 17,00</div>
     </div>
 
-    <div class="dcard fi">
+    <div class="dcard dcard-photo fi">
       <div class="dcard-media"><img src="fotos%20de%20pratos/Caf%C3%A9%20Filtrado.jpeg" alt="Caf&#233; Filtrado" loading="lazy"></div>
       <div class="almoco-meta">
         <div class="dname">Caf&#233; Filtrado</div>
@@ -635,7 +639,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
       <div class="dprice">R$ 15,00</div>
     </div>
 
-    <div class="dcard fi">
+    <div class="dcard dcard-photo fi">
       <div class="dcard-media"><img src="fotos%20de%20pratos/Caf%C3%A9%20com%20Leite%2C%20expresso%20e%20capuccino.jpeg" alt="Caf&#233; com Leite" loading="lazy"></div>
       <div class="almoco-meta">
         <div class="dname">Caf&#233; com Leite</div>
@@ -657,7 +661,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
       <div class="dprice">R$ 16,00 / R$ 20,00</div>
     </div>
 
-    <div class="dcard fi">
+    <div class="dcard dcard-photo fi">
       <div class="dcard-media"><img src="fotos%20de%20pratos/Vienense.jpeg" alt="Capuccino Vienense" loading="lazy"></div>
       <div class="almoco-meta">
         <div class="dname">Capuccino Vienense</div>
@@ -666,7 +670,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
       <div class="dprice">R$ 25,00</div>
     </div>
 
-    <div class="dcard fi">
+    <div class="dcard dcard-photo fi">
       <div class="dcard-media"><img src="fotos%20de%20pratos/Mocha%20Doce%20de%20Leite.jpeg" alt="Mocha Doce de Leite" loading="lazy"></div>
       <div class="almoco-meta">
         <div class="dname">Mocha Doce de Leite</div>
@@ -679,7 +683,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
 
 <section id="cafes-gelados" class="sec">
   <div class="sh fi"><div><span class="stag">Caf&#233;s com Gelo</span><h2 class="stitle">Caf&#233;s Gelados</h2></div></div>
-  <div class="grid grid2">
+  <div class="grid media-grid">
     <div class="dcard fi">
       <div class="almoco-meta">
         <div class="dname">Abacaxi Refresh</div>
@@ -688,7 +692,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
       <div class="dprice">R$ 18,00</div>
     </div>
 
-    <div class="dcard fi">
+    <div class="dcard dcard-photo fi">
       <div class="dcard-media"><img src="fotos%20de%20pratos/Amarelo%20Picante.jpeg" alt="Amarelo Picante" loading="lazy"></div>
       <div class="almoco-meta">
         <div class="dname">Amarelo Picante</div>
@@ -705,7 +709,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
       <div class="dprice">R$ 18,00</div>
     </div>
 
-    <div class="dcard fi">
+    <div class="dcard dcard-photo fi">
       <div class="dcard-media"><img src="fotos%20de%20pratos/Laranja%20Toffee.jpeg" alt="Laranja Toffee" loading="lazy"></div>
       <div class="almoco-meta">
         <div class="dname">Laranja Toffee</div>
@@ -714,7 +718,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
       <div class="dprice">R$ 18,00</div>
     </div>
 
-    <div class="dcard fi">
+    <div class="dcard dcard-photo fi">
       <div class="dcard-media"><img src="fotos%20de%20pratos/Nutella%20Latte.jpeg" alt="Nutella Latte" loading="lazy"></div>
       <div class="almoco-meta">
         <div class="dname">Nutella Latte</div>
@@ -816,7 +820,9 @@ const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target
 document.querySelectorAll('.fi').forEach(el=>io.observe(el));
 const secs=document.querySelectorAll('section[id]');
 const nls=document.querySelectorAll('.nl');
-const nio=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){nls.forEach(l=>l.classList.remove('on'));const a=document.querySelector(`.nl[href="#${x.target.id}"]`);if(a){a.classList.add('on');a.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});}}});},{rootMargin:'-35% 0px -60% 0px'});
+const setNavAtiva=id=>{nls.forEach(l=>l.classList.remove('on'));const a=document.querySelector(`.nl[href="#${id}"]`);if(a){a.classList.add('on');a.scrollIntoView({inline:'center',block:'nearest'});}};
+nls.forEach(l=>l.addEventListener('click',()=>setNavAtiva(l.getAttribute('href')?.slice(1)||'')));
+const nio=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)setNavAtiva(x.target.id);});},{rootMargin:'-18% 0px -70% 0px'});
 secs.forEach(s=>nio.observe(s));
 const almocoHojeSec=document.querySelector('#almoco-hoje');
 const almocoHojeLista=document.querySelector('#almoco-hoje-lista');
