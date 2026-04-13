@@ -70,6 +70,9 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
 .dprice{font-size:13px;font-weight:700;color:var(--gold);white-space:nowrap;flex-shrink:0;}
 .almoco-card .cib{height:190px;}
 .almoco-card .cdesc{margin-bottom:12px;}
+.beverage-card .cib{height:240px;background:linear-gradient(180deg,#fbf8f1 0%,#f1e8d6 100%);padding:14px;}
+.beverage-card .cib img{object-fit:contain;border-radius:12px;background:#fff;box-shadow:0 10px 26px rgba(26,33,24,.10);}
+.beverage-card .cprice{font-size:16px;}
 .almoco-meta{display:flex;flex-direction:column;gap:4px;flex:1;min-width:0;}
 .almoco-status{grid-column:1/-1;padding:20px;}
 .almoco-text{font-size:12px;color:var(--txt2);line-height:1.7;}
@@ -624,116 +627,120 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
 
 <section id="cafes-quentes" class="sec">
   <div class="sh fi"><div><span class="stag">Cafeteria</span><h2 class="stitle">Caf&#233;s Quentes</h2></div></div>
-  <div class="grid media-grid">
-    <div class="dcard fi">
-      <div class="almoco-meta">
-        <div class="dname">Caf&#233; Expresso</div>
+  <div class="grid">
+    <div class="card beverage-card fi">
+      <div class="cbody">
+        <div class="cname">Caf&#233; Expresso</div>
+        <div class="cdesc">P, G ou com chantilly</div>
+        <div class="cfoot"><div class="cprice">P R$ 10,00 / G R$ 13,00 / Chantilly R$ 17,00</div><div class="diam"></div></div>
       </div>
-      <div class="dprice">P R$ 10,00 / G R$ 13,00 / Chantilly R$ 17,00</div>
     </div>
 
-    <div class="dcard dcard-photo fi">
-      <div class="dcard-media"><img src="fotos%20de%20pratos/Caf%C3%A9%20Filtrado.jpeg" alt="Caf&#233; Filtrado" loading="lazy"></div>
-      <div class="almoco-meta">
-        <div class="dname">Caf&#233; Filtrado</div>
+    <div class="card beverage-card fi">
+      <div class="cib"><img src="fotos%20de%20pratos/Caf%C3%A9%20Filtrado.jpeg" alt="Caf&#233; Filtrado" loading="lazy"><div class="badge">Cafeteria</div></div>
+      <div class="cbody">
+        <div class="cname">Caf&#233; Filtrado</div>
+        <div class="cfoot"><div class="cprice">R$ 15,00</div><div class="diam"></div></div>
       </div>
-      <div class="dprice">R$ 15,00</div>
     </div>
 
-    <div class="dcard dcard-photo fi">
-      <div class="dcard-media"><img src="fotos%20de%20pratos/Caf%C3%A9%20com%20Leite%2C%20expresso%20e%20capuccino.jpeg" alt="Caf&#233; com Leite" loading="lazy"></div>
-      <div class="almoco-meta">
-        <div class="dname">Caf&#233; com Leite</div>
+    <div class="card beverage-card fi">
+      <div class="cib"><img src="fotos%20de%20pratos/Caf%C3%A9%20com%20Leite%2C%20expresso%20e%20capuccino.jpeg" alt="Caf&#233; com Leite" loading="lazy"><div class="badge">Cafeteria</div></div>
+      <div class="cbody">
+        <div class="cname">Caf&#233; com Leite</div>
+        <div class="cdesc">P, G ou com chantilly</div>
+        <div class="cfoot"><div class="cprice">P R$ 11,00 / G R$ 14,00 / Chantilly R$ 18,00</div><div class="diam"></div></div>
       </div>
-      <div class="dprice">P R$ 11,00 / G R$ 14,00 / Chantilly R$ 18,00</div>
     </div>
 
-    <div class="dcard fi">
-      <div class="almoco-meta">
-        <div class="dname">Capuccino</div>
+    <div class="card beverage-card fi">
+      <div class="cbody">
+        <div class="cname">Capuccino</div>
+        <div class="cdesc">Tradicional ou com chantilly</div>
+        <div class="cfoot"><div class="cprice">R$ 15,00 / Chantilly R$ 19,00</div><div class="diam"></div></div>
       </div>
-      <div class="dprice">R$ 15,00 / Chantilly R$ 19,00</div>
     </div>
 
-    <div class="dcard fi">
-      <div class="almoco-meta">
-        <div class="dname">Chocolate Quente</div>
+    <div class="card beverage-card fi">
+      <div class="cbody">
+        <div class="cname">Chocolate Quente</div>
+        <div class="cdesc">Dispon&#237;vel em dois tamanhos</div>
+        <div class="cfoot"><div class="cprice">R$ 16,00 / R$ 20,00</div><div class="diam"></div></div>
       </div>
-      <div class="dprice">R$ 16,00 / R$ 20,00</div>
     </div>
 
-    <div class="dcard dcard-photo fi">
-      <div class="dcard-media"><img src="fotos%20de%20pratos/Vienense.jpeg" alt="Capuccino Vienense" loading="lazy"></div>
-      <div class="almoco-meta">
-        <div class="dname">Capuccino Vienense</div>
-        <p class="almoco-text">Nutella, caf&#233; expresso, leite vaporizado, finalizado com chantilly</p>
+    <div class="card beverage-card fi">
+      <div class="cib"><img src="fotos%20de%20pratos/Vienense.jpeg" alt="Capuccino Vienense" loading="lazy"><div class="badge">Cafeteria</div></div>
+      <div class="cbody">
+        <div class="cname">Capuccino Vienense</div>
+        <div class="cdesc">Nutella, caf&#233; expresso, leite vaporizado, finalizado com chantilly</div>
+        <div class="cfoot"><div class="cprice">R$ 25,00</div><div class="diam"></div></div>
       </div>
-      <div class="dprice">R$ 25,00</div>
     </div>
 
-    <div class="dcard dcard-photo fi">
-      <div class="dcard-media"><img src="fotos%20de%20pratos/Mocha%20Doce%20de%20Leite.jpeg" alt="Mocha Doce de Leite" loading="lazy"></div>
-      <div class="almoco-meta">
-        <div class="dname">Mocha Doce de Leite</div>
-        <p class="almoco-text">Doce de leite, caf&#233; expresso e leite vaporizado</p>
+    <div class="card beverage-card fi">
+      <div class="cib"><img src="fotos%20de%20pratos/Mocha%20Doce%20de%20Leite.jpeg" alt="Mocha Doce de Leite" loading="lazy"><div class="badge">Cafeteria</div></div>
+      <div class="cbody">
+        <div class="cname">Mocha Doce de Leite</div>
+        <div class="cdesc">Doce de leite, caf&#233; expresso e leite vaporizado</div>
+        <div class="cfoot"><div class="cprice">R$ 25,00</div><div class="diam"></div></div>
       </div>
-      <div class="dprice">R$ 25,00</div>
     </div>
   </div>
 </section>
 
 <section id="cafes-gelados" class="sec">
   <div class="sh fi"><div><span class="stag">Caf&#233;s com Gelo</span><h2 class="stitle">Caf&#233;s Gelados</h2></div></div>
-  <div class="grid media-grid">
-    <div class="dcard fi">
-      <div class="almoco-meta">
-        <div class="dname">Abacaxi Refresh</div>
-        <p class="almoco-text">Xarope de abacaxi, xarope de gengibre e caf&#233; gelado</p>
+  <div class="grid">
+    <div class="card beverage-card fi">
+      <div class="cbody">
+        <div class="cname">Abacaxi Refresh</div>
+        <div class="cdesc">Xarope de abacaxi, xarope de gengibre e caf&#233; gelado</div>
+        <div class="cfoot"><div class="cprice">R$ 18,00</div><div class="diam"></div></div>
       </div>
-      <div class="dprice">R$ 18,00</div>
     </div>
 
-    <div class="dcard dcard-photo fi">
-      <div class="dcard-media"><img src="fotos%20de%20pratos/Amarelo%20Picante.jpeg" alt="Amarelo Picante" loading="lazy"></div>
-      <div class="almoco-meta">
-        <div class="dname">Amarelo Picante</div>
-        <p class="almoco-text">Xarope de maracuj&#225;, xarope de pimenta, caf&#233; gelado e espuma de lim&#227;o</p>
+    <div class="card beverage-card fi">
+      <div class="cib"><img src="fotos%20de%20pratos/Amarelo%20Picante.jpeg" alt="Amarelo Picante" loading="lazy"><div class="badge">Gelado</div></div>
+      <div class="cbody">
+        <div class="cname">Amarelo Picante</div>
+        <div class="cdesc">Xarope de maracuj&#225;, xarope de pimenta, caf&#233; gelado e espuma de lim&#227;o</div>
+        <div class="cfoot"><div class="cprice">R$ 18,00</div><div class="diam"></div></div>
       </div>
-      <div class="dprice">R$ 18,00</div>
     </div>
 
-    <div class="dcard fi">
-      <div class="almoco-meta">
-        <div class="dname">Iced Latte</div>
-        <p class="almoco-text">Leite, xarope de baunilha, caf&#233; expresso e gelo</p>
+    <div class="card beverage-card fi">
+      <div class="cbody">
+        <div class="cname">Iced Latte</div>
+        <div class="cdesc">Leite, xarope de baunilha, caf&#233; expresso e gelo</div>
+        <div class="cfoot"><div class="cprice">R$ 18,00</div><div class="diam"></div></div>
       </div>
-      <div class="dprice">R$ 18,00</div>
     </div>
 
-    <div class="dcard dcard-photo fi">
-      <div class="dcard-media"><img src="fotos%20de%20pratos/Laranja%20Toffee.jpeg" alt="Laranja Toffee" loading="lazy"></div>
-      <div class="almoco-meta">
-        <div class="dname">Laranja Toffee</div>
-        <p class="almoco-text">Xarope de laranja, sumo de lim&#227;o, caf&#233; expresso e espuma de lim&#227;o</p>
+    <div class="card beverage-card fi">
+      <div class="cib"><img src="fotos%20de%20pratos/Laranja%20Toffee.jpeg" alt="Laranja Toffee" loading="lazy"><div class="badge">Gelado</div></div>
+      <div class="cbody">
+        <div class="cname">Laranja Toffee</div>
+        <div class="cdesc">Xarope de laranja, sumo de lim&#227;o, caf&#233; expresso e espuma de lim&#227;o</div>
+        <div class="cfoot"><div class="cprice">R$ 18,00</div><div class="diam"></div></div>
       </div>
-      <div class="dprice">R$ 18,00</div>
     </div>
 
-    <div class="dcard dcard-photo fi">
-      <div class="dcard-media"><img src="fotos%20de%20pratos/Nutella%20Latte.jpeg" alt="Nutella Latte" loading="lazy"></div>
-      <div class="almoco-meta">
-        <div class="dname">Nutella Latte</div>
-        <p class="almoco-text">Leite, Nutella, caf&#233; expresso e chantilly</p>
+    <div class="card beverage-card fi">
+      <div class="cib"><img src="fotos%20de%20pratos/Nutella%20Latte.jpeg" alt="Nutella Latte" loading="lazy"><div class="badge">Gelado</div></div>
+      <div class="cbody">
+        <div class="cname">Nutella Latte</div>
+        <div class="cdesc">Leite, Nutella, caf&#233; expresso e chantilly</div>
+        <div class="cfoot"><div class="cprice">R$ 25,00</div><div class="diam"></div></div>
       </div>
-      <div class="dprice">R$ 25,00</div>
     </div>
 
-    <div class="dcard fi">
-      <div class="almoco-meta">
-        <div class="dname">Tea Coffee</div>
-        <p class="almoco-text">Ch&#225; de hibisco, caf&#233; gelado e espuma de lim&#227;o</p>
+    <div class="card beverage-card fi">
+      <div class="cbody">
+        <div class="cname">Tea Coffee</div>
+        <div class="cdesc">Ch&#225; de hibisco, caf&#233; gelado e espuma de lim&#227;o</div>
+        <div class="cfoot"><div class="cprice">R$ 18,00</div><div class="diam"></div></div>
       </div>
-      <div class="dprice">R$ 18,00</div>
     </div>
   </div>
 </section>
