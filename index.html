@@ -47,6 +47,13 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
 .media-grid{grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;}
 .card{background:#fff;border-radius:6px;overflow:hidden;border:1px solid rgba(0,0,0,.07);box-shadow:0 2px 14px rgba(0,0,0,.05);display:flex;flex-direction:column;transition:transform .3s,box-shadow .3s;}
 .card:hover{transform:translateY(-5px);box-shadow:0 18px 50px rgba(0,0,0,.1);}
+.card.no-photo{border-left:3px solid var(--gold);background:linear-gradient(180deg,#fff 0%,#fdfbf5 100%);}
+.card.no-photo .cbody{padding:24px 22px;min-height:190px;}
+.card.no-photo .cname{font-size:19px;margin-bottom:10px;}
+.card.no-photo .cdesc{font-size:12px;line-height:1.75;margin-bottom:18px;}
+.card.no-photo .cfoot{margin-top:auto;}
+.beverage-card.no-photo .cbody{min-height:160px;}
+.almoco-card.no-photo .cbody{min-height:170px;}
 .cib{position:relative;height:210px;overflow:hidden;flex-shrink:0;background:var(--gd);}
 .cib img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s;}
 .card:hover .cib img{transform:scale(1.06);}
@@ -156,8 +163,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
       </div>
     </div>
 
-    <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Stick%20de%20pastel%20de%20camar%C3%A3o.png" alt="Stick Pasteis de Camar&#245;es" loading="lazy"><div class="badge">Comidinha</div></div>
+    <div class="card no-photo fi">
       <div class="cbody">
         <div class="cname">Stick Pasteis de Camar&#245;es</div>
         <div class="cdesc">3 Past&#233;is em formato de stick recheados com creme de camar&#227;o, acompanha maionese kewpie</div>
@@ -165,8 +171,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
       </div>
     </div>
 
-    <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Past%C3%A9is%20de%20charque%20com%20queijo.png" alt="Past&#233;is de Charque com Queijo" loading="lazy"><div class="badge">Comidinha</div></div>
+    <div class="card no-photo fi">
       <div class="cbody">
         <div class="cname">Past&#233;is de Charque com Queijo</div>
         <div class="cdesc">Por&#231;&#227;o mini past&#233;is de charque com queijo</div>
@@ -224,8 +229,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
 <section id="sanduiches" class="sec">
   <div class="sh fi"><div><span class="stag">Entre P&#227;es</span><h2 class="stitle">Sandu&#237;ches</h2></div></div>
   <div class="grid">
-    <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Recife%20Antigo.png" alt="Recife Antigo" loading="lazy"><div class="badge">Sandu&#237;che</div></div>
+    <div class="card no-photo fi">
       <div class="cbody">
         <div class="cname">Recife Antigo</div>
         <div class="cdesc">P&#227;o brioche longo, cupim desfiado, queijo do reino, vinagrete assado, maionese de bacon</div>
@@ -233,8 +237,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
       </div>
     </div>
 
-    <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Veneza%20Brasileira.png" alt="Veneza Brasileira" loading="lazy"><div class="badge">Sandu&#237;che</div></div>
+    <div class="card no-photo fi">
       <div class="cbody">
         <div class="cname">Veneza Brasileira</div>
         <div class="cdesc">P&#227;o brioche longo, peito de frango desfiado, bacon crocante, mu&#231;arela, r&#250;cula, creme de queijo com ervas</div>
@@ -323,24 +326,21 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
       </div>
     </div>
 
-    <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Pudim.png" alt="Pudim" loading="lazy"><div class="badge">Doce</div></div>
+    <div class="card no-photo fi">
       <div class="cbody">
         <div class="cname">Pudim</div>
         <div class="cfoot"><div class="cprice"><sup>R$&nbsp;</sup>15,00</div><div class="diam"></div></div>
       </div>
     </div>
 
-    <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Tortas.png" alt="Tortas" loading="lazy"><div class="badge">Doce</div></div>
+    <div class="card no-photo fi">
       <div class="cbody">
         <div class="cname">Tortas</div>
         <div class="cfoot"><div class="cprice"><sup>R$&nbsp;</sup>19,00</div><div class="diam"></div></div>
       </div>
     </div>
 
-    <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Cartola.png" alt="Cartola Amaro" loading="lazy"><div class="badge">Doce</div></div>
+    <div class="card no-photo fi">
       <div class="cbody">
         <div class="cname">Cartola Amaro</div>
         <div class="cdesc">Queijo coalho assado, banana da terra frita, queijo de manteiga derretido, a&#231;&#250;car, canela</div>
@@ -348,8 +348,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
       </div>
     </div>
 
-    <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Rabanada%20com%20Doce%20de%20Leite.png" alt="Rabanada com Doce Leite" loading="lazy"><div class="badge">Doce</div></div>
+    <div class="card no-photo fi">
       <div class="cbody">
         <div class="cname">Rabanada com Doce Leite</div>
         <div class="cdesc">Rabanada de p&#227;o brioche, sorvete de creme e doce de leite</div>
@@ -362,8 +361,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
 <section id="tapiocas" class="sec">
   <div class="sh fi"><div><span class="stag">Da Goma</span><h2 class="stitle">Tapiocas</h2></div></div>
   <div class="grid">
-    <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Cais.png" alt="Cais" loading="lazy"><div class="badge">Tapioca</div></div>
+    <div class="card no-photo fi">
       <div class="cbody">
         <div class="cname">Cais</div>
         <div class="cdesc">Tapioca recheada com frango , queijo coalho e rendada com queijo coalho</div>
@@ -389,8 +387,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
       </div>
     </div>
 
-    <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Arretada.png" alt="Arretada" loading="lazy"><div class="badge">Tapioca</div></div>
+    <div class="card no-photo fi">
       <div class="cbody">
         <div class="cname">Arretada</div>
         <div class="cdesc">Tapioca recheada com camar&#245;es salteados e cream cheese</div>
@@ -407,8 +404,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
       </div>
     </div>
 
-    <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Marqu%C3%AAs%20de%20Olinda.png" alt="Marqu&#234;s de Olinda" loading="lazy"><div class="badge">Tapioca</div></div>
+    <div class="card no-photo fi">
       <div class="cbody">
         <div class="cname">Marqu&#234;s de Olinda</div>
         <div class="cdesc">Coco, queijo e leite condensado</div>
@@ -484,8 +480,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
       </div>
     </div>
 
-    <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Galinhada%20Amaro.png" alt="Galinhada Amaro" loading="lazy"><div class="badge">Executivo</div></div>
+    <div class="card no-photo fi">
       <div class="cbody">
         <div class="cname">Galinhada Amaro</div>
         <div class="cdesc">Bai&#227;o de arroz com fava cozido no caldo de cozimento do frango e coxa com sobrecoxa desossada frita</div>
@@ -493,8 +488,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
       </div>
     </div>
 
-    <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Lasanha%20de%20cupim.png" alt="Lasanha de Cupim" loading="lazy"><div class="badge">Executivo</div></div>
+    <div class="card no-photo fi">
       <div class="cbody">
         <div class="cname">Lasanha de Cupim</div>
         <div class="cdesc">Massa fresca de lasanha intercalada com ragu de cupim montada sobre molho de queijo e molho escuro</div>
@@ -529,8 +523,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
       </div>
     </div>
 
-    <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Picadinho%20carioca.png" alt="Picadinho Carioca" loading="lazy"><div class="badge">Executivo</div></div>
+    <div class="card no-photo fi">
       <div class="cbody">
         <div class="cname">Picadinho Carioca</div>
         <div class="cdesc">Contra fil&#233; ao molho, arroz de couve e cenoura, feij&#227;o carioca, farofa panko e ovo frito</div>
@@ -538,8 +531,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
       </div>
     </div>
 
-    <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Risoto%20de%20camar%C3%A3o.png" alt="Risoto de Camar&#227;o" loading="lazy"><div class="badge">Executivo</div></div>
+    <div class="card no-photo fi">
       <div class="cbody">
         <div class="cname">Risoto de Camar&#227;o</div>
         <div class="cdesc">Arroz arb&#243;reo cozido no caldo do camar&#227;o, camar&#245;es selados e mix de folhas frescas</div>
@@ -570,8 +562,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
 <section id="saladas" class="sec">
   <div class="sh fi"><div><span class="stag">Folhas &amp; Frescor</span><h2 class="stitle">Saladas</h2></div></div>
   <div class="grid">
-    <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Amaro.png" alt="Amaro" loading="lazy"><div class="badge">Salada</div></div>
+    <div class="card no-photo fi">
       <div class="cbody">
         <div class="cname">Amaro</div>
         <div class="cdesc">Mix de folhas, frango grelhado em tiras, picles de cebola roxa, bacon crocante, tomate cereja, croutons e maionese de ervas</div>
@@ -579,8 +570,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
       </div>
     </div>
 
-    <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Camar%C3%A3o%20Croc.png" alt="Camar&#227;o Croc" loading="lazy"><div class="badge">Salada</div></div>
+    <div class="card no-photo fi">
       <div class="cbody">
         <div class="cname">Camar&#227;o Croc</div>
         <div class="cdesc">Mix de folhas, camar&#227;o empanado, picles de ab&#243;bora, tomate cereja, croutons, maionese de ervas</div>
@@ -588,8 +578,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
       </div>
     </div>
 
-    <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Z%C3%A9%20Mariano.png" alt="Z&#233; Mariano" loading="lazy"><div class="badge">Salada</div></div>
+    <div class="card no-photo fi">
       <div class="cbody">
         <div class="cname">Z&#233; Mariano</div>
         <div class="cdesc">Mix de folhas, maminha fatiada, picles de maxixe, tomate cereja, croutons, maionese de bacon</div>
@@ -730,8 +719,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
 <section id="cafes-gelados" class="sec">
   <div class="sh fi"><div><span class="stag">Caf&#233;s com Gelo</span><h2 class="stitle">Caf&#233;s Gelados</h2></div></div>
   <div class="grid">
-    <div class="card beverage-card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Abacaxi%20Refresh.png" alt="Abacaxi Refresh" loading="lazy"><div class="badge">Gelado</div></div>
+    <div class="card beverage-card no-photo fi">
       <div class="cbody">
         <div class="cname">Abacaxi Refresh</div>
         <div class="cdesc">Xarope de abacaxi, xarope de gengibre e caf&#233; gelado</div>
@@ -748,8 +736,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
       </div>
     </div>
 
-    <div class="card beverage-card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Iced%20Latte.png" alt="Iced Latte" loading="lazy"><div class="badge">Gelado</div></div>
+    <div class="card beverage-card no-photo fi">
       <div class="cbody">
         <div class="cname">Iced Latte</div>
         <div class="cdesc">Leite, xarope de baunilha, caf&#233; expresso e gelo</div>
@@ -775,8 +762,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
       </div>
     </div>
 
-    <div class="card beverage-card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Tea%20Coffee.png" alt="Tea Coffee" loading="lazy"><div class="badge">Gelado</div></div>
+    <div class="card beverage-card no-photo fi">
       <div class="cbody">
         <div class="cname">Tea Coffee</div>
         <div class="cdesc">Ch&#225; de hibisco, caf&#233; gelado e espuma de lim&#227;o</div>
@@ -789,16 +775,14 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
 <section id="chas-gelados" class="sec">
   <div class="sh fi"><div><span class="stag">Infus&#245;es Geladas</span><h2 class="stitle">Ch&#225;s Gelados</h2></div></div>
   <div class="grid grid2">
-    <div class="card beverage-card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Hibisco%20com%20lim%C3%A3o.png" alt="Hibisco com Lim&#227;o" loading="lazy"><div class="badge">Ch&#225; Gelado</div></div>
+    <div class="card beverage-card no-photo fi">
       <div class="cbody">
         <div class="cname">Hibisco com Lim&#227;o</div>
         <div class="cfoot"><div class="cprice">R$ 16,00</div><div class="diam"></div></div>
       </div>
     </div>
 
-    <div class="card beverage-card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Folhas%20de%20Amora%20com%20Morangos.png" alt="Folhas de Amora com Morangos" loading="lazy"><div class="badge">Ch&#225; Gelado</div></div>
+    <div class="card beverage-card no-photo fi">
       <div class="cbody">
         <div class="cname">Folhas de Amora com Morangos</div>
         <div class="cfoot"><div class="cprice">R$ 18,00</div><div class="diam"></div></div>
@@ -810,8 +794,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
 <section id="cuscuz" class="sec">
   <div class="sh fi"><div><span class="stag">Da Casa</span><h2 class="stitle">Cuscuz</h2></div></div>
   <div class="grid">
-    <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Nordest%C3%A3o.png" alt="Nordest&#227;o" loading="lazy"><div class="badge">Cuscuz</div></div>
+    <div class="card no-photo fi">
       <div class="cbody">
         <div class="cname">Nordest&#227;o</div>
         <div class="cdesc">Cuscuz recheado com queijo manteiga, cupim desfiado, vinagrete e montado sobre molho de tomate</div>
@@ -819,8 +802,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
       </div>
     </div>
 
-    <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Quarentinha.png" alt="Quarentinha" loading="lazy"><div class="badge">Cuscuz</div></div>
+    <div class="card no-photo fi">
       <div class="cbody">
         <div class="cname">Quarentinha</div>
         <div class="cdesc">Cuscuz recheado com queijo coalho, vinagre e ovo mexido e finalizado com charque crocante sobre creme de queijo</div>
@@ -887,7 +869,7 @@ const escapeHtml=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>'
 const hojeIso=()=>{const d=new Date();const y=d.getFullYear();const m=String(d.getMonth()+1).padStart(2,'0');const day=String(d.getDate()).padStart(2,'0');return `${y}-${m}-${day}`;};
 const normalizarData=v=>{if(!v)return '';if(typeof v==='string'){const m=v.match(/^(\d{4}-\d{2}-\d{2})/);if(m)return m[1];}const d=new Date(v);return Number.isNaN(d.getTime())?'':d.toISOString().slice(0,10);};
 const normalizarNome=v=>String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
-const fotosPratos={'arretada':'fotos%20de%20pratos/Arretada.png','ze mariano':'fotos%20de%20pratos/Z%C3%A9%20Mariano.png','tea coffee':'fotos%20de%20pratos/Tea%20Coffee.png','cafe expresso':'fotos%20de%20pratos/Caf%C3%A9%20Expresso.png','tabua sertaneja':'fotos%20de%20pratos/t%C3%A1bua%20sertaneja.png','cupim na crosta':'fotos%20de%20pratos/cupim%20na%20crosta.png','quarentinha':'fotos%20de%20pratos/Quarentinha.png','tortas':'fotos%20de%20pratos/Tortas.png','recife antigo':'fotos%20de%20pratos/Recife%20Antigo.png','chocolate quente':'fotos%20de%20pratos/Chocolate%20Quente.png','capuccino':'fotos%20de%20pratos/Capuccino.png','pasteis de charque com queijo':'fotos%20de%20pratos/Past%C3%A9is%20de%20charque%20com%20queijo.png','cafe com leite':'fotos%20de%20pratos/Caf%C3%A9%20com%20Leite.png','cheesecake no palito':'fotos%20de%20pratos/Cheesecake%20no%20Palito.png','lasanha de cupim':'fotos%20de%20pratos/Lasanha%20de%20cupim.png','nordestao':'fotos%20de%20pratos/Nordest%C3%A3o.png','iced latte':'fotos%20de%20pratos/Iced%20Latte.png','camarao croc':'fotos%20de%20pratos/Camar%C3%A3o%20Croc.png','stick pasteis de camaroes':'fotos%20de%20pratos/Stick%20de%20pastel%20de%20camar%C3%A3o.png','stick de pastel de camarao':'fotos%20de%20pratos/Stick%20de%20pastel%20de%20camar%C3%A3o.png','veneza brasileira':'fotos%20de%20pratos/Veneza%20Brasileira.png','tabua do porto':'fotos%20de%20pratos/t%C3%A1bua%20do%20porto.png','rabanada com doce leite':'fotos%20de%20pratos/Rabanada%20com%20Doce%20de%20Leite.png','rabanada com doce de leite':'fotos%20de%20pratos/Rabanada%20com%20Doce%20de%20Leite.png','capibaribe':'fotos%20de%20pratos/Capibaribe.png?v=fff7559','amaro':'fotos%20de%20pratos/Amaro.png','risoto de camarao':'fotos%20de%20pratos/Risoto%20de%20camar%C3%A3o.png','marques de olinda':'fotos%20de%20pratos/Marqu%C3%AAs%20de%20Olinda.png','abacaxi refresh':'fotos%20de%20pratos/Abacaxi%20Refresh.png','aurora':'fotos%20de%20pratos/Aurora.png','cais':'fotos%20de%20pratos/Cais.png','recifense':'fotos%20de%20pratos/Recifense.png?v=fff7559','pudim':'fotos%20de%20pratos/Pudim.png','picadinho carioca':'fotos%20de%20pratos/Picadinho%20carioca.png','cartola amaro':'fotos%20de%20pratos/Cartola.png','cartola':'fotos%20de%20pratos/Cartola.png','canoli de queijadinha':'fotos%20de%20pratos/Canoli%20de%20Queijadinha.png','folhas de amora com morangos':'fotos%20de%20pratos/Folhas%20de%20Amora%20com%20Morangos.png','hibisco com limao':'fotos%20de%20pratos/Hibisco%20com%20lim%C3%A3o.png','amarelo picante':'fotos%20de%20pratos/Amarelo%20Picante.jpeg','arroz de polvo':'fotos%20de%20pratos/Arroz%20de%20Polvo.jpg','avexado':'fotos%20de%20pratos/Avexado.jpg','cafe filtrado':'fotos%20de%20pratos/Caf%C3%A9%20Filtrado.jpeg','camarao imperador':'fotos%20de%20pratos/Camar%C3%A3o%20Imperador.jpg','carne de sol desarrumada':'fotos%20de%20pratos/Carne%20de%20Sol%20Desarrumada.jpg','charque brejeira':'fotos%20de%20pratos/Charque%20Brejeira.jpg','croqueta de cupim':'fotos%20de%20pratos/Croqueta%20de%20Cupim.jpg','dadinhos de tapioca':'fotos%20de%20pratos/Dadinhos%20de%20Tapioca.jpeg','franguinho da moeda':'fotos%20de%20pratos/Franguinho%20da%20Moeda.jpg','laranja toffee':'fotos%20de%20pratos/Laranja%20Toffee.jpeg','maminha do apolo':'fotos%20de%20pratos/Maminha%20do%20Apolo.jpg','mini churros com doce de leite':'fotos%20de%20pratos/Mini%20Churros%20com%20Doce%20de%20Leite.jpeg','mini coxinhas':'fotos%20de%20pratos/Mini%20Coxinhas.jpeg','mocha doce de leite':'fotos%20de%20pratos/Mocha%20Doce%20de%20Leite.jpeg','moqueca de peixe':'fotos%20de%20pratos/Moqueca%20de%20Peixe.jpg','nhoque de batata doce':'fotos%20de%20pratos/Nhoque%20de%20Batata%20Doce.jpg','nutella latte':'fotos%20de%20pratos/Nutella%20Latte.jpeg','oxente':'fotos%20de%20pratos/Oxente.jpg','panelinha de camarao':'fotos%20de%20pratos/Panelinha%20de%20Camar%C3%A3o.jpeg','parmegiana de frango':'fotos%20de%20pratos/Parmegiana%20de%20Frango.jpg','sanduiche torre':'fotos%20de%20pratos/Sandu%C3%ADche%20Torre.jpg','sticks de peixe crocante':'fotos%20de%20pratos/Sticks%20de%20Peixe%20Crocante.jpg','tapioca doce amaro':'fotos%20de%20pratos/Tapioca%20Doce%20Amaro.jpeg','tapioca leao do norte':'fotos%20de%20pratos/Tapioca%20Le%C3%A3o%20do%20Norte.jpeg','tapioca morango do nordeste':'fotos%20de%20pratos/Tapioca%20Morango%20do%20Nordeste.jpeg','tilapia crocante':'fotos%20de%20pratos/Til%C3%A1pia%20Crocante.jpg','tilapia marco zero':'fotos%20de%20pratos/Til%C3%A1pia%20Marco%20Zero.jpg','toast princesa do agreste':'fotos%20de%20pratos/Toast%20Princesa%20do%20Agreste.jpeg','toast rocado':'fotos%20de%20pratos/Toast%20Ro%C3%A7ado.jpeg','trio ternurinha':'fotos%20de%20pratos/Trio%20Ternurinha.jpg','vienense':'fotos%20de%20pratos/Vienense.jpeg','vixe maria':'fotos%20de%20pratos/Vixe%20Maria.jpg','panelinha de camaroes':'fotos%20de%20pratos/Panelinha%20de%20Camar%C3%A3o.jpeg','dadinhos de tapioca com charque e geleia de pimenta':'fotos%20de%20pratos/Dadinhos%20de%20Tapioca.jpeg','mini coxinhas de frango':'fotos%20de%20pratos/Mini%20Coxinhas.jpeg','torre malakoff':'fotos%20de%20pratos/Sandu%C3%ADche%20Torre.jpg','rocado':'fotos%20de%20pratos/Toast%20Ro%C3%A7ado.jpeg','princesa do agreste':'fotos%20de%20pratos/Toast%20Princesa%20do%20Agreste.jpeg','leao do norte':'fotos%20de%20pratos/Tapioca%20Le%C3%A3o%20do%20Norte.jpeg','doce amaro':'fotos%20de%20pratos/Tapioca%20Doce%20Amaro.jpeg','frango a parmegiana':'fotos%20de%20pratos/Parmegiana%20de%20Frango.jpg','galinhada amaro':'fotos%20de%20pratos/Galinhada%20Amaro.png','moqueca de camarao':'fotos%20de%20pratos/Moqueca%20de%20Camar%C3%A3o.png','capuccino vienense':'fotos%20de%20pratos/Vienense.jpeg'};
+const fotosPratos={'arretada':'','ze mariano':'','tea coffee':'','cafe expresso':'fotos%20de%20pratos/Caf%C3%A9%20Expresso.png','tabua sertaneja':'fotos%20de%20pratos/t%C3%A1bua%20sertaneja.png','cupim na crosta':'fotos%20de%20pratos/cupim%20na%20crosta.png','quarentinha':'','tortas':'','recife antigo':'','chocolate quente':'fotos%20de%20pratos/Chocolate%20Quente.png','capuccino':'fotos%20de%20pratos/Capuccino.png','pasteis de charque com queijo':'','cafe com leite':'fotos%20de%20pratos/Caf%C3%A9%20com%20Leite.png','cheesecake no palito':'fotos%20de%20pratos/Cheesecake%20no%20Palito.png','lasanha de cupim':'','nordestao':'','iced latte':'','camarao croc':'','stick pasteis de camaroes':'','stick de pastel de camarao':'','veneza brasileira':'','tabua do porto':'fotos%20de%20pratos/t%C3%A1bua%20do%20porto.png','rabanada com doce leite':'','rabanada com doce de leite':'','capibaribe':'fotos%20de%20pratos/Capibaribe.png?v=fff7559','amaro':'','risoto de camarao':'','marques de olinda':'','abacaxi refresh':'','aurora':'fotos%20de%20pratos/Aurora.png','cais':'','recifense':'fotos%20de%20pratos/Recifense.png?v=fff7559','pudim':'','picadinho carioca':'','cartola amaro':'','cartola':'','canoli de queijadinha':'fotos%20de%20pratos/Canoli%20de%20Queijadinha.png','folhas de amora com morangos':'','hibisco com limao':'','amarelo picante':'fotos%20de%20pratos/Amarelo%20Picante.jpeg','arroz de polvo':'fotos%20de%20pratos/Arroz%20de%20Polvo.jpg','avexado':'fotos%20de%20pratos/Avexado.jpg','cafe filtrado':'fotos%20de%20pratos/Caf%C3%A9%20Filtrado.jpeg','camarao imperador':'fotos%20de%20pratos/Camar%C3%A3o%20Imperador.jpg','carne de sol desarrumada':'fotos%20de%20pratos/Carne%20de%20Sol%20Desarrumada.jpg','charque brejeira':'fotos%20de%20pratos/Charque%20Brejeira.jpg','croqueta de cupim':'fotos%20de%20pratos/Croqueta%20de%20Cupim.jpg','dadinhos de tapioca':'fotos%20de%20pratos/Dadinhos%20de%20Tapioca.jpeg','franguinho da moeda':'fotos%20de%20pratos/Franguinho%20da%20Moeda.jpg','laranja toffee':'fotos%20de%20pratos/Laranja%20Toffee.jpeg','maminha do apolo':'fotos%20de%20pratos/Maminha%20do%20Apolo.jpg','mini churros com doce de leite':'fotos%20de%20pratos/Mini%20Churros%20com%20Doce%20de%20Leite.jpeg','mini coxinhas':'fotos%20de%20pratos/Mini%20Coxinhas.jpeg','mocha doce de leite':'fotos%20de%20pratos/Mocha%20Doce%20de%20Leite.jpeg','moqueca de peixe':'fotos%20de%20pratos/Moqueca%20de%20Peixe.jpg','nhoque de batata doce':'fotos%20de%20pratos/Nhoque%20de%20Batata%20Doce.jpg','nutella latte':'fotos%20de%20pratos/Nutella%20Latte.jpeg','oxente':'fotos%20de%20pratos/Oxente.jpg','panelinha de camarao':'fotos%20de%20pratos/Panelinha%20de%20Camar%C3%A3o.jpeg','parmegiana de frango':'fotos%20de%20pratos/Parmegiana%20de%20Frango.jpg','sanduiche torre':'fotos%20de%20pratos/Sandu%C3%ADche%20Torre.jpg','sticks de peixe crocante':'fotos%20de%20pratos/Sticks%20de%20Peixe%20Crocante.jpg','tapioca doce amaro':'fotos%20de%20pratos/Tapioca%20Doce%20Amaro.jpeg','tapioca leao do norte':'fotos%20de%20pratos/Tapioca%20Le%C3%A3o%20do%20Norte.jpeg','tapioca morango do nordeste':'fotos%20de%20pratos/Tapioca%20Morango%20do%20Nordeste.jpeg','tilapia crocante':'fotos%20de%20pratos/Til%C3%A1pia%20Crocante.jpg','tilapia marco zero':'fotos%20de%20pratos/Til%C3%A1pia%20Marco%20Zero.jpg','toast princesa do agreste':'fotos%20de%20pratos/Toast%20Princesa%20do%20Agreste.jpeg','toast rocado':'fotos%20de%20pratos/Toast%20Ro%C3%A7ado.jpeg','trio ternurinha':'fotos%20de%20pratos/Trio%20Ternurinha.jpg','vienense':'fotos%20de%20pratos/Vienense.jpeg','vixe maria':'fotos%20de%20pratos/Vixe%20Maria.jpg','panelinha de camaroes':'fotos%20de%20pratos/Panelinha%20de%20Camar%C3%A3o.jpeg','dadinhos de tapioca com charque e geleia de pimenta':'fotos%20de%20pratos/Dadinhos%20de%20Tapioca.jpeg','mini coxinhas de frango':'fotos%20de%20pratos/Mini%20Coxinhas.jpeg','torre malakoff':'fotos%20de%20pratos/Sandu%C3%ADche%20Torre.jpg','rocado':'fotos%20de%20pratos/Toast%20Ro%C3%A7ado.jpeg','princesa do agreste':'fotos%20de%20pratos/Toast%20Princesa%20do%20Agreste.jpeg','leao do norte':'fotos%20de%20pratos/Tapioca%20Le%C3%A3o%20do%20Norte.jpeg','doce amaro':'fotos%20de%20pratos/Tapioca%20Doce%20Amaro.jpeg','frango a parmegiana':'fotos%20de%20pratos/Parmegiana%20de%20Frango.jpg','galinhada amaro':'','moqueca de camarao':'fotos%20de%20pratos/Moqueca%20de%20Camar%C3%A3o.png','capuccino vienense':'fotos%20de%20pratos/Vienense.jpeg'};
 const obterImagemPrato=nome=>fotosPratos[normalizarNome(nome)]||'';
 const descricoesPratos=Array.from(document.querySelectorAll('#executivos .card')).reduce((acc,card)=>{const nome=card.querySelector('.cname')?.textContent?.trim();const descricao=card.querySelector('.cdesc')?.textContent?.trim();if(nome&&descricao)acc[normalizarNome(nome)]=descricao;return acc;},{});
 const obterDescricaoPrato=item=>{if(typeof item?.descricao==='string'&&item.descricao.trim())return item.descricao.trim();return descricoesPratos[normalizarNome(item?.prato)]||'Seleção especial disponível hoje no almoço.';};
@@ -899,7 +881,7 @@ const renderStatus=msg=>{if(!almocoHojeLista)return;almocoHojeLista.innerHTML=`<
 const renderPratos=pratos=>{if(!almocoHojeLista)return;almocoHojeLista.innerHTML=pratos.map(item=>`<article class="dcard"><div class="almoco-meta"><span class="stag">Prato do dia</span><div class="dname">${escapeHtml(item.prato)}</div></div><div class="dprice">${brl.format(Number(item.preco))}</div></article>`).join('');};
 const carregarAlmocoHoje=async()=>{if(!almocoHojeLista)return;if(!almocoHojeEndpoint||almocoHojeEndpoint==='COLE_AQUI_A_URL_DO_WEB_APP'){renderStatus('N&atilde;o foi poss&iacute;vel carregar o card&aacute;pio de hoje.');return;}try{const res=await fetch(almocoHojeEndpoint,{cache:'no-store'});if(!res.ok)throw new Error('request_failed');const data=await res.json();const pratos=Array.isArray(data)?data:(data&&data.ok===true&&Array.isArray(data.pratos)?data.pratos:null);if(!pratos)throw new Error('invalid_payload');const pratosHoje=pratos.filter(item=>item&&typeof item.prato==='string'&&item.prato.trim()&&Number.isFinite(Number(item.preco))&&normalizarData(item.data)===hojeIso());if(!pratosHoje.length){renderStatus('Card&aacute;pio de hoje ainda n&atilde;o informado.');return;}renderPratos(pratosHoje);}catch(err){renderStatus('N&atilde;o foi poss&iacute;vel carregar o card&aacute;pio de hoje.');}};
 const renderStatusBonito=msg=>{if(!almocoHojeLista)return;almocoHojeLista.innerHTML=`<div class="dcard almoco-status"><div class="almoco-meta"><div class="dname">Almo&ccedil;o de Hoje</div><p class="almoco-text">${escapeHtml(msg)}</p></div></div>`;};
-const renderPratosBonito=pratos=>{if(!almocoHojeLista)return;const unicos=[...new Map(pratos.map(item=>{const prato=item.prato.trim();return [`${normalizarNome(prato)}|${Number(item.preco)}`,{...item,prato}];})).values()];almocoHojeLista.innerHTML=unicos.map(item=>{const imagem=obterImagemPrato(item.prato);const descricao=obterDescricaoPrato(item);const media=imagem?`<div class="cib"><img src="${imagem}" alt="${escapeHtml(item.prato)}" loading="lazy"><div class="badge">Almo&ccedil;o</div></div>`:'';return `<article class="card fi almoco-card">${media}<div class="cbody"><div class="cname">${escapeHtml(item.prato)}</div><div class="cdesc">${escapeHtml(descricao)}</div><div class="cfoot"><div class="cprice">${brl.format(Number(item.preco))}</div><div class="diam"></div></div></div></article>`;}).join('');almocoHojeLista.querySelectorAll('.fi').forEach(el=>io.observe(el));};
+const renderPratosBonito=pratos=>{if(!almocoHojeLista)return;const unicos=[...new Map(pratos.map(item=>{const prato=item.prato.trim();return [`${normalizarNome(prato)}|${Number(item.preco)}`,{...item,prato}];})).values()];almocoHojeLista.innerHTML=unicos.map(item=>{const imagem=obterImagemPrato(item.prato);const descricao=obterDescricaoPrato(item);const media=imagem?`<div class="cib"><img src="${imagem}" alt="${escapeHtml(item.prato)}" loading="lazy"><div class="badge">Almo&ccedil;o</div></div>`:'';return `<article class="card fi almoco-card${media?'':' no-photo'}">${media}<div class="cbody"><div class="cname">${escapeHtml(item.prato)}</div><div class="cdesc">${escapeHtml(descricao)}</div><div class="cfoot"><div class="cprice">${brl.format(Number(item.preco))}</div><div class="diam"></div></div></div></article>`;}).join('');almocoHojeLista.querySelectorAll('.fi').forEach(el=>io.observe(el));};
 const carregarAlmocoHojeBonito=async()=>{if(!almocoHojeLista)return;if(!almocoHojeEndpoint||almocoHojeEndpoint==='COLE_AQUI_A_URL_DO_WEB_APP'){renderStatusBonito('N\u00e3o foi poss\u00edvel carregar o card\u00e1pio de hoje.');return;}try{const res=await fetch(almocoHojeEndpoint,{cache:'no-store'});if(!res.ok)throw new Error('request_failed');const data=await res.json();const pratos=Array.isArray(data)?data:(data&&data.ok===true&&Array.isArray(data.pratos)?data.pratos:null);if(!pratos)throw new Error('invalid_payload');const pratosHoje=pratos.filter(item=>item&&typeof item.prato==='string'&&item.prato.trim()&&Number.isFinite(Number(item.preco))&&normalizarData(item.data)===hojeIso());if(!pratosHoje.length){renderStatusBonito('Card\u00e1pio de hoje ainda n\u00e3o informado.');return;}renderPratosBonito(pratosHoje);}catch(err){renderStatusBonito('N\u00e3o foi poss\u00edvel carregar o card\u00e1pio de hoje.');}};
 carregarAlmocoHojeBonito();
 </script>
