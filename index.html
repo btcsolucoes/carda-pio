@@ -1,4 +1,4 @@
-<!-- Mateus 6:33 (ARA) "Buscai, pois, em primeiro lugar, o seu reino e a sua justiÁa, e todas estas coisas vos ser„o acrescentadas." -->
+<!-- Mateus 6:33 (ARA) "Buscai, pois, em primeiro lugar, o seu reino e a sua justi√ßa, e todas estas coisas vos ser√£o acrescentadas." -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -8,6 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--gold:#B8973A;--gold2:#D4AF5A;--gd:#1A2118;--gd2:#2C3B2A;--cream:#F5F0E6;--cream2:#EDE4D0;--white:#fff;--txt:#1a1a1a;--txt2:#777;}
+@font-face{font-family:"Valorant Bryan T";src:url("assets/fonts/valorant/Valorant%20Font.ttf") format("truetype"),local("Valorant - Bryan T"),local("Valorant Bryan T"),local("Valorant");font-display:swap;}
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt);overflow-x:hidden;}
@@ -89,9 +90,14 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
 .fbar{width:50px;height:1px;background:var(--gold);margin:0 auto 18px;opacity:.5;}
 .faddr{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);line-height:2.2;}
 .ftel{font-family:'Playfair Display',serif;font-size:20px;font-style:italic;color:var(--gold2);margin-top:14px;}
+.product-badge{width:fit-content;max-width:calc(100vw - 32px);margin:20px auto 0;display:flex;flex-direction:column;align-items:center;gap:4px;padding:0;color:rgba(212,175,90,.95);background:transparent;border:0;border-radius:0;box-shadow:none;}
+.qrstack-lockup{position:relative;width:96px;padding-top:12px;}
+.product-copy{position:absolute;top:0;left:0;font-family:"Valorant Bryan T","Valorant - Bryan T","Montserrat",sans-serif;font-size:.48rem;font-weight:400;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;}
+.qrstack-mark{display:block;width:96px;height:98px;object-fit:contain;border-radius:0;box-shadow:none;}
+.qrstack-wordmark{display:block;width:148px;height:34px;object-fit:cover;object-position:center;border-radius:0;filter:brightness(.95) contrast(1.25);}
 .fi{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease;}
 .fi.in{opacity:1;transform:translateY(0);}
-@media(max-width:600px){.grid,.grid2,.media-grid{grid-template-columns:1fr;}.nl{padding:14px 11px;font-size:8px;letter-spacing:2px;}.dcard{padding:16px;}.dcard-media{width:72px;height:72px;}}
+@media(max-width:600px){.grid,.grid2,.media-grid{grid-template-columns:1fr;}.nl{padding:14px 11px;font-size:8px;letter-spacing:2px;}.dcard{padding:16px;}.dcard-media{width:72px;height:72px;}.product-badge{max-width:calc(100vw - 20px);gap:3px;}.qrstack-lockup{width:80px;padding-top:10px;}.product-copy{font-size:.42rem;}.qrstack-mark{width:80px;height:82px;}.qrstack-wordmark{width:126px;height:30px;}}
 </style>
 </head>
 <body>
@@ -856,6 +862,14 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
   <div class="faddr">R. do Apolo, 182 &mdash; Recife Antigo, PE<br>CEP 50030-220</div>
 </footer>
 
+<div class="product-badge" aria-label="Um produto QrStack">
+  <div class="qrstack-lockup">
+    <span class="product-copy">Um produto</span>
+    <img class="qrstack-mark" src="assets/qrstack-mark.png" alt="" aria-hidden="true">
+  </div>
+  <img class="qrstack-wordmark" src="assets/qrstack-wordmark.png" alt="QrStack">
+</div>
+
 <script>
 const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in');});},{threshold:0.07});
 document.querySelectorAll('.fi').forEach(el=>io.observe(el));
@@ -878,7 +892,7 @@ const normalizarNome=v=>String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/
 const fotosPratos={'arretada':'','ze mariano':'','tea coffee':'','cafe expresso':'fotos%20de%20pratos/Caf%C3%A9%20Expresso.png','tabua sertaneja':'fotos%20de%20pratos/t%C3%A1bua%20sertaneja.png','cupim na crosta':'fotos%20de%20pratos/cupim%20na%20crosta.png','quarentinha':'','tortas':'','recife antigo':'','chocolate quente':'fotos%20de%20pratos/Chocolate%20Quente.png','capuccino':'fotos%20de%20pratos/Capuccino.png','pasteis de charque com queijo':'','cafe com leite':'fotos%20de%20pratos/Caf%C3%A9%20com%20Leite.png','cheesecake no palito':'fotos%20de%20pratos/Cheesecake%20no%20Palito.png','lasanha de cupim':'','nordestao':'','iced latte':'','camarao croc':'','stick pasteis de camaroes':'','stick de pastel de camarao':'','veneza brasileira':'','tabua do porto':'fotos%20de%20pratos/t%C3%A1bua%20do%20porto.png','rabanada com doce leite':'','rabanada com doce de leite':'','capibaribe':'fotos%20de%20pratos/Capibaribe.png?v=fff7559','amaro':'','risoto de camarao':'','marques de olinda':'','abacaxi refresh':'','aurora':'fotos%20de%20pratos/Aurora.png','cais':'','recifense':'fotos%20de%20pratos/Recifense.png?v=fff7559','pudim':'','picadinho carioca':'','cartola amaro':'','cartola':'','canoli de queijadinha':'fotos%20de%20pratos/Canoli%20de%20Queijadinha.png','folhas de amora com morangos':'','hibisco com limao':'','amarelo picante':'fotos%20de%20pratos/Amarelo%20Picante.jpeg','arroz de polvo':'fotos%20de%20pratos/Arroz%20de%20Polvo.jpg','avexado':'fotos%20de%20pratos/Avexado.jpg','cafe filtrado':'fotos%20de%20pratos/Caf%C3%A9%20Filtrado.jpeg','camarao imperador':'fotos%20de%20pratos/Camar%C3%A3o%20Imperador.jpg','carne de sol desarrumada':'fotos%20de%20pratos/Carne%20de%20Sol%20Desarrumada.jpg','charque brejeira':'fotos%20de%20pratos/Charque%20Brejeira.jpg','croqueta de cupim':'fotos%20de%20pratos/Croqueta%20de%20Cupim.jpg','dadinhos de tapioca':'fotos%20de%20pratos/Dadinhos%20de%20Tapioca.jpeg','franguinho da moeda':'fotos%20de%20pratos/Franguinho%20da%20Moeda.jpg','laranja toffee':'fotos%20de%20pratos/Laranja%20Toffee.jpeg','maminha do apolo':'fotos%20de%20pratos/Maminha%20do%20Apolo.jpg','mini churros com doce de leite':'fotos%20de%20pratos/Mini%20Churros%20com%20Doce%20de%20Leite.jpeg','mini coxinhas':'fotos%20de%20pratos/Mini%20Coxinhas.jpeg','mocha doce de leite':'fotos%20de%20pratos/Mocha%20Doce%20de%20Leite.jpeg','moqueca de peixe':'fotos%20de%20pratos/Moqueca%20de%20Peixe.jpg','nhoque de batata doce':'fotos%20de%20pratos/Nhoque%20de%20Batata%20Doce.jpg','nutella latte':'fotos%20de%20pratos/Nutella%20Latte.jpeg','oxente':'fotos%20de%20pratos/Oxente.jpg','panelinha de camarao':'fotos%20de%20pratos/Panelinha%20de%20Camar%C3%A3o.jpeg','parmegiana de frango':'fotos%20de%20pratos/Parmegiana%20de%20Frango.jpg','sanduiche torre':'fotos%20de%20pratos/Sandu%C3%ADche%20Torre.jpg','sticks de peixe crocante':'fotos%20de%20pratos/Sticks%20de%20Peixe%20Crocante.jpg','tapioca doce amaro':'fotos%20de%20pratos/Tapioca%20Doce%20Amaro.jpeg','tapioca leao do norte':'fotos%20de%20pratos/Tapioca%20Le%C3%A3o%20do%20Norte.jpeg','tapioca morango do nordeste':'fotos%20de%20pratos/Tapioca%20Morango%20do%20Nordeste.jpeg','tilapia crocante':'fotos%20de%20pratos/Til%C3%A1pia%20Crocante.jpg','tilapia marco zero':'fotos%20de%20pratos/Til%C3%A1pia%20Marco%20Zero.jpg','toast princesa do agreste':'fotos%20de%20pratos/Toast%20Princesa%20do%20Agreste.jpeg','toast rocado':'fotos%20de%20pratos/Toast%20Ro%C3%A7ado.jpeg','trio ternurinha':'fotos%20de%20pratos/Trio%20Ternurinha.jpg','vienense':'fotos%20de%20pratos/Vienense.jpeg','vixe maria':'fotos%20de%20pratos/Vixe%20Maria.jpg','panelinha de camaroes':'fotos%20de%20pratos/Panelinha%20de%20Camar%C3%A3o.jpeg','dadinhos de tapioca com charque e geleia de pimenta':'fotos%20de%20pratos/Dadinhos%20de%20Tapioca.jpeg','mini coxinhas de frango':'fotos%20de%20pratos/Mini%20Coxinhas.jpeg','torre malakoff':'fotos%20de%20pratos/Sandu%C3%ADche%20Torre.jpg','rocado':'fotos%20de%20pratos/Toast%20Ro%C3%A7ado.jpeg','princesa do agreste':'fotos%20de%20pratos/Toast%20Princesa%20do%20Agreste.jpeg','leao do norte':'fotos%20de%20pratos/Tapioca%20Le%C3%A3o%20do%20Norte.jpeg','doce amaro':'fotos%20de%20pratos/Tapioca%20Doce%20Amaro.jpeg','frango a parmegiana':'fotos%20de%20pratos/Parmegiana%20de%20Frango.jpg','galinhada amaro':'','moqueca de camarao':'fotos%20de%20pratos/Moqueca%20de%20Camar%C3%A3o.png','capuccino vienense':'fotos%20de%20pratos/Vienense.jpeg'};
 const obterImagemPrato=nome=>fotosPratos[normalizarNome(nome)]||'';
 const descricoesPratos=Array.from(document.querySelectorAll('#executivos .card')).reduce((acc,card)=>{const nome=card.querySelector('.cname')?.textContent?.trim();const descricao=card.querySelector('.cdesc')?.textContent?.trim();if(nome&&descricao)acc[normalizarNome(nome)]=descricao;return acc;},{});
-const obterDescricaoPrato=item=>{if(typeof item?.descricao==='string'&&item.descricao.trim())return item.descricao.trim();return descricoesPratos[normalizarNome(item?.prato)]||'SeleÁ„o especial disponÌvel hoje no almoÁo.';};
+const obterDescricaoPrato=item=>{if(typeof item?.descricao==='string'&&item.descricao.trim())return item.descricao.trim();return descricoesPratos[normalizarNome(item?.prato)]||'Sele√ß√£o especial dispon√≠vel hoje no almo√ßo.';};
 if(almocoHojeNav)almocoHojeNav.innerHTML='Almo&ccedil;o de Hoje';
 if(almocoHojeTitulo)almocoHojeTitulo.innerHTML='Almo&ccedil;o de Hoje';
 if(almocoHojeLista)almocoHojeLista.classList.remove('grid2');
