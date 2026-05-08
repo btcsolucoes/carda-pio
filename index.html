@@ -84,12 +84,12 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
 .almoco-meta{display:flex;flex-direction:column;gap:4px;flex:1;min-width:0;}
 .almoco-status{grid-column:1/-1;padding:20px;}
 .almoco-text{font-size:12px;color:var(--txt2);line-height:1.7;}
-.footer{background:var(--gd);padding:60px 20px;text-align:center;}
-.fname{font-family:'Playfair Display',serif;font-size:40px;font-weight:900;color:transparent;-webkit-text-stroke:1px var(--gold);letter-spacing:6px;margin-bottom:18px;}
-.fbar{width:50px;height:1px;background:var(--gold);margin:0 auto 18px;opacity:.5;}
-.faddr{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);line-height:2.2;}
+.footer{background:var(--gd);padding:60px 20px;text-align:center;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:end;gap:0 18px;}
+.fname{grid-column:1/-1;font-family:'Playfair Display',serif;font-size:40px;font-weight:900;color:transparent;-webkit-text-stroke:1px var(--gold);letter-spacing:6px;margin-bottom:18px;}
+.fbar{grid-column:1/-1;width:50px;height:1px;background:var(--gold);margin:0 auto 18px;opacity:.5;}
+.faddr{grid-column:2;grid-row:3;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);line-height:2.2;}
 .ftel{font-family:'Playfair Display',serif;font-size:20px;font-style:italic;color:var(--gold2);margin-top:14px;}
-.product-badge{width:fit-content;max-width:180px;margin:30px 0 0;display:flex;flex-direction:column;align-items:center;gap:2px;padding-top:20px;border-top:1px solid rgba(184,151,58,.28);color:var(--gold2);}
+.product-badge{grid-column:1;grid-row:3;justify-self:start;align-self:end;width:fit-content;max-width:120px;margin:0;display:flex;flex-direction:column;align-items:center;gap:1px;padding:0;color:var(--gold2);}
 .qrstack-lockup{position:relative;width:70px;padding-top:10px;}
 .product-copy{position:absolute;top:0;left:0;font-family:"Valorant Bryan T","Valorant - Bryan T","Montserrat",sans-serif;font-size:.34rem;font-weight:400;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;color:rgba(212,175,90,.9);}
 .qrstack-mark{display:block;width:70px;height:72px;object-fit:contain;}
@@ -97,7 +97,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
 
 .fi{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease;}
 .fi.in{opacity:1;transform:translateY(0);}
-@media(max-width:600px){.grid,.grid2,.media-grid{grid-template-columns:1fr;}.nl{padding:14px 11px;font-size:8px;letter-spacing:2px;}.dcard{padding:16px;}.dcard-media{width:72px;height:72px;}.product-badge{margin-top:24px;}.qrstack-lockup{width:62px;padding-top:9px;}.product-copy{font-size:.31rem;}.qrstack-mark{width:62px;height:64px;}.qrstack-wordmark{width:96px;height:23px;}}
+@media(max-width:600px){.grid,.grid2,.media-grid{grid-template-columns:1fr;}.nl{padding:14px 11px;font-size:8px;letter-spacing:2px;}.dcard{padding:16px;}.dcard-media{width:72px;height:72px;}.footer{grid-template-columns:80px minmax(0,1fr);}.faddr{grid-column:2;}.product-badge{max-width:80px;}.qrstack-lockup{width:50px;padding-top:8px;}.product-copy{font-size:.25rem;}.qrstack-mark{width:50px;height:52px;}.qrstack-wordmark{width:76px;height:18px;}}
 </style>
 </head>
 <body>
