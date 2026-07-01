@@ -10,14 +10,15 @@
   "pagesUrl": "https://btcsolucoes.github.io/carda-pio/",
   "assetsBaseUrl": "https://btcsolucoes.github.io/carda-pio/",
   "brand": {
-    "primaryColor": "#1a2118",
-    "secondaryColor": "#b8973a",
-    "accentColor": "#d4af5a",
+    "primaryColor": "#0b3422",
+    "secondaryColor": "#bd8732",
+    "accentColor": "#d2a14c",
     "creamColor": "#f5f0e6",
     "headingFont": "Playfair Display",
     "bodyFont": "Montserrat",
-    "logoUrl": "assets/amaro/amaro-logo.svg",
-    "symbolUrl": "assets/amaro/amaro-mark.svg"
+    "logoUrl": "assets/amaro/amaro-logo-transparent.png",
+    "symbolUrl": "",
+    "originalLogoUrl": "assets/amaro/amaro-logo-original.jpg"
   },
   "menu": {
     "sectionsUrl": "qrstack/amaro-sections.json",

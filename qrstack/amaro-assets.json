@@ -1,24 +1,24 @@
 ﻿{
     "schema":  "qrstack.assets.v1",
     "restaurantSlug":  "amaro",
-    "generatedAt":  "2026-06-30T23:14:56",
+    "generatedAt":  "2026-07-01T00:12:32-03:00",
     "baseUrl":  "https://btcsolucoes.github.io/carda-pio/",
     "assets":  [
                    {
                        "type":  "logo",
-                       "label":  "Amaro Café - logo",
-                       "fileName":  "amaro-logo.svg",
-                       "path":  "assets/amaro/amaro-logo.svg",
-                       "url":  "https://btcsolucoes.github.io/carda-pio/assets/amaro/amaro-logo.svg",
-                       "bytes":  1768
+                       "label":  "Amaro Café - logo transparente",
+                       "fileName":  "amaro-logo-transparent.png",
+                       "path":  "assets/amaro/amaro-logo-transparent.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/assets/amaro/amaro-logo-transparent.png",
+                       "bytes":  61747
                    },
                    {
-                       "type":  "symbol",
-                       "label":  "Amaro Café - símbolo",
-                       "fileName":  "amaro-mark.svg",
-                       "path":  "assets/amaro/amaro-mark.svg",
-                       "url":  "https://btcsolucoes.github.io/carda-pio/assets/amaro/amaro-mark.svg",
-                       "bytes":  796
+                       "type":  "logo-original",
+                       "label":  "Amaro Café - logo original",
+                       "fileName":  "amaro-logo-original.jpg",
+                       "path":  "assets/amaro/amaro-logo-original.jpg",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/assets/amaro/amaro-logo-original.jpg",
+                       "bytes":  22228
                    },
                    {
                        "type":  "dish-photo",
@@ -75,14 +75,6 @@
                        "path":  "fotos de pratos/Avexado.jpg",
                        "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Avexado.jpg",
                        "bytes":  215314
-                   },
-                   {
-                       "type":  "dish-photo",
-                       "label":  "Café com Leite, expresso e capuccino",
-                       "fileName":  "Café com Leite, expresso e capuccino.jpeg",
-                       "path":  "fotos de pratos/Café com Leite, expresso e capuccino.jpeg",
-                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Caf%C3%A9%20com%20Leite%2C%20expresso%20e%20capuccino.jpeg",
-                       "bytes":  97170
                    },
                    {
                        "type":  "dish-photo",
@@ -467,14 +459,6 @@
                        "path":  "fotos de pratos/Sticks de Peixe Crocante.jpg",
                        "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Sticks%20de%20Peixe%20Crocante.jpg",
                        "bytes":  248773
-                   },
-                   {
-                       "type":  "dish-photo",
-                       "label":  "tábua do porto",
-                       "fileName":  "tábua do porto.png",
-                       "path":  "fotos de pratos/tábua do porto.png",
-                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/t%C3%A1bua%20do%20porto.png",
-                       "bytes":  4464205
                    },
                    {
                        "type":  "dish-photo",
