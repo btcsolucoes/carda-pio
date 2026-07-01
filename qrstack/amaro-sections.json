@@ -1,0 +1,58 @@
+﻿[
+  {
+    "id": "especial-junino",
+    "title": "Especial Junino"
+  },
+  {
+    "id": "comidinhas",
+    "title": "Entradinhas"
+  },
+  {
+    "id": "executivos",
+    "title": "Executivos"
+  },
+  {
+    "id": "saladas",
+    "title": "Saladas"
+  },
+  {
+    "id": "doces",
+    "title": "Doces"
+  },
+  {
+    "id": "toasts",
+    "title": "Toasts"
+  },
+  {
+    "id": "sanduiches",
+    "title": "Sanduíches"
+  },
+  {
+    "id": "tapiocas",
+    "title": "Tapiocas"
+  },
+  {
+    "id": "cuscuz",
+    "title": "Cuscuz"
+  },
+  {
+    "id": "bebidas",
+    "title": "Bebidas"
+  },
+  {
+    "id": "cafes-quentes",
+    "title": "Cafés Quentes"
+  },
+  {
+    "id": "cafes-gelados",
+    "title": "Cafés Gelados"
+  },
+  {
+    "id": "chas-gelados",
+    "title": "Chás Gelados"
+  },
+  {
+    "id": "coffee-shakes",
+    "title": "Coffee Shakes"
+  }
+]

@@ -1,0 +1,36 @@
+{
+  "schema": "qrstack.restaurant.v1",
+  "slug": "amaro",
+  "name": "Amaro Café",
+  "displayName": "Amaro Café",
+  "category": "Café e restaurante",
+  "address": "R. do Apolo, 182 - Recife Antigo, Recife - PE",
+  "hours": "11:00 - 19:00",
+  "repository": "btcsolucoes/carda-pio",
+  "pagesUrl": "https://btcsolucoes.github.io/carda-pio/",
+  "assetsBaseUrl": "https://btcsolucoes.github.io/carda-pio/",
+  "brand": {
+    "primaryColor": "#1a2118",
+    "secondaryColor": "#b8973a",
+    "accentColor": "#d4af5a",
+    "creamColor": "#f5f0e6",
+    "headingFont": "Playfair Display",
+    "bodyFont": "Montserrat",
+    "logoUrl": "assets/amaro/amaro-logo.svg",
+    "symbolUrl": "assets/amaro/amaro-mark.svg"
+  },
+  "menu": {
+    "sectionsUrl": "qrstack/amaro-sections.json",
+    "catalogUrl": "qrstack/amaro-catalog.json",
+    "liveLunchEndpoint": "https://script.google.com/macros/s/AKfycbyB808ZoNNsP3c4QlTJU_Ny7bF2_8jPjuoLPU2_mgOs1BpXSNyKcIno6AtQgApTGyss/exec"
+  },
+  "assets": {
+    "indexUrl": "qrstack/amaro-assets.json",
+    "dishPhotosBasePath": "fotos de pratos/",
+    "dishPhotosBaseUrl": "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/"
+  },
+  "qrstack": {
+    "clientPortal": "https://btcsolucoes.github.io/qrstack-plataforma/#/cliente/amaro?token=qrstack-amaro-2026",
+    "platformPublicMenu": "https://btcsolucoes.github.io/qrstack-plataforma/#/r/amaro?src=qr"
+  }
+}

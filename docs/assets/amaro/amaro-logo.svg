@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">Amaro Café</title>
+  <desc id="desc">Logo textual do Amaro Café para uso na plataforma QrStack.</desc>
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#b8973a"/>
+      <stop offset="1" stop-color="#d4af5a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="520" fill="none"/>
+  <g transform="translate(104 66)">
+    <g fill="none" stroke="url(#gold)" stroke-width="10" stroke-linejoin="round">
+      <path d="M0 0h112v112H0z"/>
+      <path d="M136 0h112v112H136z"/>
+      <path d="M0 136h112v112H0z"/>
+      <path d="M136 136h112v112H136z"/>
+    </g>
+    <text x="56" y="90" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="82" font-weight="700" fill="#f7f1df">M</text>
+    <text x="192" y="90" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="82" font-weight="700" fill="#f7f1df">E</text>
+    <text x="56" y="226" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="82" font-weight="700" fill="#f7f1df">N</text>
+    <text x="192" y="226" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="82" font-weight="700" fill="#f7f1df">U</text>
+  </g>
+  <g text-anchor="middle">
+    <text x="760" y="218" font-family="Georgia, 'Times New Roman', serif" font-size="142" font-weight="700" fill="#ffffff">Amaro</text>
+    <text x="760" y="350" font-family="Georgia, 'Times New Roman', serif" font-size="118" font-style="italic" font-weight="700" fill="url(#gold)">Café</text>
+    <path d="M515 400h490" stroke="#b8973a" stroke-width="3" opacity=".55"/>
+  </g>
+</svg>

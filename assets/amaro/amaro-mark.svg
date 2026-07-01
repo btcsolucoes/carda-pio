@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" role="img" aria-labelledby="title desc">
+  <title id="title">Marca Amaro Café</title>
+  <desc id="desc">Simbolo textual MENU do Amaro Café.</desc>
+  <rect width="320" height="320" rx="18" fill="#1a2118"/>
+  <g transform="translate(38 38)" fill="none" stroke="#b8973a" stroke-width="8" stroke-linejoin="round">
+    <path d="M0 0h108v108H0z"/>
+    <path d="M136 0h108v108H136z"/>
+    <path d="M0 136h108v108H0z"/>
+    <path d="M136 136h108v108H136z"/>
+  </g>
+  <g fill="#f7f1df" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="78" font-weight="700">
+    <text x="92" y="116">M</text>
+    <text x="228" y="116">E</text>
+    <text x="92" y="252">N</text>
+    <text x="228" y="252">U</text>
+  </g>
+</svg>

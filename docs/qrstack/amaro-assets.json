@@ -1,0 +1,608 @@
+﻿{
+    "schema":  "qrstack.assets.v1",
+    "restaurantSlug":  "amaro",
+    "generatedAt":  "2026-06-30T23:14:56",
+    "baseUrl":  "https://btcsolucoes.github.io/carda-pio/",
+    "assets":  [
+                   {
+                       "type":  "logo",
+                       "label":  "Amaro Café - logo",
+                       "fileName":  "amaro-logo.svg",
+                       "path":  "assets/amaro/amaro-logo.svg",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/assets/amaro/amaro-logo.svg",
+                       "bytes":  1768
+                   },
+                   {
+                       "type":  "symbol",
+                       "label":  "Amaro Café - símbolo",
+                       "fileName":  "amaro-mark.svg",
+                       "path":  "assets/amaro/amaro-mark.svg",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/assets/amaro/amaro-mark.svg",
+                       "bytes":  796
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Abacaxi Refresh",
+                       "fileName":  "Abacaxi Refresh.png",
+                       "path":  "fotos de pratos/Abacaxi Refresh.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Abacaxi%20Refresh.png",
+                       "bytes":  1961533
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Amarelo Picante",
+                       "fileName":  "Amarelo Picante.jpeg",
+                       "path":  "fotos de pratos/Amarelo Picante.jpeg",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Amarelo%20Picante.jpeg",
+                       "bytes":  90062
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Amaro",
+                       "fileName":  "Amaro.png",
+                       "path":  "fotos de pratos/Amaro.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Amaro.png",
+                       "bytes":  2475930
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Arretada",
+                       "fileName":  "Arretada.png",
+                       "path":  "fotos de pratos/Arretada.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Arretada.png",
+                       "bytes":  2235048
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Arroz de Polvo",
+                       "fileName":  "Arroz de Polvo.jpg",
+                       "path":  "fotos de pratos/Arroz de Polvo.jpg",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Arroz%20de%20Polvo.jpg",
+                       "bytes":  276497
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Aurora",
+                       "fileName":  "Aurora.png",
+                       "path":  "fotos de pratos/Aurora.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Aurora.png",
+                       "bytes":  3312622
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Avexado",
+                       "fileName":  "Avexado.jpg",
+                       "path":  "fotos de pratos/Avexado.jpg",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Avexado.jpg",
+                       "bytes":  215314
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Café com Leite, expresso e capuccino",
+                       "fileName":  "Café com Leite, expresso e capuccino.jpeg",
+                       "path":  "fotos de pratos/Café com Leite, expresso e capuccino.jpeg",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Caf%C3%A9%20com%20Leite%2C%20expresso%20e%20capuccino.jpeg",
+                       "bytes":  97170
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Café com Leite",
+                       "fileName":  "Café com Leite.png",
+                       "path":  "fotos de pratos/Café com Leite.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Caf%C3%A9%20com%20Leite.png",
+                       "bytes":  1321588
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Café Expresso",
+                       "fileName":  "Café Expresso.png",
+                       "path":  "fotos de pratos/Café Expresso.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Caf%C3%A9%20Expresso.png",
+                       "bytes":  1458949
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Café Filtrado",
+                       "fileName":  "Café Filtrado.jpeg",
+                       "path":  "fotos de pratos/Café Filtrado.jpeg",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Caf%C3%A9%20Filtrado.jpeg",
+                       "bytes":  139571
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Cais",
+                       "fileName":  "Cais.png",
+                       "path":  "fotos de pratos/Cais.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Cais.png",
+                       "bytes":  2355799
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Camarão Croc",
+                       "fileName":  "Camarão Croc.png",
+                       "path":  "fotos de pratos/Camarão Croc.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Camar%C3%A3o%20Croc.png",
+                       "bytes":  2660311
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Camarão Imperador",
+                       "fileName":  "Camarão Imperador.jpg",
+                       "path":  "fotos de pratos/Camarão Imperador.jpg",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Camar%C3%A3o%20Imperador.jpg",
+                       "bytes":  155835
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Canoli de Queijadinha",
+                       "fileName":  "Canoli de Queijadinha.png",
+                       "path":  "fotos de pratos/Canoli de Queijadinha.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Canoli%20de%20Queijadinha.png",
+                       "bytes":  3113316
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Capibaribe",
+                       "fileName":  "Capibaribe.png",
+                       "path":  "fotos de pratos/Capibaribe.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Capibaribe.png",
+                       "bytes":  3577444
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Capuccino",
+                       "fileName":  "Capuccino.png",
+                       "path":  "fotos de pratos/Capuccino.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Capuccino.png",
+                       "bytes":  1408335
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Carne de Sol Desarrumada",
+                       "fileName":  "Carne de Sol Desarrumada.jpg",
+                       "path":  "fotos de pratos/Carne de Sol Desarrumada.jpg",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Carne%20de%20Sol%20Desarrumada.jpg",
+                       "bytes":  174114
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Cartola",
+                       "fileName":  "Cartola.png",
+                       "path":  "fotos de pratos/Cartola.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Cartola.png",
+                       "bytes":  2296779
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Charque Brejeira",
+                       "fileName":  "Charque Brejeira.jpg",
+                       "path":  "fotos de pratos/Charque Brejeira.jpg",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Charque%20Brejeira.jpg",
+                       "bytes":  195962
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Cheesecake no Palito",
+                       "fileName":  "Cheesecake no Palito.png",
+                       "path":  "fotos de pratos/Cheesecake no Palito.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Cheesecake%20no%20Palito.png",
+                       "bytes":  1927586
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Chocolate Quente",
+                       "fileName":  "Chocolate Quente.png",
+                       "path":  "fotos de pratos/Chocolate Quente.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Chocolate%20Quente.png",
+                       "bytes":  1584317
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Croqueta de Cupim",
+                       "fileName":  "Croqueta de Cupim.jpg",
+                       "path":  "fotos de pratos/Croqueta de Cupim.jpg",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Croqueta%20de%20Cupim.jpg",
+                       "bytes":  203887
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "cupim na crosta",
+                       "fileName":  "cupim na crosta.png",
+                       "path":  "fotos de pratos/cupim na crosta.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/cupim%20na%20crosta.png",
+                       "bytes":  2449284
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Dadinhos de Tapioca",
+                       "fileName":  "Dadinhos de Tapioca.jpeg",
+                       "path":  "fotos de pratos/Dadinhos de Tapioca.jpeg",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Dadinhos%20de%20Tapioca.jpeg",
+                       "bytes":  194845
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Folhas de Amora com Morangos",
+                       "fileName":  "Folhas de Amora com Morangos.png",
+                       "path":  "fotos de pratos/Folhas de Amora com Morangos.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Folhas%20de%20Amora%20com%20Morangos.png",
+                       "bytes":  2522108
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Franguinho da Moeda",
+                       "fileName":  "Franguinho da Moeda.jpg",
+                       "path":  "fotos de pratos/Franguinho da Moeda.jpg",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Franguinho%20da%20Moeda.jpg",
+                       "bytes":  156939
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Galinhada Amaro",
+                       "fileName":  "Galinhada Amaro.png",
+                       "path":  "fotos de pratos/Galinhada Amaro.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Galinhada%20Amaro.png",
+                       "bytes":  1428482
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Hibisco com limão",
+                       "fileName":  "Hibisco com limão.png",
+                       "path":  "fotos de pratos/Hibisco com limão.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Hibisco%20com%20lim%C3%A3o.png",
+                       "bytes":  2443689
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Iced Latte",
+                       "fileName":  "Iced Latte.png",
+                       "path":  "fotos de pratos/Iced Latte.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Iced%20Latte.png",
+                       "bytes":  1936193
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Laranja Toffee",
+                       "fileName":  "Laranja Toffee.jpeg",
+                       "path":  "fotos de pratos/Laranja Toffee.jpeg",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Laranja%20Toffee.jpeg",
+                       "bytes":  103961
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Lasanha de cupim",
+                       "fileName":  "Lasanha de cupim.png",
+                       "path":  "fotos de pratos/Lasanha de cupim.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Lasanha%20de%20cupim.png",
+                       "bytes":  2414015
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Maminha do Apolo",
+                       "fileName":  "Maminha do Apolo.jpg",
+                       "path":  "fotos de pratos/Maminha do Apolo.jpg",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Maminha%20do%20Apolo.jpg",
+                       "bytes":  171308
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Marquês de Olinda",
+                       "fileName":  "Marquês de Olinda.png",
+                       "path":  "fotos de pratos/Marquês de Olinda.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Marqu%C3%AAs%20de%20Olinda.png",
+                       "bytes":  2208737
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Mini Churros com Doce de Leite",
+                       "fileName":  "Mini Churros com Doce de Leite.jpeg",
+                       "path":  "fotos de pratos/Mini Churros com Doce de Leite.jpeg",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Mini%20Churros%20com%20Doce%20de%20Leite.jpeg",
+                       "bytes":  246399
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Mini Coxinhas",
+                       "fileName":  "Mini Coxinhas.jpeg",
+                       "path":  "fotos de pratos/Mini Coxinhas.jpeg",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Mini%20Coxinhas.jpeg",
+                       "bytes":  124841
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Mocha Doce de Leite",
+                       "fileName":  "Mocha Doce de Leite.jpeg",
+                       "path":  "fotos de pratos/Mocha Doce de Leite.jpeg",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Mocha%20Doce%20de%20Leite.jpeg",
+                       "bytes":  105129
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Moqueca de Camarão",
+                       "fileName":  "Moqueca de Camarão.png",
+                       "path":  "fotos de pratos/Moqueca de Camarão.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Moqueca%20de%20Camar%C3%A3o.png",
+                       "bytes":  1244986
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Moqueca de Peixe",
+                       "fileName":  "Moqueca de Peixe.jpg",
+                       "path":  "fotos de pratos/Moqueca de Peixe.jpg",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Moqueca%20de%20Peixe.jpg",
+                       "bytes":  137196
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Nhoque de Batata Doce",
+                       "fileName":  "Nhoque de Batata Doce.jpg",
+                       "path":  "fotos de pratos/Nhoque de Batata Doce.jpg",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Nhoque%20de%20Batata%20Doce.jpg",
+                       "bytes":  101941
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Nordestão",
+                       "fileName":  "Nordestão.png",
+                       "path":  "fotos de pratos/Nordestão.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Nordest%C3%A3o.png",
+                       "bytes":  2477722
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Nutella Latte",
+                       "fileName":  "Nutella Latte.jpeg",
+                       "path":  "fotos de pratos/Nutella Latte.jpeg",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Nutella%20Latte.jpeg",
+                       "bytes":  150801
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Oxente",
+                       "fileName":  "Oxente.jpg",
+                       "path":  "fotos de pratos/Oxente.jpg",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Oxente.jpg",
+                       "bytes":  178109
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Panelinha de Camarão",
+                       "fileName":  "Panelinha de Camarão.jpeg",
+                       "path":  "fotos de pratos/Panelinha de Camarão.jpeg",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Panelinha%20de%20Camar%C3%A3o.jpeg",
+                       "bytes":  144080
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Parmegiana de Frango",
+                       "fileName":  "Parmegiana de Frango.jpg",
+                       "path":  "fotos de pratos/Parmegiana de Frango.jpg",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Parmegiana%20de%20Frango.jpg",
+                       "bytes":  165232
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Pastéis de charque com queijo",
+                       "fileName":  "Pastéis de charque com queijo.png",
+                       "path":  "fotos de pratos/Pastéis de charque com queijo.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Past%C3%A9is%20de%20charque%20com%20queijo.png",
+                       "bytes":  2467870
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Picadinho carioca",
+                       "fileName":  "Picadinho carioca.png",
+                       "path":  "fotos de pratos/Picadinho carioca.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Picadinho%20carioca.png",
+                       "bytes":  2431600
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Pudim",
+                       "fileName":  "Pudim.png",
+                       "path":  "fotos de pratos/Pudim.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Pudim.png",
+                       "bytes":  2344915
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Quarentinha",
+                       "fileName":  "Quarentinha.png",
+                       "path":  "fotos de pratos/Quarentinha.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Quarentinha.png",
+                       "bytes":  2514061
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Rabanada com Doce de Leite",
+                       "fileName":  "Rabanada com Doce de Leite.png",
+                       "path":  "fotos de pratos/Rabanada com Doce de Leite.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Rabanada%20com%20Doce%20de%20Leite.png",
+                       "bytes":  2229017
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Recife Antigo",
+                       "fileName":  "Recife Antigo.png",
+                       "path":  "fotos de pratos/Recife Antigo.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Recife%20Antigo.png",
+                       "bytes":  2562479
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Recifense",
+                       "fileName":  "Recifense.png",
+                       "path":  "fotos de pratos/Recifense.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Recifense.png",
+                       "bytes":  3244042
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Risoto de camarão",
+                       "fileName":  "Risoto de camarão.png",
+                       "path":  "fotos de pratos/Risoto de camarão.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Risoto%20de%20camar%C3%A3o.png",
+                       "bytes":  1956998
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Sanduíche Torre",
+                       "fileName":  "Sanduíche Torre.jpg",
+                       "path":  "fotos de pratos/Sanduíche Torre.jpg",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Sandu%C3%ADche%20Torre.jpg",
+                       "bytes":  781521
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Stick de pastel de camarão",
+                       "fileName":  "Stick de pastel de camarão.png",
+                       "path":  "fotos de pratos/Stick de pastel de camarão.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Stick%20de%20pastel%20de%20camar%C3%A3o.png",
+                       "bytes":  2304344
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Sticks de Peixe Crocante",
+                       "fileName":  "Sticks de Peixe Crocante.jpg",
+                       "path":  "fotos de pratos/Sticks de Peixe Crocante.jpg",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Sticks%20de%20Peixe%20Crocante.jpg",
+                       "bytes":  248773
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "tábua do porto",
+                       "fileName":  "tábua do porto.png",
+                       "path":  "fotos de pratos/tábua do porto.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/t%C3%A1bua%20do%20porto.png",
+                       "bytes":  4464205
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Tábua Junina",
+                       "fileName":  "Tábua Junina.jpeg",
+                       "path":  "fotos de pratos/Tábua Junina.jpeg",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/T%C3%A1bua%20Junina.jpeg",
+                       "bytes":  117349
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "tábua sertaneja",
+                       "fileName":  "tábua sertaneja.png",
+                       "path":  "fotos de pratos/tábua sertaneja.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/t%C3%A1bua%20sertaneja.png",
+                       "bytes":  3443891
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Tapioca Doce Amaro",
+                       "fileName":  "Tapioca Doce Amaro.jpeg",
+                       "path":  "fotos de pratos/Tapioca Doce Amaro.jpeg",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Tapioca%20Doce%20Amaro.jpeg",
+                       "bytes":  239942
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Tapioca Leão do Norte",
+                       "fileName":  "Tapioca Leão do Norte.jpeg",
+                       "path":  "fotos de pratos/Tapioca Leão do Norte.jpeg",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Tapioca%20Le%C3%A3o%20do%20Norte.jpeg",
+                       "bytes":  163499
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Tapioca Morango do Nordeste",
+                       "fileName":  "Tapioca Morango do Nordeste.jpeg",
+                       "path":  "fotos de pratos/Tapioca Morango do Nordeste.jpeg",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Tapioca%20Morango%20do%20Nordeste.jpeg",
+                       "bytes":  129693
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Tea Coffee",
+                       "fileName":  "Tea Coffee.png",
+                       "path":  "fotos de pratos/Tea Coffee.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Tea%20Coffee.png",
+                       "bytes":  2302665
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Tilápia Crocante",
+                       "fileName":  "Tilápia Crocante.jpg",
+                       "path":  "fotos de pratos/Tilápia Crocante.jpg",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Til%C3%A1pia%20Crocante.jpg",
+                       "bytes":  115113
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Tilápia Marco Zero",
+                       "fileName":  "Tilápia Marco Zero.jpg",
+                       "path":  "fotos de pratos/Tilápia Marco Zero.jpg",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Til%C3%A1pia%20Marco%20Zero.jpg",
+                       "bytes":  123068
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Toast Princesa do Agreste",
+                       "fileName":  "Toast Princesa do Agreste.jpeg",
+                       "path":  "fotos de pratos/Toast Princesa do Agreste.jpeg",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Toast%20Princesa%20do%20Agreste.jpeg",
+                       "bytes":  96855
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Toast Roçado",
+                       "fileName":  "Toast Roçado.jpeg",
+                       "path":  "fotos de pratos/Toast Roçado.jpeg",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Toast%20Ro%C3%A7ado.jpeg",
+                       "bytes":  224108
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Tortas",
+                       "fileName":  "Tortas.png",
+                       "path":  "fotos de pratos/Tortas.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Tortas.png",
+                       "bytes":  2120352
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Trio Ternurinha",
+                       "fileName":  "Trio Ternurinha.jpg",
+                       "path":  "fotos de pratos/Trio Ternurinha.jpg",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Trio%20Ternurinha.jpg",
+                       "bytes":  146955
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Veneza Brasileira",
+                       "fileName":  "Veneza Brasileira.png",
+                       "path":  "fotos de pratos/Veneza Brasileira.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Veneza%20Brasileira.png",
+                       "bytes":  2597028
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Vienense",
+                       "fileName":  "Vienense.jpeg",
+                       "path":  "fotos de pratos/Vienense.jpeg",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Vienense.jpeg",
+                       "bytes":  114674
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Vixe Maria",
+                       "fileName":  "Vixe Maria.jpg",
+                       "path":  "fotos de pratos/Vixe Maria.jpg",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Vixe%20Maria.jpg",
+                       "bytes":  165669
+                   },
+                   {
+                       "type":  "dish-photo",
+                       "label":  "Zé Mariano",
+                       "fileName":  "Zé Mariano.png",
+                       "path":  "fotos de pratos/Zé Mariano.png",
+                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/Z%C3%A9%20Mariano.png",
+                       "bytes":  2390033
+                   }
+               ]
+}
