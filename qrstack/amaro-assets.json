@@ -462,14 +462,6 @@
                    },
                    {
                        "type":  "dish-photo",
-                       "label":  "Tábua Junina",
-                       "fileName":  "Tábua Junina.jpeg",
-                       "path":  "fotos de pratos/Tábua Junina.jpeg",
-                       "url":  "https://btcsolucoes.github.io/carda-pio/fotos%20de%20pratos/T%C3%A1bua%20Junina.jpeg",
-                       "bytes":  117349
-                   },
-                   {
-                       "type":  "dish-photo",
                        "label":  "tábua sertaneja",
                        "fileName":  "tábua sertaneja.png",
                        "path":  "fotos de pratos/tábua sertaneja.png",

@@ -1,18 +1,5 @@
 ﻿[
     {
-        "id":  "catalog_tabua-junina",
-        "restaurant_id":  "rest_amaro",
-        "section_id":  "especial-junino",
-        "section_title":  "Especial Junino",
-        "name":  "Tábua Junina",
-        "category":  "Especial Junino",
-        "description":  "Bolo de Tapioca, Bolo de Macaxeira, Canjica Bruleé, 2 Pamonhas de forno, Arroz Doce, Milho com cobertura de charque, 4 Mini Coxinhas, 2 Paçocas, 2 Queijadinhas e 2 Quiches de Queijo do Reino",
-        "price":  "R$ 105,00",
-        "image_url":  "fotos%20de%20pratos/T%C3%A1bua%20Junina.jpeg",
-        "sort_order":  1,
-        "is_active":  "TRUE"
-    },
-    {
         "id":  "catalog_panelinha-de-camaroes",
         "restaurant_id":  "rest_amaro",
         "section_id":  "comidinhas",
