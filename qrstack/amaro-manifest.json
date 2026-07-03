@@ -23,7 +23,7 @@
   "menu": {
     "sectionsUrl": "qrstack/amaro-sections.json",
     "catalogUrl": "qrstack/amaro-catalog.json",
-    "liveLunchEndpoint": "https://script.google.com/macros/s/AKfycbyB808ZoNNsP3c4QlTJU_Ny7bF2_8jPjuoLPU2_mgOs1BpXSNyKcIno6AtQgApTGyss/exec"
+    "liveLunchEndpoint": "https://script.google.com/macros/s/AKfycbwzyID0E9XLYcR4VGvDgiY90YLRIcnaR6nWs9ybkC70LTTY4ScXABcqqhc1GFTr-AA2/exec"
   },
   "assets": {
     "indexUrl": "qrstack/amaro-assets.json",
