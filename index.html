@@ -901,7 +901,7 @@ const carregarAlmocoHojeBonito=async()=>{if(!almocoHojeLista)return;if(!almocoHo
 carregarAlmocoHojeBonito();
 
 const QRSTACK_ANALYTICS_CLIENT='amaro';
-const QRSTACK_ANALYTICS_ENDPOINT='';
+const QRSTACK_ANALYTICS_ENDPOINT='https://script.google.com/macros/s/AKfycbyB808ZoNNsP3c4QlTJU_Ny7bF2_8jPjuoLPU2_mgOs1BpXSNyKcIno6AtQgApTGyss/exec';
 const QRSTACK_ANALYTICS_KEY=`qrstack:analytics:${QRSTACK_ANALYTICS_CLIENT}`;
 const QRSTACK_SESSION_KEY=`qrstack:session:${QRSTACK_ANALYTICS_CLIENT}`;
 const normalizarOrigemAcesso=valor=>String(valor||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
