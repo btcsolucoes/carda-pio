@@ -962,9 +962,9 @@ const registrarAcessoQrStack=()=>{
   if(QRSTACK_ANALYTICS_ENDPOINT){
     const body=JSON.stringify(payload);
     if(navigator.sendBeacon){
-      navigator.sendBeacon(QRSTACK_ANALYTICS_ENDPOINT,new Blob([body],{type:'application/json'}));
+      navigator.sendBeacon(QRSTACK_ANALYTICS_ENDPOINT,new Blob([body],{type:'text/plain;charset=UTF-8'}));
     }else{
-      fetch(QRSTACK_ANALYTICS_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body}).catch(()=>{});
+      fetch(QRSTACK_ANALYTICS_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=UTF-8'},body}).catch(()=>{});
     }
   }
   window.qrstackAnalytics={resumo,ultimoEvento:payload,verResumo:()=>lerResumoQrStack()};

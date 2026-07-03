@@ -18,8 +18,11 @@ function doGet(e) {
         slug: 'amaro',
         name: 'Amaro Cafe',
       },
-      insights: getInsights(),
-    });
+      insights: getInsights({
+        startDate: params.startDate || params.start_date || params.start,
+        endDate: params.endDate || params.end_date || params.end,
+      }),
+    }, params.callback);
   }
 
   return json(getLunchRows());
@@ -136,12 +139,13 @@ function ensureEventsSheet() {
   return sheet;
 }
 
-function getInsights() {
+function getInsights(filters) {
   const sheet = ensureEventsSheet();
   const rows = readObjects(sheet);
   const today = Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'yyyy-MM-dd');
   const sevenDaysAgo = new Date();
   sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 6);
+  const periodRows = filterEventsByPeriod(rows, filters || {});
 
   const last7 = rows.filter((event) => {
     const created = new Date(event.created_at);
@@ -149,12 +153,50 @@ function getInsights() {
   });
 
   return {
+    total_accesses: rows.filter((event) => event.event_type === 'page_view').length,
     accesses_today: rows.filter((event) => String(event.created_at || '').slice(0, 10) === today && event.event_type === 'page_view').length,
     accesses_7_days: last7.filter((event) => event.event_type === 'page_view').length,
     total_events: rows.length,
-    source_counts: countBy(rows, 'source'),
-    event_type_counts: countBy(rows, 'event_type'),
+    period_events: periodRows.length,
+    period_accesses: periodRows.filter((event) => event.event_type === 'page_view').length,
+    period_start: (filters && filters.startDate) || '',
+    period_end: (filters && filters.endDate) || '',
+    period_label: periodLabel((filters && filters.startDate) || '', (filters && filters.endDate) || ''),
+    source_counts: countBy(periodRows, 'source'),
+    event_type_counts: countBy(periodRows, 'event_type'),
+    event_type_counts_all: countBy(rows, 'event_type'),
   };
+}
+
+function filterEventsByPeriod(rows, filters) {
+  const startDate = filters.startDate || '';
+  const endDate = filters.endDate || '';
+  if (!startDate && !endDate) return rows;
+  return rows.filter((event) => {
+    const eventDate = eventDateOnly(event.created_at);
+    if (!eventDate) return false;
+    if (startDate && eventDate < startDate) return false;
+    if (endDate && eventDate > endDate) return false;
+    return true;
+  });
+}
+
+function eventDateOnly(value) {
+  if (!value) return '';
+  if (Object.prototype.toString.call(value) === '[object Date]' && !Number.isNaN(value.getTime())) {
+    return Utilities.formatDate(value, Session.getScriptTimeZone(), 'yyyy-MM-dd');
+  }
+  const text = String(value || '');
+  if (/^\d{4}-\d{2}-\d{2}/.test(text)) return text.slice(0, 10);
+  const parsed = new Date(text);
+  if (Number.isNaN(parsed.getTime())) return '';
+  return Utilities.formatDate(parsed, Session.getScriptTimeZone(), 'yyyy-MM-dd');
+}
+
+function periodLabel(startDate, endDate) {
+  if (!startDate && !endDate) return 'Todos os tempos';
+  if (startDate && endDate && startDate === endDate) return startDate;
+  return `${startDate || 'inicio'} ate ${endDate || todayIso()}`;
 }
 
 function readObjects(sheet) {
@@ -180,6 +222,10 @@ function countBy(rows, key) {
 
 function startOfDay(date) {
   return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+}
+
+function todayIso() {
+  return Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'yyyy-MM-dd');
 }
 
 function parsePayload(e) {
@@ -222,8 +268,9 @@ function assertOwner(key) {
   if (key !== OWNER_ACCESS_TOKEN) throw new Error('owner_access_denied');
 }
 
-function json(payload) {
+function json(payload, callback) {
+  const body = callback ? `${callback}(${JSON.stringify(payload)});` : JSON.stringify(payload);
   return ContentService
-    .createTextOutput(JSON.stringify(payload))
-    .setMimeType(ContentService.MimeType.JSON);
+    .createTextOutput(body)
+    .setMimeType(callback ? ContentService.MimeType.JAVASCRIPT : ContentService.MimeType.JSON);
 }
