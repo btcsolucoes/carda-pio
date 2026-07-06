@@ -383,6 +383,14 @@ function hourCounts(rows) {
   }, {});
 }
 
+function peakHour(rows) {
+  const counts = hourCounts(rows);
+  const entries = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+  if (!entries.length) return '';
+  const [hour, count] = entries[0];
+  return `${hour}h com ${count} acesso${count === 1 ? '' : 's'}`;
+}
+
 function recentEvents(rows, limit) {
   return rows
     .slice()
