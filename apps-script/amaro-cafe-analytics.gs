@@ -96,6 +96,9 @@ function appendEvent(payload) {
     language: payload.language || payload.idioma || '',
     session_id: payload.session_id || payload.sessionId || '',
     visitor_id: payload.visitor_id || payload.visitorId || '',
+    dish_name: payload.dish_name || payload.item_name || payload.prato || '',
+    dish_key: payload.dish_key || normalizeHeader(payload.dish_name || payload.item_name || payload.prato || ''),
+    dish_category: payload.dish_category || payload.item_category || payload.categoria || '',
     device_type: payload.device_type || payload.deviceType || device.type,
     browser: payload.browser || device.browser,
     os: payload.os || device.os,
@@ -128,6 +131,9 @@ function ensureEventsSheet() {
     'language',
     'session_id',
     'visitor_id',
+    'dish_name',
+    'dish_key',
+    'dish_category',
     'device_type',
     'browser',
     'os',
@@ -160,6 +166,7 @@ function getInsights(filters) {
   sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 6);
   const periodRows = filterEventsByPeriod(realRows, filters || {});
   const periodPageViews = periodRows.filter((event) => event.event_type === 'page_view');
+  const periodDishViews = periodRows.filter((event) => event.event_type === 'dish_view');
   const allPageViews = realRows.filter((event) => event.event_type === 'page_view');
 
   const last7 = realRows.filter((event) => {
@@ -183,6 +190,9 @@ function getInsights(filters) {
     source_counts: countBy(periodPageViews, 'source'),
     event_type_counts: countBy(periodRows, 'event_type'),
     event_type_counts_all: countBy(realRows, 'event_type'),
+    dish_view_counts: countBy(periodDishViews, 'dish_name'),
+    dish_view_category_counts: countBy(periodDishViews, 'dish_category'),
+    total_dish_views: periodDishViews.length,
     device_counts: countBy(periodPageViews, 'device_type'),
     browser_counts: countBy(periodPageViews, 'browser'),
     os_counts: countBy(periodPageViews, 'os'),

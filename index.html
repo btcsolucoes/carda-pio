@@ -896,7 +896,7 @@ const renderStatus=msg=>{if(!almocoHojeLista)return;almocoHojeLista.innerHTML=`<
 const renderPratos=pratos=>{if(!almocoHojeLista)return;almocoHojeLista.innerHTML=pratos.map(item=>`<article class="dcard"><div class="almoco-meta"><span class="stag">Prato do dia</span><div class="dname">${escapeHtml(item.prato)}</div></div><div class="dprice">${brl.format(Number(item.preco))}</div></article>`).join('');};
 const carregarAlmocoHoje=async()=>{if(!almocoHojeLista)return;if(!almocoHojeEndpoint||almocoHojeEndpoint==='COLE_AQUI_A_URL_DO_WEB_APP'){renderStatus('N&atilde;o foi poss&iacute;vel carregar o card&aacute;pio de hoje.');return;}try{const res=await fetch(almocoHojeEndpoint,{cache:'no-store'});if(!res.ok)throw new Error('request_failed');const data=await res.json();const pratos=Array.isArray(data)?data:(data&&data.ok===true&&Array.isArray(data.pratos)?data.pratos:null);if(!pratos)throw new Error('invalid_payload');const pratosHoje=pratos.filter(item=>item&&typeof item.prato==='string'&&item.prato.trim()&&Number.isFinite(Number(item.preco))&&normalizarData(item.data)===hojeIso());if(!pratosHoje.length){renderStatus('Card&aacute;pio de hoje ainda n&atilde;o informado.');return;}renderPratos(pratosHoje);}catch(err){renderStatus('N&atilde;o foi poss&iacute;vel carregar o card&aacute;pio de hoje.');}};
 const renderStatusBonito=msg=>{if(!almocoHojeLista)return;almocoHojeLista.innerHTML=`<div class="dcard almoco-status"><div class="almoco-meta"><div class="dname">Almo&ccedil;o de Hoje</div><p class="almoco-text">${escapeHtml(msg)}</p></div></div>`;};
-const renderPratosBonito=pratos=>{if(!almocoHojeLista)return;const unicos=[...new Map(pratos.map(item=>{const prato=item.prato.trim();return [`${normalizarNome(prato)}|${Number(item.preco)}`,{...item,prato}];})).values()];almocoHojeLista.innerHTML=unicos.map(item=>{const imagem=obterImagemPrato(item.prato);const descricao=obterDescricaoPrato(item);const media=imagem?`<div class="cib"><img src="${imagem}" alt="${escapeHtml(item.prato)}" loading="lazy"><div class="badge">Almo&ccedil;o</div></div>`:'';return `<article class="card fi almoco-card${media?'':' no-photo'}">${media}<div class="cbody"><div class="cname">${escapeHtml(item.prato)}</div><div class="cdesc">${escapeHtml(descricao)}</div><div class="cfoot"><div class="cprice">${brl.format(Number(item.preco))}</div><div class="diam"></div></div></div></article>`;}).join('');almocoHojeLista.querySelectorAll('.fi').forEach(el=>io.observe(el));};
+const renderPratosBonito=pratos=>{if(!almocoHojeLista)return;const unicos=[...new Map(pratos.map(item=>{const prato=item.prato.trim();return [`${normalizarNome(prato)}|${Number(item.preco)}`,{...item,prato}];})).values()];almocoHojeLista.innerHTML=unicos.map(item=>{const imagem=obterImagemPrato(item.prato);const descricao=obterDescricaoPrato(item);const media=imagem?`<div class="cib"><img src="${imagem}" alt="${escapeHtml(item.prato)}" loading="lazy"><div class="badge">Almo&ccedil;o</div></div>`:'';return `<article class="card fi almoco-card${media?'':' no-photo'}">${media}<div class="cbody"><div class="cname">${escapeHtml(item.prato)}</div><div class="cdesc">${escapeHtml(descricao)}</div><div class="cfoot"><div class="cprice">${brl.format(Number(item.preco))}</div><div class="diam"></div></div></div></article>`;}).join('');almocoHojeLista.querySelectorAll('.fi').forEach(el=>io.observe(el));prepararTrackingPratosQrStack();};
 const carregarAlmocoHojeBonito=async()=>{if(!almocoHojeLista)return;if(!almocoHojeEndpoint||almocoHojeEndpoint==='COLE_AQUI_A_URL_DO_WEB_APP'){renderStatusBonito('N\u00e3o foi poss\u00edvel carregar o card\u00e1pio de hoje.');return;}try{const res=await fetch(almocoHojeEndpoint,{cache:'no-store'});if(!res.ok)throw new Error('request_failed');const data=await res.json();const pratos=Array.isArray(data)?data:(data&&data.ok===true&&Array.isArray(data.pratos)?data.pratos:null);if(!pratos)throw new Error('invalid_payload');const pratosHoje=pratos.filter(item=>item&&typeof item.prato==='string'&&item.prato.trim()&&Number.isFinite(Number(item.preco))&&normalizarData(item.data)===hojeIso());if(!pratosHoje.length){renderStatusBonito('Card\u00e1pio de hoje ainda n\u00e3o informado.');return;}renderPratosBonito(pratosHoje);}catch(err){renderStatusBonito('N\u00e3o foi poss\u00edvel carregar o card\u00e1pio de hoje.');}};
 carregarAlmocoHojeBonito();
 
@@ -963,30 +963,26 @@ const lerResumoQrStack=()=>{
   try{return JSON.parse(localStorage.getItem(QRSTACK_ANALYTICS_KEY)||'{}')||{};}catch(err){return {};}
 };
 const salvarResumoQrStack=resumo=>localStorage.setItem(QRSTACK_ANALYTICS_KEY,JSON.stringify(resumo));
-const registrarAcessoQrStack=()=>{
-  if(sessionStorage.getItem(QRSTACK_PAGEVIEW_KEY))return;
-  sessionStorage.setItem(QRSTACK_PAGEVIEW_KEY,'1');
+const enviarPayloadQrStack=payload=>{
+  if(!QRSTACK_ANALYTICS_ENDPOINT)return;
+  const body=JSON.stringify(payload);
+  if(navigator.sendBeacon){
+    navigator.sendBeacon(QRSTACK_ANALYTICS_ENDPOINT,new Blob([body],{type:'text/plain;charset=UTF-8'}));
+  }else{
+    fetch(QRSTACK_ANALYTICS_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=UTF-8'},body}).catch(()=>{});
+  }
+};
+const montarPayloadQrStack=(eventType,extra={})=>{
   const origem=identificarOrigemAcesso();
   const device=detectarDispositivo();
-  const hoje=new Date().toISOString().slice(0,10);
   const sessionId=obterSessaoQrStack();
   const visitorId=obterVisitanteQrStack();
-  const resumo=lerResumoQrStack();
-  resumo.total=(resumo.total||0)+1;
-  resumo.porOrigem=resumo.porOrigem||{};
-  resumo.porOrigem[origem.source]=(resumo.porOrigem[origem.source]||0)+1;
-  resumo.porDia=resumo.porDia||{};
-  resumo.porDia[hoje]=resumo.porDia[hoje]||{total:0,origens:{}};
-  resumo.porDia[hoje].total+=1;
-  resumo.porDia[hoje].origens[origem.source]=(resumo.porDia[hoje].origens[origem.source]||0)+1;
-  resumo.ultimoAcesso={origem:origem.source,detalhe:origem.detail,data:new Date().toISOString(),url:location.href,referrer:document.referrer||'',sessionId,visitorId};
-  salvarResumoQrStack(resumo);
-  const payload={
+  return {
     action:'trackEvent',
     slug:QRSTACK_ANALYTICS_CLIENT,
     cliente:QRSTACK_ANALYTICS_CLIENT,
-    event_type:'page_view',
-    tipo:'pageview',
+    event_type:eventType,
+    tipo:eventType,
     source:origem.source,
     origem:origem.source,
     source_detail:origem.detail,
@@ -1006,19 +1002,72 @@ const registrarAcessoQrStack=()=>{
     screen:`${screen.width}x${screen.height}`,
     viewport:`${innerWidth}x${innerHeight}`,
     timezone_offset:String(new Date().getTimezoneOffset()),
-    timestamp:new Date().toISOString()
+    timestamp:new Date().toISOString(),
+    ...extra
   };
-  if(QRSTACK_ANALYTICS_ENDPOINT){
-    const body=JSON.stringify(payload);
-    if(navigator.sendBeacon){
-      navigator.sendBeacon(QRSTACK_ANALYTICS_ENDPOINT,new Blob([body],{type:'text/plain;charset=UTF-8'}));
-    }else{
-      fetch(QRSTACK_ANALYTICS_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=UTF-8'},body}).catch(()=>{});
-    }
-  }
+};
+const registrarAcessoQrStack=()=>{
+  if(sessionStorage.getItem(QRSTACK_PAGEVIEW_KEY))return;
+  sessionStorage.setItem(QRSTACK_PAGEVIEW_KEY,'1');
+  const origem=identificarOrigemAcesso();
+  const device=detectarDispositivo();
+  const hoje=new Date().toISOString().slice(0,10);
+  const sessionId=obterSessaoQrStack();
+  const visitorId=obterVisitanteQrStack();
+  const resumo=lerResumoQrStack();
+  resumo.total=(resumo.total||0)+1;
+  resumo.porOrigem=resumo.porOrigem||{};
+  resumo.porOrigem[origem.source]=(resumo.porOrigem[origem.source]||0)+1;
+  resumo.porDia=resumo.porDia||{};
+  resumo.porDia[hoje]=resumo.porDia[hoje]||{total:0,origens:{}};
+  resumo.porDia[hoje].total+=1;
+  resumo.porDia[hoje].origens[origem.source]=(resumo.porDia[hoje].origens[origem.source]||0)+1;
+  resumo.ultimoAcesso={origem:origem.source,detalhe:origem.detail,data:new Date().toISOString(),url:location.href,referrer:document.referrer||'',sessionId,visitorId};
+  salvarResumoQrStack(resumo);
+  const payload=montarPayloadQrStack('page_view');
+  enviarPayloadQrStack(payload);
   window.qrstackAnalytics={resumo,ultimoEvento:payload,verResumo:()=>lerResumoQrStack()};
 };
+let pratoObserverQrStack=null;
+const categoriaPratoQrStack=card=>card.closest('section')?.querySelector('.stitle')?.textContent?.trim()||card.querySelector('.badge')?.textContent?.trim()||'Cardápio';
+const registrarVisualizacaoPratoQrStack=card=>{
+  const nome=card.querySelector('.cname')?.textContent?.trim();
+  if(!nome)return;
+  const dishKey=normalizarNome(nome);
+  const sessionKey=`qrstack:dish-view:${QRSTACK_ANALYTICS_CLIENT}:${obterSessaoQrStack()}:${dishKey}`;
+  if(sessionStorage.getItem(sessionKey))return;
+  sessionStorage.setItem(sessionKey,'1');
+  const categoria=categoriaPratoQrStack(card);
+  const payload=montarPayloadQrStack('dish_view',{
+    dish_name:nome,
+    dish_key:dishKey,
+    dish_category:categoria,
+    item_name:nome,
+    item_category:categoria
+  });
+  enviarPayloadQrStack(payload);
+  window.qrstackAnalytics={...(window.qrstackAnalytics||{}),ultimoEvento:payload,verResumo:()=>lerResumoQrStack()};
+};
+const prepararTrackingPratosQrStack=()=>{
+  if(!('IntersectionObserver'in window))return;
+  if(!pratoObserverQrStack){
+    pratoObserverQrStack=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting&&entry.intersectionRatio>=0.55){
+          registrarVisualizacaoPratoQrStack(entry.target);
+          pratoObserverQrStack.unobserve(entry.target);
+        }
+      });
+    },{threshold:[0.55,0.7]});
+  }
+  document.querySelectorAll('.card').forEach(card=>{
+    if(card.dataset.qrstackDishObserved||!card.querySelector('.cname'))return;
+    card.dataset.qrstackDishObserved='1';
+    pratoObserverQrStack.observe(card);
+  });
+};
 registrarAcessoQrStack();
+prepararTrackingPratosQrStack();
 </script>
 </body>
 </html>
