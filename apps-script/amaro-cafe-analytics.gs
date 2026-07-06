@@ -80,33 +80,31 @@ function findLunchSheet() {
 function appendEvent(payload) {
   const sheet = ensureEventsSheet();
   const now = new Date().toISOString();
+  const source = normalizeSource(payload.source || payload.origem || payload.utm_source || 'direct');
+  const device = detectDevice(payload.user_agent || payload.userAgent || '');
   const event = {
     id: `event_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
     created_at: payload.timestamp || now,
     cliente: payload.cliente || payload.slug || 'amaro',
     event_type: normalizeEventType(payload.event_type || payload.tipo || 'page_view'),
-    source: payload.source || payload.origem || 'Direto',
+    source,
+    source_detail: payload.source_detail || payload.sourceDetail || payload.referrer || '',
     url: payload.url || '',
     path: payload.path || '',
     referrer: payload.referrer || '',
     user_agent: payload.user_agent || payload.userAgent || '',
     language: payload.language || payload.idioma || '',
     session_id: payload.session_id || payload.sessionId || '',
+    visitor_id: payload.visitor_id || payload.visitorId || '',
+    device_type: payload.device_type || payload.deviceType || device.type,
+    browser: payload.browser || device.browser,
+    os: payload.os || device.os,
+    screen: payload.screen || '',
+    viewport: payload.viewport || '',
+    timezone_offset: payload.timezone_offset || payload.timezoneOffset || '',
   };
-
-  sheet.appendRow([
-    event.id,
-    event.created_at,
-    event.cliente,
-    event.event_type,
-    event.source,
-    event.url,
-    event.path,
-    event.referrer,
-    event.user_agent,
-    event.language,
-    event.session_id,
-  ]);
+  const headers = getHeaders(sheet);
+  sheet.appendRow(headers.map((header) => event[header] || ''));
 
   return event;
 }
@@ -122,49 +120,77 @@ function ensureEventsSheet() {
     'cliente',
     'event_type',
     'source',
+    'source_detail',
     'url',
     'path',
     'referrer',
     'user_agent',
     'language',
     'session_id',
+    'visitor_id',
+    'device_type',
+    'browser',
+    'os',
+    'screen',
+    'viewport',
+    'timezone_offset',
   ];
 
-  const firstRow = sheet.getRange(1, 1, 1, headers.length).getValues()[0];
+  const firstRow = sheet.getRange(1, 1, 1, Math.max(headers.length, sheet.getLastColumn() || headers.length)).getValues()[0];
   const hasHeaders = firstRow.some((value) => String(value || '').trim());
   if (!hasHeaders) {
     sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
     sheet.setFrozenRows(1);
+  } else {
+    const existing = firstRow.map((header) => String(header || '').trim()).filter(Boolean);
+    const missing = headers.filter((header) => !existing.includes(header));
+    if (missing.length) {
+      sheet.getRange(1, existing.length + 1, 1, missing.length).setValues([missing]);
+    }
   }
   return sheet;
 }
 
 function getInsights(filters) {
   const sheet = ensureEventsSheet();
-  const rows = readObjects(sheet);
+  const rows = readObjects(sheet).map(normalizeStoredEvent);
+  const realRows = rows.filter((event) => !isTestEvent(event));
   const today = Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'yyyy-MM-dd');
   const sevenDaysAgo = new Date();
   sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 6);
-  const periodRows = filterEventsByPeriod(rows, filters || {});
+  const periodRows = filterEventsByPeriod(realRows, filters || {});
+  const periodPageViews = periodRows.filter((event) => event.event_type === 'page_view');
+  const allPageViews = realRows.filter((event) => event.event_type === 'page_view');
 
-  const last7 = rows.filter((event) => {
+  const last7 = realRows.filter((event) => {
     const created = new Date(event.created_at);
     return !Number.isNaN(created.getTime()) && created >= startOfDay(sevenDaysAgo);
   });
 
   return {
-    total_accesses: rows.filter((event) => event.event_type === 'page_view').length,
-    accesses_today: rows.filter((event) => String(event.created_at || '').slice(0, 10) === today && event.event_type === 'page_view').length,
+    total_accesses: allPageViews.length,
+    unique_sessions_total: uniqueCount(allPageViews, 'session_id'),
+    accesses_today: realRows.filter((event) => String(event.created_at || '').slice(0, 10) === today && event.event_type === 'page_view').length,
     accesses_7_days: last7.filter((event) => event.event_type === 'page_view').length,
-    total_events: rows.length,
+    total_events: realRows.length,
+    test_events: rows.length - realRows.length,
     period_events: periodRows.length,
-    period_accesses: periodRows.filter((event) => event.event_type === 'page_view').length,
+    period_accesses: periodPageViews.length,
+    unique_sessions_period: uniqueCount(periodPageViews, 'session_id'),
     period_start: (filters && filters.startDate) || '',
     period_end: (filters && filters.endDate) || '',
     period_label: periodLabel((filters && filters.startDate) || '', (filters && filters.endDate) || ''),
-    source_counts: countBy(periodRows, 'source'),
+    source_counts: countBy(periodPageViews, 'source'),
     event_type_counts: countBy(periodRows, 'event_type'),
-    event_type_counts_all: countBy(rows, 'event_type'),
+    event_type_counts_all: countBy(realRows, 'event_type'),
+    device_counts: countBy(periodPageViews, 'device_type'),
+    browser_counts: countBy(periodPageViews, 'browser'),
+    os_counts: countBy(periodPageViews, 'os'),
+    daily_accesses: dailyCounts(periodPageViews),
+    hour_counts: hourCounts(periodPageViews),
+    recent_events: recentEvents(periodRows, 12),
+    peak_hour: peakHour(periodPageViews),
+    collected_at: new Date().toISOString(),
   };
 }
 
@@ -212,12 +238,103 @@ function readObjects(sheet) {
   });
 }
 
+function getHeaders(sheet) {
+  return sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0].map((header) => String(header || '').trim());
+}
+
+function normalizeStoredEvent(event) {
+  return {
+    ...event,
+    event_type: normalizeEventType(event.event_type || event.tipo || 'page_view'),
+    source: normalizeSource(event.source || event.origem || 'direct'),
+    device_type: normalizeDeviceType(event.device_type || detectDevice(event.user_agent || '').type),
+    browser: event.browser || detectDevice(event.user_agent || '').browser,
+    os: event.os || detectDevice(event.user_agent || '').os,
+  };
+}
+
+function normalizeSource(value) {
+  const text = normalizeHeader(value);
+  if (!text || text === 'direto' || text === 'direct') return 'direct';
+  if (/\b(qr|qrcode|qr code|mesa|table)\b/.test(text)) return 'qr';
+  if (text.indexOf('whatsapp') >= 0 || text === 'wa' || text.indexOf('wpp') >= 0 || text.indexOf('wa me') >= 0) return 'whatsapp';
+  if (text.indexOf('instagram') >= 0 || text.indexOf('instagr') >= 0 || text === 'ig' || text.indexOf('stories') >= 0) return 'instagram';
+  if (text.indexOf('google') >= 0 || text.indexOf('pesquisa') >= 0 || text.indexOf('search') >= 0 || text.indexOf('organic') >= 0) return 'google';
+  if (text.indexOf('bing') >= 0 || text.indexOf('yahoo') >= 0 || text.indexOf('duckduckgo') >= 0) return 'search';
+  if (text.indexOf('facebook') >= 0 || text === 'fb') return 'facebook';
+  if (text.indexOf('tiktok') >= 0) return 'tiktok';
+  if (text.indexOf('codex') >= 0 || text.indexOf('teste') >= 0 || text.indexOf('test') >= 0) return text.replace(/\s+/g, '_');
+  return 'internet';
+}
+
+function normalizeDeviceType(value) {
+  const text = normalizeHeader(value);
+  if (text.indexOf('mobile') >= 0 || text.indexOf('celular') >= 0) return 'mobile';
+  if (text.indexOf('tablet') >= 0) return 'tablet';
+  if (text.indexOf('desktop') >= 0 || text.indexOf('computador') >= 0) return 'desktop';
+  return text || 'desconhecido';
+}
+
+function detectDevice(userAgent) {
+  const ua = String(userAgent || '');
+  const type = /iPad|Tablet/i.test(ua) ? 'tablet' : /Mobile|Android|iPhone|iPod/i.test(ua) ? 'mobile' : 'desktop';
+  const browser = /Edg\//.test(ua) ? 'Edge' : /OPR\//.test(ua) ? 'Opera' : /Chrome\//.test(ua) ? 'Chrome' : /Safari\//.test(ua) ? 'Safari' : /Firefox\//.test(ua) ? 'Firefox' : 'Outro';
+  const os = /Android/i.test(ua) ? 'Android' : /iPhone|iPad|iPod/i.test(ua) ? 'iOS' : /Windows/i.test(ua) ? 'Windows' : /Mac OS/i.test(ua) ? 'macOS' : /Linux/i.test(ua) ? 'Linux' : 'Outro';
+  return { type, browser, os };
+}
+
+function isTestEvent(event) {
+  const source = normalizeHeader(event.source);
+  const url = normalizeHeader(event.url);
+  return source.indexOf('codex') >= 0 || source.indexOf('test') >= 0 || source.indexOf('teste') >= 0 || url.indexOf('codex') >= 0;
+}
+
 function countBy(rows, key) {
   return rows.reduce((acc, row) => {
-    const value = String(row[key] || 'Direto').trim() || 'Direto';
+    const value = String(row[key] || 'direct').trim() || 'direct';
     acc[value] = (acc[value] || 0) + 1;
     return acc;
   }, {});
+}
+
+function uniqueCount(rows, key) {
+  const values = rows
+    .map((row) => String(row[key] || '').trim())
+    .filter(Boolean);
+  return new Set(values).size;
+}
+
+function dailyCounts(rows) {
+  return rows.reduce((acc, row) => {
+    const date = eventDateOnly(row.created_at);
+    if (!date) return acc;
+    acc[date] = (acc[date] || 0) + 1;
+    return acc;
+  }, {});
+}
+
+function hourCounts(rows) {
+  return rows.reduce((acc, row) => {
+    const date = new Date(row.created_at);
+    if (Number.isNaN(date.getTime())) return acc;
+    const hour = Utilities.formatDate(date, Session.getScriptTimeZone(), 'HH');
+    acc[hour] = (acc[hour] || 0) + 1;
+    return acc;
+  }, {});
+}
+
+function recentEvents(rows, limit) {
+  return rows
+    .slice()
+    .sort((a, b) => String(b.created_at || '').localeCompare(String(a.created_at || '')))
+    .slice(0, limit || 10)
+    .map((event) => ({
+      created_at: event.created_at || '',
+      event_type: event.event_type || '',
+      source: event.source || '',
+      source_detail: event.source_detail || '',
+      device_type: event.device_type || '',
+    }));
 }
 
 function startOfDay(date) {

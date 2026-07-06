@@ -904,32 +904,36 @@ const QRSTACK_ANALYTICS_CLIENT='amaro';
 const QRSTACK_ANALYTICS_ENDPOINT='https://script.google.com/macros/s/AKfycbwzyID0E9XLYcR4VGvDgiY90YLRIcnaR6nWs9ybkC70LTTY4ScXABcqqhc1GFTr-AA2/exec';
 const QRSTACK_ANALYTICS_KEY=`qrstack:analytics:${QRSTACK_ANALYTICS_CLIENT}`;
 const QRSTACK_SESSION_KEY=`qrstack:session:${QRSTACK_ANALYTICS_CLIENT}`;
+const QRSTACK_VISITOR_KEY=`qrstack:visitor:${QRSTACK_ANALYTICS_CLIENT}`;
+const QRSTACK_PAGEVIEW_KEY=`qrstack:pageview:${QRSTACK_ANALYTICS_CLIENT}:${location.pathname}${location.search}`;
 const normalizarOrigemAcesso=valor=>String(valor||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
 const origemPorTexto=valor=>{
   const v=normalizarOrigemAcesso(valor);
   if(!v)return '';
-  if(v.includes('whatsapp')||v==='wa'||v.includes('wpp'))return 'WhatsApp';
-  if(v.includes('instagram')||v.includes('instagr')||v==='ig'||v.includes('stories'))return 'Instagram';
-  if(v.includes('facebook')||v.includes('fb.'))return 'Facebook';
-  if(v.includes('google')||v.includes('gclid'))return 'Google';
-  if(v.includes('tiktok'))return 'TikTok';
-  if(v.includes('bing')||v.includes('yahoo')||v.includes('duckduckgo'))return 'Busca';
+  if(/\b(qr|qrcode|qr code|mesa|table)\b/.test(v))return 'qr';
+  if(v.includes('whatsapp')||v==='wa'||v.includes('wpp')||v.includes('wa me'))return 'whatsapp';
+  if(v.includes('instagram')||v.includes('instagr')||v==='ig'||v.includes('stories')||v.includes('l.instagram'))return 'instagram';
+  if(v.includes('google')||v.includes('gclid')||v.includes('pesquisa')||v.includes('search')||v.includes('organic'))return 'google';
+  if(v.includes('facebook')||v==='fb'||v.includes('l.facebook'))return 'facebook';
+  if(v.includes('tiktok'))return 'tiktok';
+  if(v.includes('bing')||v.includes('yahoo')||v.includes('duckduckgo'))return 'search';
+  if(v.includes('direct')||v.includes('direto'))return 'direct';
   return '';
 };
 const identificarOrigemAcesso=()=>{
   const params=new URLSearchParams(window.location.search);
-  const paramOrigem=params.get('origem')||params.get('source')||params.get('src')||params.get('utm_source')||params.get('ref');
+  const paramOrigem=params.get('src')||params.get('source')||params.get('origem')||params.get('utm_source')||params.get('utm_medium')||params.get('ref');
   const origemParam=origemPorTexto(paramOrigem);
-  if(origemParam)return origemParam;
-  if(params.has('gclid')||params.has('gbraid')||params.has('wbraid'))return 'Google';
+  if(origemParam)return {source:origemParam,detail:paramOrigem||origemParam};
+  if(params.has('gclid')||params.has('gbraid')||params.has('wbraid'))return {source:'google',detail:'google_ads'};
   const ref=document.referrer;
-  if(!ref)return 'Direto';
+  if(!ref)return {source:'direct',detail:'sem_referrer'};
   try{
     const host=new URL(ref).hostname.replace(/^www\./,'');
     const origemRef=origemPorTexto(host);
-    return origemRef||'Internet';
+    return {source:origemRef||'internet',detail:host};
   }catch(err){
-    return 'Internet';
+    return {source:'internet',detail:'referrer_invalido'};
   }
 };
 const obterSessaoQrStack=()=>{
@@ -940,25 +944,70 @@ const obterSessaoQrStack=()=>{
   }
   return sessionId;
 };
+const obterVisitanteQrStack=()=>{
+  let visitorId=localStorage.getItem(QRSTACK_VISITOR_KEY);
+  if(!visitorId){
+    visitorId=(crypto.randomUUID&&crypto.randomUUID())||`${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    localStorage.setItem(QRSTACK_VISITOR_KEY,visitorId);
+  }
+  return visitorId;
+};
+const detectarDispositivo=()=>{
+  const ua=navigator.userAgent||'';
+  const tipo=/iPad|Tablet/i.test(ua)?'tablet':/Mobile|Android|iPhone|iPod/i.test(ua)?'mobile':'desktop';
+  const browser=/Edg\//.test(ua)?'Edge':/OPR\//.test(ua)?'Opera':/Chrome\//.test(ua)?'Chrome':/Safari\//.test(ua)?'Safari':/Firefox\//.test(ua)?'Firefox':'Outro';
+  const os=/Android/i.test(ua)?'Android':/iPhone|iPad|iPod/i.test(ua)?'iOS':/Windows/i.test(ua)?'Windows':/Mac OS/i.test(ua)?'macOS':/Linux/i.test(ua)?'Linux':'Outro';
+  return {tipo,browser,os};
+};
 const lerResumoQrStack=()=>{
   try{return JSON.parse(localStorage.getItem(QRSTACK_ANALYTICS_KEY)||'{}')||{};}catch(err){return {};}
 };
 const salvarResumoQrStack=resumo=>localStorage.setItem(QRSTACK_ANALYTICS_KEY,JSON.stringify(resumo));
 const registrarAcessoQrStack=()=>{
+  if(sessionStorage.getItem(QRSTACK_PAGEVIEW_KEY))return;
+  sessionStorage.setItem(QRSTACK_PAGEVIEW_KEY,'1');
   const origem=identificarOrigemAcesso();
+  const device=detectarDispositivo();
   const hoje=new Date().toISOString().slice(0,10);
   const sessionId=obterSessaoQrStack();
+  const visitorId=obterVisitanteQrStack();
   const resumo=lerResumoQrStack();
   resumo.total=(resumo.total||0)+1;
   resumo.porOrigem=resumo.porOrigem||{};
-  resumo.porOrigem[origem]=(resumo.porOrigem[origem]||0)+1;
+  resumo.porOrigem[origem.source]=(resumo.porOrigem[origem.source]||0)+1;
   resumo.porDia=resumo.porDia||{};
   resumo.porDia[hoje]=resumo.porDia[hoje]||{total:0,origens:{}};
   resumo.porDia[hoje].total+=1;
-  resumo.porDia[hoje].origens[origem]=(resumo.porDia[hoje].origens[origem]||0)+1;
-  resumo.ultimoAcesso={origem,data:new Date().toISOString(),url:location.href,referrer:document.referrer||'',sessionId};
+  resumo.porDia[hoje].origens[origem.source]=(resumo.porDia[hoje].origens[origem.source]||0)+1;
+  resumo.ultimoAcesso={origem:origem.source,detalhe:origem.detail,data:new Date().toISOString(),url:location.href,referrer:document.referrer||'',sessionId,visitorId};
   salvarResumoQrStack(resumo);
-  const payload={cliente:QRSTACK_ANALYTICS_CLIENT,tipo:'pageview',origem,url:location.href,path:location.pathname,referrer:document.referrer||'',userAgent:navigator.userAgent,idioma:navigator.language||'',sessionId,timestamp:new Date().toISOString()};
+  const payload={
+    action:'trackEvent',
+    slug:QRSTACK_ANALYTICS_CLIENT,
+    cliente:QRSTACK_ANALYTICS_CLIENT,
+    event_type:'page_view',
+    tipo:'pageview',
+    source:origem.source,
+    origem:origem.source,
+    source_detail:origem.detail,
+    url:location.href,
+    path:`${location.pathname}${location.search}`,
+    referrer:document.referrer||'',
+    user_agent:navigator.userAgent,
+    userAgent:navigator.userAgent,
+    language:navigator.language||'',
+    idioma:navigator.language||'',
+    session_id:sessionId,
+    sessionId,
+    visitor_id:visitorId,
+    device_type:device.tipo,
+    browser:device.browser,
+    os:device.os,
+    screen:`${screen.width}x${screen.height}`,
+    viewport:`${innerWidth}x${innerHeight}`,
+    timezone_offset:String(new Date().getTimezoneOffset()),
+    timestamp:new Date().toISOString()
+  };
   if(QRSTACK_ANALYTICS_ENDPOINT){
     const body=JSON.stringify(payload);
     if(navigator.sendBeacon){
