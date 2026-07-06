@@ -1029,43 +1029,89 @@ const registrarAcessoQrStack=()=>{
   window.qrstackAnalytics={resumo,ultimoEvento:payload,verResumo:()=>lerResumoQrStack()};
 };
 let pratoObserverQrStack=null;
+const pratoTempoVisivelQrStack=new Map();
 const categoriaPratoQrStack=card=>card.closest('section')?.querySelector('.stitle')?.textContent?.trim()||card.querySelector('.badge')?.textContent?.trim()||'Cardápio';
-const registrarVisualizacaoPratoQrStack=card=>{
+const dadosPratoQrStack=card=>{
   const nome=card.querySelector('.cname')?.textContent?.trim();
-  if(!nome)return;
+  if(!nome)return null;
   const dishKey=normalizarNome(nome);
-  const sessionKey=`qrstack:dish-view:${QRSTACK_ANALYTICS_CLIENT}:${obterSessaoQrStack()}:${dishKey}`;
+  const categoria=categoriaPratoQrStack(card);
+  return {nome,dishKey,categoria};
+};
+const payloadPratoQrStack=(eventType,card,extra={})=>{
+  const dados=dadosPratoQrStack(card);
+  if(!dados)return null;
+  return montarPayloadQrStack(eventType,{
+    dish_name:dados.nome,
+    dish_key:dados.dishKey,
+    dish_category:dados.categoria,
+    item_name:dados.nome,
+    item_category:dados.categoria,
+    ...extra
+  });
+};
+const registrarVisualizacaoPratoQrStack=card=>{
+  const dados=dadosPratoQrStack(card);
+  if(!dados)return;
+  const sessionKey=`qrstack:dish-view:${QRSTACK_ANALYTICS_CLIENT}:${obterSessaoQrStack()}:${dados.dishKey}`;
   if(sessionStorage.getItem(sessionKey))return;
   sessionStorage.setItem(sessionKey,'1');
-  const categoria=categoriaPratoQrStack(card);
-  const payload=montarPayloadQrStack('dish_view',{
-    dish_name:nome,
-    dish_key:dishKey,
-    dish_category:categoria,
-    item_name:nome,
-    item_category:categoria
-  });
+  const payload=payloadPratoQrStack('dish_view',card);
+  if(!payload)return;
   enviarPayloadQrStack(payload);
   window.qrstackAnalytics={...(window.qrstackAnalytics||{}),ultimoEvento:payload,verResumo:()=>lerResumoQrStack()};
 };
+const registrarToquePratoQrStack=card=>{
+  const agora=Date.now();
+  if(Number(card.dataset.qrstackLastTouch||0)>agora-700)return;
+  card.dataset.qrstackLastTouch=String(agora);
+  const payload=payloadPratoQrStack('dish_touch',card);
+  if(!payload)return;
+  enviarPayloadQrStack(payload);
+  window.qrstackAnalytics={...(window.qrstackAnalytics||{}),ultimoEvento:payload,verResumo:()=>lerResumoQrStack()};
+};
+const iniciarTempoPratoQrStack=card=>{
+  if(pratoTempoVisivelQrStack.has(card))return;
+  pratoTempoVisivelQrStack.set(card,performance.now());
+  window.setTimeout(()=>{if(pratoTempoVisivelQrStack.has(card))registrarVisualizacaoPratoQrStack(card);},900);
+};
+const finalizarTempoPratoQrStack=card=>{
+  const inicio=pratoTempoVisivelQrStack.get(card);
+  if(!inicio)return;
+  pratoTempoVisivelQrStack.delete(card);
+  const durationMs=Math.round(performance.now()-inicio);
+  if(durationMs<1200)return;
+  const payload=payloadPratoQrStack('dish_observe',card,{
+    duration_ms:durationMs,
+    observe_seconds:Math.round(durationMs/1000)
+  });
+  if(!payload)return;
+  enviarPayloadQrStack(payload);
+  window.qrstackAnalytics={...(window.qrstackAnalytics||{}),ultimoEvento:payload,verResumo:()=>lerResumoQrStack()};
+};
+const finalizarTodosTemposPratoQrStack=()=>{pratoTempoVisivelQrStack.forEach((_,card)=>finalizarTempoPratoQrStack(card));};
 const prepararTrackingPratosQrStack=()=>{
   if(!('IntersectionObserver'in window))return;
   if(!pratoObserverQrStack){
     pratoObserverQrStack=new IntersectionObserver(entries=>{
       entries.forEach(entry=>{
         if(entry.isIntersecting&&entry.intersectionRatio>=0.55){
-          registrarVisualizacaoPratoQrStack(entry.target);
-          pratoObserverQrStack.unobserve(entry.target);
+          iniciarTempoPratoQrStack(entry.target);
+        }else{
+          finalizarTempoPratoQrStack(entry.target);
         }
       });
-    },{threshold:[0.55,0.7]});
+    },{threshold:[0,0.55,0.7]});
   }
   document.querySelectorAll('.card').forEach(card=>{
     if(card.dataset.qrstackDishObserved||!card.querySelector('.cname'))return;
     card.dataset.qrstackDishObserved='1';
+    card.addEventListener('pointerup',()=>registrarToquePratoQrStack(card),{passive:true});
     pratoObserverQrStack.observe(card);
   });
 };
+window.addEventListener('pagehide',finalizarTodosTemposPratoQrStack);
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')finalizarTodosTemposPratoQrStack();});
 registrarAcessoQrStack();
 prepararTrackingPratosQrStack();
 </script>

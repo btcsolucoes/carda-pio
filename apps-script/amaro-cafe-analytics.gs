@@ -99,6 +99,8 @@ function appendEvent(payload) {
     dish_name: payload.dish_name || payload.item_name || payload.prato || '',
     dish_key: payload.dish_key || normalizeHeader(payload.dish_name || payload.item_name || payload.prato || ''),
     dish_category: payload.dish_category || payload.item_category || payload.categoria || '',
+    duration_ms: payload.duration_ms || payload.durationMs || '',
+    observe_seconds: payload.observe_seconds || payload.observeSeconds || '',
     device_type: payload.device_type || payload.deviceType || device.type,
     browser: payload.browser || device.browser,
     os: payload.os || device.os,
@@ -134,6 +136,8 @@ function ensureEventsSheet() {
     'dish_name',
     'dish_key',
     'dish_category',
+    'duration_ms',
+    'observe_seconds',
     'device_type',
     'browser',
     'os',
@@ -167,7 +171,12 @@ function getInsights(filters) {
   const periodRows = filterEventsByPeriod(realRows, filters || {});
   const periodPageViews = periodRows.filter((event) => event.event_type === 'page_view');
   const periodDishViews = periodRows.filter((event) => event.event_type === 'dish_view');
+  const periodDishTouches = periodRows.filter((event) => event.event_type === 'dish_touch');
+  const periodDishObserves = periodRows.filter((event) => event.event_type === 'dish_observe');
   const allPageViews = realRows.filter((event) => event.event_type === 'page_view');
+  const dishObserveSeconds = sumBy(periodDishObserves, 'dish_name', 'observe_seconds');
+  const dishViewCounts = countBy(periodDishViews, 'dish_name');
+  const dishTouchCounts = countBy(periodDishTouches, 'dish_name');
 
   const last7 = realRows.filter((event) => {
     const created = new Date(event.created_at);
@@ -190,9 +199,16 @@ function getInsights(filters) {
     source_counts: countBy(periodPageViews, 'source'),
     event_type_counts: countBy(periodRows, 'event_type'),
     event_type_counts_all: countBy(realRows, 'event_type'),
-    dish_view_counts: countBy(periodDishViews, 'dish_name'),
+    dish_view_counts: dishViewCounts,
+    dish_touch_counts: dishTouchCounts,
+    dish_observe_seconds: dishObserveSeconds,
+    dish_attention_scores: dishAttentionScores(dishViewCounts, dishTouchCounts, dishObserveSeconds),
     dish_view_category_counts: countBy(periodDishViews, 'dish_category'),
+    dish_touch_category_counts: countBy(periodDishTouches, 'dish_category'),
+    dish_observe_category_seconds: sumBy(periodDishObserves, 'dish_category', 'observe_seconds'),
     total_dish_views: periodDishViews.length,
+    total_dish_touches: periodDishTouches.length,
+    total_dish_observe_seconds: sumNumeric(periodDishObserves, 'observe_seconds'),
     device_counts: countBy(periodPageViews, 'device_type'),
     browser_counts: countBy(periodPageViews, 'browser'),
     os_counts: countBy(periodPageViews, 'os'),
@@ -307,6 +323,40 @@ function countBy(rows, key) {
   }, {});
 }
 
+function sumBy(rows, groupKey, valueKey) {
+  return rows.reduce((acc, row) => {
+    const group = String(row[groupKey] || '').trim();
+    if (!group) return acc;
+    acc[group] = (acc[group] || 0) + parseNumeric(row[valueKey]);
+    return acc;
+  }, {});
+}
+
+function sumNumeric(rows, key) {
+  return rows.reduce((sum, row) => sum + parseNumeric(row[key]), 0);
+}
+
+function parseNumeric(value) {
+  const number = Number(String(value || '').replace(',', '.'));
+  return Number.isFinite(number) ? number : 0;
+}
+
+function dishAttentionScores(viewCounts, touchCounts, observeSeconds) {
+  const names = {};
+  [viewCounts, touchCounts, observeSeconds].forEach((group) => {
+    Object.keys(group || {}).forEach((key) => {
+      if (key) names[key] = true;
+    });
+  });
+  return Object.keys(names).reduce((acc, name) => {
+    const views = Number(viewCounts[name] || 0);
+    const touches = Number(touchCounts[name] || 0);
+    const seconds = Number(observeSeconds[name] || 0);
+    acc[name] = Math.round((views + touches * 3 + seconds / 8) * 10) / 10;
+    return acc;
+  }, {});
+}
+
 function uniqueCount(rows, key) {
   const values = rows
     .map((row) => String(row[key] || '').trim())
@@ -343,6 +393,9 @@ function recentEvents(rows, limit) {
       event_type: event.event_type || '',
       source: event.source || '',
       source_detail: event.source_detail || '',
+      dish_name: event.dish_name || '',
+      dish_category: event.dish_category || '',
+      observe_seconds: event.observe_seconds || '',
       device_type: event.device_type || '',
     }));
 }
