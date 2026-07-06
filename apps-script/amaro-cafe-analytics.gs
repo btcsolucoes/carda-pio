@@ -170,9 +170,9 @@ function getInsights(filters) {
   sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 6);
   const periodRows = filterEventsByPeriod(realRows, filters || {});
   const periodPageViews = periodRows.filter((event) => event.event_type === 'page_view');
-  const periodDishViews = periodRows.filter((event) => event.event_type === 'dish_view');
-  const periodDishTouches = periodRows.filter((event) => event.event_type === 'dish_touch');
-  const periodDishObserves = periodRows.filter((event) => event.event_type === 'dish_observe');
+  const periodDishViews = periodRows.filter((event) => event.event_type === 'dish_view' && hasDishName(event));
+  const periodDishTouches = periodRows.filter((event) => event.event_type === 'dish_touch' && hasDishName(event));
+  const periodDishObserves = periodRows.filter((event) => event.event_type === 'dish_observe' && hasDishName(event));
   const allPageViews = realRows.filter((event) => event.event_type === 'page_view');
   const dishObserveSeconds = sumBy(periodDishObserves, 'dish_name', 'observe_seconds');
   const dishViewCounts = countBy(periodDishViews, 'dish_name');
@@ -313,6 +313,11 @@ function isTestEvent(event) {
   const source = normalizeHeader(event.source);
   const url = normalizeHeader(event.url);
   return source.indexOf('codex') >= 0 || source.indexOf('test') >= 0 || source.indexOf('teste') >= 0 || url.indexOf('codex') >= 0;
+}
+
+function hasDishName(event) {
+  const dishName = String(event.dish_name || '').trim();
+  return dishName && normalizeHeader(dishName) !== 'direct';
 }
 
 function countBy(rows, key) {
