@@ -182,6 +182,19 @@
         "is_active":  "TRUE"
     },
     {
+        "id":  "catalog_cupim-da-guia",
+        "restaurant_id":  "rest_amaro",
+        "section_id":  "executivos",
+        "section_title":  "Executivos",
+        "name":  "Cupim da Guia",
+        "category":  "Executivo",
+        "description":  "Steak de cupim ao molho escuro, purê de macaxeira, baião de dois, farofa de bacon e crispy de cebola",
+        "price":  "R$ 38,00",
+        "image_url":  "",
+        "sort_order":  6,
+        "is_active":  "TRUE"
+    },
+    {
         "id":  "catalog_frango-a-parmegiana",
         "restaurant_id":  "rest_amaro",
         "section_id":  "executivos",
@@ -191,7 +204,7 @@
         "description":  "Frango empanado e gratinado, linguine ao tomate, fritas ou purê de batatas",
         "price":  "R$ 32,00",
         "image_url":  "fotos%20de%20pratos/Parmegiana%20de%20Frango.jpg",
-        "sort_order":  6,
+        "sort_order":  7,
         "is_active":  "TRUE"
     },
     {
@@ -204,7 +217,7 @@
         "description":  "Coxa de Frango temperada com Chimichurri servida com Arroz Biro-Biro e Feijão Carioca",
         "price":  "R$ 32,00",
         "image_url":  "fotos%20de%20pratos/Franguinho%20da%20Moeda.jpg",
-        "sort_order":  7,
+        "sort_order":  8,
         "is_active":  "TRUE"
     },
     {
@@ -217,7 +230,7 @@
         "description":  "Baião de arroz com fava cozido no caldo de cozimento do frango e coxa com sobrecoxa desossada frita",
         "price":  "R$ 36,00",
         "image_url":  "fotos%20de%20pratos/Galinhada%20Amaro.png",
-        "sort_order":  8,
+        "sort_order":  9,
         "is_active":  "TRUE"
     },
     {
@@ -230,7 +243,7 @@
         "description":  "Massa fresca de lasanha intercalada com ragu de cupim montada sobre molho de queijo e molho escuro",
         "price":  "R$ 42,00",
         "image_url":  "fotos%20de%20pratos/Lasanha%20de%20cupim.png",
-        "sort_order":  9,
+        "sort_order":  10,
         "is_active":  "TRUE"
     },
     {
@@ -243,7 +256,7 @@
         "description":  "Maminha grelhada ao chimichurri, purê de batata, arroz de alho, picles de maxixe e crispy de cebola",
         "price":  "R$ 37,00",
         "image_url":  "fotos%20de%20pratos/Maminha%20do%20Apolo.jpg",
-        "sort_order":  10,
+        "sort_order":  11,
         "is_active":  "TRUE"
     },
     {
@@ -256,7 +269,7 @@
         "description":  "Moqueca de camarões com banana da terra, lascas de coco, cubos de peixe empanado, arroz branco e pirão",
         "price":  "R$ 43,00",
         "image_url":  "fotos%20de%20pratos/Moqueca%20de%20Camar%C3%A3o.png",
-        "sort_order":  11,
+        "sort_order":  12,
         "is_active":  "TRUE"
     },
     {
@@ -269,7 +282,7 @@
         "description":  "Nhoque de batata doce com creme de queijo e ervas e frango crocante com parmesão e maionese kewpie",
         "price":  "R$ 36,00",
         "image_url":  "fotos%20de%20pratos/Nhoque%20de%20Batata%20Doce.jpg",
-        "sort_order":  12,
+        "sort_order":  13,
         "is_active":  "TRUE"
     },
     {
@@ -282,7 +295,7 @@
         "description":  "Contra filé ao molho, arroz de couve e cenoura, feijão carioca, farofa panko e ovo frito",
         "price":  "R$ 36,00",
         "image_url":  "fotos%20de%20pratos/Picadinho%20carioca.png",
-        "sort_order":  13,
+        "sort_order":  14,
         "is_active":  "TRUE"
     },
     {
@@ -295,7 +308,7 @@
         "description":  "Arroz arbóreo cozido no caldo do camarão, camarões selados e mix de folhas frescas",
         "price":  "R$ 50,00",
         "image_url":  "fotos%20de%20pratos/Risoto%20de%20camar%C3%A3o.png",
-        "sort_order":  14,
+        "sort_order":  15,
         "is_active":  "TRUE"
     },
     {
@@ -308,7 +321,7 @@
         "description":  "Tilápia grelhada em crosta de panko com ervas, purê de jerimum e arroz de camarão",
         "price":  "R$ 44,00",
         "image_url":  "fotos%20de%20pratos/Til%C3%A1pia%20Marco%20Zero.jpg",
-        "sort_order":  15,
+        "sort_order":  16,
         "is_active":  "TRUE"
     },
     {
@@ -321,7 +334,7 @@
         "description":  "Tilápia empanada na farinha panko e tapioca acompanhada de arroz de moqueca",
         "price":  "R$ 42,00",
         "image_url":  "fotos%20de%20pratos/Til%C3%A1pia%20Crocante.jpg",
-        "sort_order":  16,
+        "sort_order":  17,
         "is_active":  "TRUE"
     },
     {
