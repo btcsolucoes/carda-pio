@@ -9,7 +9,12 @@ function doGet(e) {
   const action = params.action || '';
 
   if (action === 'health') {
-    return json({ ok: true, restaurant: 'amaro', version: 'amaro-analytics-v1' });
+    return json({
+      ok: true,
+      restaurant: 'amaro',
+      version: 'amaro-analytics-v2-cache',
+      cache_sheet: INSIGHTS_CACHE_SHEET_NAME,
+    });
   }
 
   if (action === 'getInsights') {
@@ -37,6 +42,10 @@ function doGet(e) {
   if (action === 'installInsightsTrigger') {
     assertOwner(params.key || params.owner_key);
     return json({ ok: true, trigger: installInsightsRefreshTrigger() }, params.callback);
+  }
+
+  if (action) {
+    return json({ ok: false, error: 'unknown_action', action });
   }
 
   return json(getLunchRows());
