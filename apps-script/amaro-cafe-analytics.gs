@@ -1,5 +1,8 @@
 const OWNER_ACCESS_TOKEN = 'qrstack-berna-2026';
 const EVENTS_SHEET_NAME = 'qrstack_events';
+const INSIGHTS_CACHE_SHEET_NAME = 'qrstack_insights_cache';
+const INSIGHTS_CACHE_PREFIX = 'amaro_insights_v2';
+const INSIGHTS_CACHE_SECONDS = 21600;
 
 function doGet(e) {
   const params = e && e.parameter ? e.parameter : {};
@@ -11,6 +14,10 @@ function doGet(e) {
 
   if (action === 'getInsights') {
     assertOwner(params.key || params.owner_key);
+    const filters = {
+      startDate: params.startDate || params.start_date || params.start,
+      endDate: params.endDate || params.end_date || params.end,
+    };
     return json({
       ok: true,
       restaurant: {
@@ -18,11 +25,18 @@ function doGet(e) {
         slug: 'amaro',
         name: 'Amaro Cafe',
       },
-      insights: getInsights({
-        startDate: params.startDate || params.start_date || params.start,
-        endDate: params.endDate || params.end_date || params.end,
-      }),
+      insights: getInsightsCached(filters, params.refresh === '1' || params.force === '1'),
     }, params.callback);
+  }
+
+  if (action === 'refreshInsights') {
+    assertOwner(params.key || params.owner_key);
+    return json({ ok: true, refreshed: refreshInsightsCache() }, params.callback);
+  }
+
+  if (action === 'installInsightsTrigger') {
+    assertOwner(params.key || params.owner_key);
+    return json({ ok: true, trigger: installInsightsRefreshTrigger() }, params.callback);
   }
 
   return json(getLunchRows());
@@ -157,6 +171,140 @@ function ensureEventsSheet() {
     if (missing.length) {
       sheet.getRange(1, existing.length + 1, 1, missing.length).setValues([missing]);
     }
+  }
+  return sheet;
+}
+
+function getInsightsCached(filters, forceRefresh) {
+  const normalizedFilters = normalizeInsightFilters(filters || {});
+  const cacheKey = insightsCacheKey(normalizedFilters);
+  const scriptCache = CacheService.getScriptCache();
+
+  if (!forceRefresh) {
+    const memoryPayload = scriptCache.get(cacheKey);
+    if (memoryPayload) return markInsightCache(JSON.parse(memoryPayload), 'memory');
+
+    const sheetPayload = readInsightsSheetCache(cacheKey);
+    if (sheetPayload) {
+      scriptCache.put(cacheKey, JSON.stringify(sheetPayload), INSIGHTS_CACHE_SECONDS);
+      return markInsightCache(sheetPayload, 'sheet');
+    }
+  }
+
+  const insights = getInsights(normalizedFilters);
+  writeInsightsCache(cacheKey, insights);
+  scriptCache.put(cacheKey, JSON.stringify(insights), INSIGHTS_CACHE_SECONDS);
+  return markInsightCache(insights, 'fresh');
+}
+
+function refreshInsightsCache() {
+  const today = todayIso();
+  const sevenDaysStart = daysAgoIso(6);
+  const presets = [
+    {},
+    { startDate: today, endDate: today },
+    { startDate: sevenDaysStart, endDate: today },
+  ];
+  return presets.map((filters) => {
+    const insights = getInsights(normalizeInsightFilters(filters));
+    const cacheKey = insightsCacheKey(filters);
+    writeInsightsCache(cacheKey, insights);
+    CacheService.getScriptCache().put(cacheKey, JSON.stringify(insights), INSIGHTS_CACHE_SECONDS);
+    return {
+      key: cacheKey,
+      period_label: insights.period_label,
+      total_events: insights.total_events,
+      period_accesses: insights.period_accesses,
+      cached_at: insights.cache_cached_at,
+    };
+  });
+}
+
+function installInsightsRefreshTrigger() {
+  ScriptApp.getProjectTriggers()
+    .filter((trigger) => trigger.getHandlerFunction() === 'refreshInsightsCache')
+    .forEach((trigger) => ScriptApp.deleteTrigger(trigger));
+
+  const trigger = ScriptApp.newTrigger('refreshInsightsCache')
+    .timeBased()
+    .everyMinutes(5)
+    .create();
+
+  refreshInsightsCache();
+  return {
+    handler: trigger.getHandlerFunction(),
+    type: 'time_based_every_5_minutes',
+    installed_at: new Date().toISOString(),
+  };
+}
+
+function normalizeInsightFilters(filters) {
+  return {
+    startDate: filters.startDate || '',
+    endDate: filters.endDate || '',
+  };
+}
+
+function insightsCacheKey(filters) {
+  const normalized = normalizeInsightFilters(filters || {});
+  return [
+    INSIGHTS_CACHE_PREFIX,
+    normalized.startDate || 'all',
+    normalized.endDate || 'all',
+  ].join(':');
+}
+
+function markInsightCache(insights, source) {
+  return {
+    ...insights,
+    cache_source: source,
+    cache_served_at: new Date().toISOString(),
+  };
+}
+
+function readInsightsSheetCache(cacheKey) {
+  const sheet = ensureInsightsCacheSheet();
+  const lastRow = sheet.getLastRow();
+  if (lastRow < 2) return null;
+  const values = sheet.getRange(2, 1, lastRow - 1, 3).getValues();
+  const row = values.find((item) => item[0] === cacheKey);
+  if (!row || !row[1]) return null;
+  try {
+    return JSON.parse(String(row[1]));
+  } catch {
+    return null;
+  }
+}
+
+function writeInsightsCache(cacheKey, insights) {
+  const sheet = ensureInsightsCacheSheet();
+  const payload = JSON.stringify({
+    ...insights,
+    cache_key: cacheKey,
+    cache_cached_at: new Date().toISOString(),
+  });
+  const lastRow = sheet.getLastRow();
+  if (lastRow >= 2) {
+    const keys = sheet.getRange(2, 1, lastRow - 1, 1).getValues().map((row) => row[0]);
+    const index = keys.indexOf(cacheKey);
+    if (index >= 0) {
+      sheet.getRange(index + 2, 1, 1, 3).setValues([[cacheKey, payload, new Date().toISOString()]]);
+      return;
+    }
+  }
+  sheet.appendRow([cacheKey, payload, new Date().toISOString()]);
+}
+
+function ensureInsightsCacheSheet() {
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  let sheet = spreadsheet.getSheetByName(INSIGHTS_CACHE_SHEET_NAME);
+  if (!sheet) sheet = spreadsheet.insertSheet(INSIGHTS_CACHE_SHEET_NAME);
+  const headers = ['cache_key', 'payload_json', 'updated_at'];
+  const firstRow = sheet.getRange(1, 1, 1, headers.length).getValues()[0];
+  const hasHeaders = firstRow.some((value) => String(value || '').trim());
+  if (!hasHeaders) {
+    sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
+    sheet.setFrozenRows(1);
   }
   return sheet;
 }
@@ -419,6 +567,12 @@ function startOfDay(date) {
 
 function todayIso() {
   return Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'yyyy-MM-dd');
+}
+
+function daysAgoIso(days) {
+  const date = new Date();
+  date.setDate(date.getDate() - Number(days || 0));
+  return Utilities.formatDate(date, Session.getScriptTimeZone(), 'yyyy-MM-dd');
 }
 
 function parsePayload(e) {
