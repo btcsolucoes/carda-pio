@@ -11,6 +11,10 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt);overflow-x:hidden;}
+.qrstack-webview-banner{position:fixed;top:0;left:0;right:0;z-index:9999;background:#162015;color:#fff;border-bottom:1px solid rgba(184,151,58,.38);box-shadow:0 10px 30px rgba(0,0,0,.22);padding:12px 14px;font-size:12px;line-height:1.45;}
+.qrstack-webview-banner strong{display:block;color:var(--gold2);font-size:12px;text-transform:uppercase;letter-spacing:1.4px;margin-bottom:2px;}
+.qrstack-webview-banner span{display:block;color:rgba(255,255,255,.82);padding-right:34px;}
+.qrstack-webview-banner button{position:absolute;top:8px;right:8px;width:26px;height:26px;border:1px solid rgba(212,175,90,.35);border-radius:50%;background:transparent;color:var(--gold2);font-size:18px;line-height:20px;}
 .hero{background:var(--gd);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 20px 60px;text-align:center;position:relative;overflow:hidden;}
 .ring{position:absolute;border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;border:1px solid rgba(184,151,58,.1);}
 .r1{width:380px;height:380px;border-color:rgba(184,151,58,.2);}
@@ -922,6 +926,7 @@ const QRSTACK_ANALYTICS_KEY=`qrstack:analytics:${QRSTACK_ANALYTICS_CLIENT}`;
 const QRSTACK_SESSION_KEY=`qrstack:session:${QRSTACK_ANALYTICS_CLIENT}`;
 const QRSTACK_VISITOR_KEY=`qrstack:visitor:${QRSTACK_ANALYTICS_CLIENT}`;
 const QRSTACK_PAGEVIEW_KEY=`qrstack:pageview:${QRSTACK_ANALYTICS_CLIENT}:${location.pathname}${location.search}`;
+const QRSTACK_WEBVIEW_INTENT_KEY=`qrstack:instagram-intent:${location.href}`;
 const normalizarOrigemAcesso=valor=>String(valor||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
 const origemPorTexto=valor=>{
   const v=normalizarOrigemAcesso(valor);
@@ -952,6 +957,47 @@ const identificarOrigemAcesso=()=>{
     return {source:'internet',detail:'referrer_invalido'};
   }
 };
+const estaEmWebviewSocialQrStack=()=>/Instagram|FBAN|FBAV|FB_IAB/i.test(navigator.userAgent||'');
+const veioDoInstagramRealQrStack=()=>{
+  const params=new URLSearchParams(window.location.search);
+  return params.has('fbclid')||String(params.get('utm_source')||'').toLowerCase()==='ig';
+};
+const estaEmPwaQrStack=()=>window.matchMedia?.('(display-mode: standalone)')?.matches||window.navigator.standalone===true;
+const plataformaWebviewQrStack=()=>{
+  const ua=navigator.userAgent||'';
+  if(/Android/i.test(ua))return 'android';
+  if(/iPhone|iPad|iPod/i.test(ua))return 'ios';
+  return 'other';
+};
+const mostrarBannerWebviewQrStack=(platform,message)=>{
+  if(document.querySelector('.qrstack-webview-banner'))return;
+  const banner=document.createElement('div');
+  banner.className='qrstack-webview-banner';
+  banner.dataset.platform=platform;
+  banner.innerHTML=`<strong>Abra no navegador</strong><span>${message}</span><button type="button" aria-label="Fechar aviso">&times;</button>`;
+  banner.querySelector('button').addEventListener('click',()=>banner.remove());
+  if(document.body)document.body.prepend(banner);
+  else document.addEventListener('DOMContentLoaded',()=>document.body.prepend(banner),{once:true});
+};
+const prepararInstagramWebviewQrStack=()=>{
+  const state={banner_shown:false,banner_platform:null,in_app_browser:estaEmWebviewSocialQrStack(),instagram_click:veioDoInstagramRealQrStack()};
+  if(estaEmPwaQrStack()||!state.in_app_browser||!state.instagram_click)return state;
+  const platform=plataformaWebviewQrStack();
+  state.banner_shown=true;
+  state.banner_platform=platform;
+  if(platform==='android'){
+    mostrarBannerWebviewQrStack(platform,'Estamos abrindo no Chrome para manter sua navega\u00e7\u00e3o registrada corretamente.');
+    if(!sessionStorage.getItem(QRSTACK_WEBVIEW_INTENT_KEY)){
+      sessionStorage.setItem(QRSTACK_WEBVIEW_INTENT_KEY,'1');
+      const semProtocolo=location.href.replace(/^https?:\/\//i,'');
+      setTimeout(()=>{window.location.href=`intent://${semProtocolo}#Intent;scheme=https;package=com.android.chrome;end;`;},80);
+    }
+  }else if(platform==='ios'){
+    mostrarBannerWebviewQrStack(platform,'Toque em \u2022\u2022\u2022 no topo e escolha Abrir no navegador. Assim o card\u00e1pio acompanha sua visita corretamente.');
+  }
+  return state;
+};
+const qrstackWebviewState=prepararInstagramWebviewQrStack();
 const obterSessaoQrStack=()=>{
   let sessionId=sessionStorage.getItem(QRSTACK_SESSION_KEY);
   if(!sessionId){
@@ -1018,6 +1064,8 @@ const montarPayloadQrStack=(eventType,extra={})=>{
     screen:`${screen.width}x${screen.height}`,
     viewport:`${innerWidth}x${innerHeight}`,
     timezone_offset:String(new Date().getTimezoneOffset()),
+    banner_shown:qrstackWebviewState.banner_shown,
+    banner_platform:qrstackWebviewState.banner_platform,
     timestamp:new Date().toISOString(),
     ...extra
   };
