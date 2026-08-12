@@ -1156,6 +1156,11 @@ const finalizarTempoPratoQrStack=card=>{
   pratoTempoVisivelQrStack.delete(card);
   const durationMs=Math.round(performance.now()-inicio);
   if(durationMs<1200)return;
+  const dados=obterDadosPratoQrStack(card);
+  if(!dados)return;
+  const observeKey=`qrstack:dish-observe:${QRSTACK_ANALYTICS_CLIENT}:${obterSessaoQrStack()}:${dados.dishKey}`;
+  if(sessionStorage.getItem(observeKey))return;
+  sessionStorage.setItem(observeKey,'1');
   const payload=payloadPratoQrStack('dish_observe',card,{
     duration_ms:durationMs,
     observe_seconds:Math.round(durationMs/1000)
