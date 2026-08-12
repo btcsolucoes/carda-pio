@@ -928,6 +928,8 @@ const QRSTACK_ANALYTICS_KEY=`qrstack:analytics:${QRSTACK_ANALYTICS_CLIENT}`;
 const QRSTACK_SESSION_KEY=`qrstack:session:${QRSTACK_ANALYTICS_CLIENT}`;
 const QRSTACK_VISITOR_KEY=`qrstack:visitor:${QRSTACK_ANALYTICS_CLIENT}`;
 const QRSTACK_PAGEVIEW_KEY=`qrstack:pageview:${QRSTACK_ANALYTICS_CLIENT}:${location.pathname}${location.search}`;
+const QRSTACK_PENDING_PAGEVIEWS_KEY=`qrstack:pending-pageviews:${QRSTACK_ANALYTICS_CLIENT}`;
+const QRSTACK_LOAD_SESSION_ID=`${Date.now()}-${Math.random().toString(36).slice(2)}`;
 const QRSTACK_WEBVIEW_INTENT_KEY=`qrstack:instagram-intent:${location.href}`;
 const normalizarOrigemAcesso=valor=>String(valor||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
 const origemPorTexto=valor=>{
@@ -1009,14 +1011,7 @@ const prepararInstagramWebviewQrStack=()=>{
   return state;
 };
 const qrstackWebviewState=prepararInstagramWebviewQrStack();
-const obterSessaoQrStack=()=>{
-  let sessionId=sessionStorage.getItem(QRSTACK_SESSION_KEY);
-  if(!sessionId){
-    sessionId=`${Date.now()}-${Math.random().toString(36).slice(2)}`;
-    sessionStorage.setItem(QRSTACK_SESSION_KEY,sessionId);
-  }
-  return sessionId;
-};
+const obterSessaoQrStack=()=>QRSTACK_LOAD_SESSION_ID;
 const obterVisitanteQrStack=()=>{
   let visitorId=localStorage.getItem(QRSTACK_VISITOR_KEY);
   if(!visitorId){
@@ -1036,15 +1031,50 @@ const lerResumoQrStack=()=>{
   try{return JSON.parse(localStorage.getItem(QRSTACK_ANALYTICS_KEY)||'{}')||{};}catch(err){return {};}
 };
 const salvarResumoQrStack=resumo=>localStorage.setItem(QRSTACK_ANALYTICS_KEY,JSON.stringify(resumo));
+const criarIdEventoQrStack=()=>(crypto.randomUUID&&crypto.randomUUID())||`event-${Date.now()}-${Math.random().toString(36).slice(2)}`;
 const enviarPayloadQrStack=payload=>{
   if(!QRSTACK_ANALYTICS_ENDPOINT)return;
-  const body=JSON.stringify(payload);
+  const completo={id:payload.id||criarIdEventoQrStack(),...payload};
+  const body=JSON.stringify(completo);
   if(navigator.sendBeacon){
     navigator.sendBeacon(QRSTACK_ANALYTICS_ENDPOINT,new Blob([body],{type:'text/plain;charset=UTF-8'}));
   }else{
-    fetch(QRSTACK_ANALYTICS_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=UTF-8'},body}).catch(()=>{});
+    fetch(QRSTACK_ANALYTICS_ENDPOINT,{method:'POST',mode:'cors',keepalive:true,headers:{'Content-Type':'text/plain;charset=UTF-8'},body}).catch(()=>{});
   }
 };
+let processandoFilaAcessosQrStack=false;
+const lerFilaAcessosQrStack=()=>{try{return JSON.parse(localStorage.getItem(QRSTACK_PENDING_PAGEVIEWS_KEY)||'[]')||[];}catch{return [];}};
+const salvarFilaAcessosQrStack=fila=>localStorage.setItem(QRSTACK_PENDING_PAGEVIEWS_KEY,JSON.stringify(fila.slice(-50)));
+const processarFilaAcessosQrStack=async()=>{
+  if(processandoFilaAcessosQrStack||!navigator.onLine)return;
+  processandoFilaAcessosQrStack=true;
+  try{
+    let fila=lerFilaAcessosQrStack();
+    for(const payload of [...fila]){
+      try{
+        const response=await fetch(QRSTACK_ANALYTICS_ENDPOINT,{method:'POST',mode:'cors',keepalive:true,headers:{'Content-Type':'text/plain;charset=UTF-8'},body:JSON.stringify(payload)});
+        const result=await response.json();
+        if(!response.ok||result.ok!==true)throw new Error('tracking_not_confirmed');
+        fila=fila.filter(item=>item.id!==payload.id);
+        salvarFilaAcessosQrStack(fila);
+      }catch{
+        break;
+      }
+    }
+  }finally{
+    processandoFilaAcessosQrStack=false;
+  }
+};
+const enfileirarAcessoQrStack=payload=>{
+  const fila=lerFilaAcessosQrStack();
+  if(!fila.some(item=>item.id===payload.id))fila.push(payload);
+  salvarFilaAcessosQrStack(fila);
+  processarFilaAcessosQrStack();
+  setTimeout(processarFilaAcessosQrStack,2500);
+  setTimeout(processarFilaAcessosQrStack,9000);
+};
+window.addEventListener('online',processarFilaAcessosQrStack);
+setInterval(processarFilaAcessosQrStack,30000);
 const montarPayloadQrStack=(eventType,extra={})=>{
   const origem=identificarOrigemAcesso();
   const device=detectarDispositivo();
@@ -1082,8 +1112,6 @@ const montarPayloadQrStack=(eventType,extra={})=>{
   };
 };
 const registrarAcessoQrStack=()=>{
-  if(sessionStorage.getItem(QRSTACK_PAGEVIEW_KEY))return;
-  sessionStorage.setItem(QRSTACK_PAGEVIEW_KEY,'1');
   const origem=identificarOrigemAcesso();
   const device=detectarDispositivo();
   const hoje=new Date().toISOString().slice(0,10);
@@ -1099,8 +1127,8 @@ const registrarAcessoQrStack=()=>{
   resumo.porDia[hoje].origens[origem.source]=(resumo.porDia[hoje].origens[origem.source]||0)+1;
   resumo.ultimoAcesso={origem:origem.source,detalhe:origem.detail,data:new Date().toISOString(),url:location.href,referrer:document.referrer||'',sessionId,visitorId};
   salvarResumoQrStack(resumo);
-  const payload=montarPayloadQrStack('page_view');
-  enviarPayloadQrStack(payload);
+  const payload={id:criarIdEventoQrStack(),...montarPayloadQrStack('page_view')};
+  enfileirarAcessoQrStack(payload);
   window.qrstackAnalytics={resumo,ultimoEvento:payload,verResumo:()=>lerResumoQrStack()};
 };
 let pratoObserverQrStack=null;
