@@ -260,6 +260,19 @@
         "is_active":  "TRUE"
     },
     {
+        "id":  "catalog_maminha-grelhada-e-arroz-a-piamontese",
+        "restaurant_id":  "rest_amaro",
+        "section_id":  "executivos",
+        "section_title":  "Executivos",
+        "name":  "Maminha Grelhada e Arroz à Piamontese",
+        "category":  "Executivo",
+        "description":  "Acompanhada por legumes, chimichurri artesanal e pesto de coentro",
+        "price":  "R$ 38,00",
+        "image_url":  "",
+        "sort_order":  12,
+        "is_active":  "TRUE"
+    },
+    {
         "id":  "catalog_moqueca-de-camarao",
         "restaurant_id":  "rest_amaro",
         "section_id":  "executivos",
@@ -269,7 +282,7 @@
         "description":  "Moqueca de camarões com banana da terra, lascas de coco, cubos de peixe empanado, arroz branco e pirão",
         "price":  "R$ 43,00",
         "image_url":  "fotos%20de%20pratos/Moqueca%20de%20Camar%C3%A3o.png",
-        "sort_order":  12,
+        "sort_order":  13,
         "is_active":  "TRUE"
     },
     {
@@ -282,7 +295,7 @@
         "description":  "Bobó de camarão, arroz de alho acompanhado de chips de batata e farofa",
         "price":  "R$ 43,00",
         "image_url":  "",
-        "sort_order":  13,
+        "sort_order":  14,
         "is_active":  "TRUE"
     },
     {
@@ -295,7 +308,7 @@
         "description":  "Nhoque de batata doce com creme de queijo e ervas e frango crocante com parmesão e maionese kewpie",
         "price":  "R$ 36,00",
         "image_url":  "fotos%20de%20pratos/Nhoque%20de%20Batata%20Doce.jpg",
-        "sort_order":  14,
+        "sort_order":  15,
         "is_active":  "TRUE"
     },
     {
@@ -308,7 +321,7 @@
         "description":  "Contra filé ao molho, arroz de couve e cenoura, feijão carioca, farofa panko e ovo frito",
         "price":  "R$ 36,00",
         "image_url":  "fotos%20de%20pratos/Picadinho%20carioca.png",
-        "sort_order":  15,
+        "sort_order":  16,
         "is_active":  "TRUE"
     },
     {
@@ -321,7 +334,7 @@
         "description":  "Arroz arbóreo cozido no caldo do camarão, camarões selados e mix de folhas frescas",
         "price":  "R$ 50,00",
         "image_url":  "fotos%20de%20pratos/Risoto%20de%20camar%C3%A3o.png",
-        "sort_order":  16,
+        "sort_order":  17,
         "is_active":  "TRUE"
     },
     {
@@ -334,7 +347,7 @@
         "description":  "Tilápia grelhada em crosta de panko com ervas, purê de jerimum e arroz de camarão",
         "price":  "R$ 44,00",
         "image_url":  "fotos%20de%20pratos/Til%C3%A1pia%20Marco%20Zero.jpg",
-        "sort_order":  17,
+        "sort_order":  18,
         "is_active":  "TRUE"
     },
     {
@@ -347,7 +360,7 @@
         "description":  "Tilápia empanada na farinha panko e tapioca acompanhada de arroz de moqueca",
         "price":  "R$ 42,00",
         "image_url":  "fotos%20de%20pratos/Til%C3%A1pia%20Crocante.jpg",
-        "sort_order":  18,
+        "sort_order":  19,
         "is_active":  "TRUE"
     },
     {
