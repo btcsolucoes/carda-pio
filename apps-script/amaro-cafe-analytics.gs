@@ -595,7 +595,9 @@ function parsePayload(e) {
 
 function parsePrice(value) {
   if (typeof value === 'number') return value;
-  const text = String(value || '').replace(/[^\d,.-]/g, '').replace(/\./g, '').replace(',', '.');
+  const raw = String(value || '').trim();
+  if (!raw) return '';
+  const text = raw.replace(/[^\d,.-]/g, '').replace(/\./g, '').replace(',', '.');
   const number = Number(text);
   return Number.isFinite(number) ? number : '';
 }
