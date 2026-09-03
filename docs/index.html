@@ -953,6 +953,8 @@ const QRSTACK_PAGEVIEW_KEY=`qrstack:pageview:${QRSTACK_ANALYTICS_CLIENT}:${locat
 const QRSTACK_PENDING_PAGEVIEWS_KEY=`qrstack:pending-pageviews:${QRSTACK_ANALYTICS_CLIENT}`;
 const QRSTACK_LOAD_SESSION_ID=`${Date.now()}-${Math.random().toString(36).slice(2)}`;
 const QRSTACK_WEBVIEW_INTENT_KEY=`qrstack:instagram-intent:${location.href}`;
+const QRSTACK_ATTRIBUTION_PARAM='_qsa';
+const QRSTACK_WEBVIEW_DISMISSED_EVENT='qrstack:webview-dismissed';
 const normalizarOrigemAcesso=valor=>String(valor||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
 const origemPorTexto=valor=>{
   const v=normalizarOrigemAcesso(valor);
@@ -972,6 +974,7 @@ const identificarOrigemAcesso=()=>{
   const paramOrigem=params.get('src')||params.get('source')||params.get('origem')||params.get('utm_source')||params.get('utm_medium')||params.get('ref');
   const origemParam=origemPorTexto(paramOrigem);
   if(origemParam)return {source:origemParam,detail:paramOrigem||origemParam};
+  if(params.has('fbclid'))return {source:'instagram',detail:'fbclid'};
   if(params.has('gclid')||params.has('gbraid')||params.has('wbraid'))return {source:'google',detail:'google_ads'};
   const ref=document.referrer;
   if(!ref)return {source:'direct',detail:'sem_referrer'};
@@ -995,6 +998,21 @@ const plataformaWebviewQrStack=()=>{
   if(/iPhone|iPad|iPod/i.test(ua))return 'ios';
   return 'other';
 };
+const criarIdAtribuicaoQrStack=()=>(crypto.randomUUID&&crypto.randomUUID())||`ig-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+const garantirPonteAtribuicaoQrStack=()=>{
+  const url=new URL(location.href);
+  let attributionId=String(url.searchParams.get(QRSTACK_ATTRIBUTION_PARAM)||'').trim();
+  if(!/^[a-z0-9-]{16,120}$/i.test(attributionId))attributionId=criarIdAtribuicaoQrStack();
+  url.searchParams.set(QRSTACK_ATTRIBUTION_PARAM,attributionId);
+  history.replaceState(history.state,'',url.toString());
+  return attributionId;
+};
+const limparPonteAtribuicaoQrStack=()=>{
+  const url=new URL(location.href);
+  if(!url.searchParams.has(QRSTACK_ATTRIBUTION_PARAM))return;
+  url.searchParams.delete(QRSTACK_ATTRIBUTION_PARAM);
+  history.replaceState(history.state,'',url.toString());
+};
 const mostrarBannerWebviewQrStack=(platform,message)=>{
   if(document.querySelector('.qrstack-webview-banner'))return;
   const banner=document.createElement('div');
@@ -1005,6 +1023,7 @@ const mostrarBannerWebviewQrStack=(platform,message)=>{
     banner.dataset.dismissed='true';
     banner.classList.remove('is-visible');
     setTimeout(()=>banner.remove(),240);
+    document.dispatchEvent(new CustomEvent(QRSTACK_WEBVIEW_DISMISSED_EVENT));
   });
   const inserir=()=>{
     document.body.prepend(banner);
@@ -1015,9 +1034,11 @@ const mostrarBannerWebviewQrStack=(platform,message)=>{
   return banner;
 };
 const prepararInstagramWebviewQrStack=()=>{
-  const state={banner_shown:false,banner_platform:null,in_app_browser:estaEmWebviewSocialQrStack(),instagram_click:veioDoInstagramRealQrStack()};
+  const state={banner_shown:false,banner_platform:null,in_app_browser:estaEmWebviewSocialQrStack(),instagram_click:veioDoInstagramRealQrStack(),attribution_bridge_id:null,defer_tracking:false};
   if(estaEmPwaQrStack()||!state.in_app_browser||!state.instagram_click)return state;
   const platform=plataformaWebviewQrStack();
+  state.attribution_bridge_id=garantirPonteAtribuicaoQrStack();
+  state.defer_tracking=true;
   state.banner_shown=true;
   state.banner_platform=platform;
   if(platform==='android'){
@@ -1035,11 +1056,14 @@ const prepararInstagramWebviewQrStack=()=>{
 const qrstackWebviewState=prepararInstagramWebviewQrStack();
 const obterSessaoQrStack=()=>QRSTACK_LOAD_SESSION_ID;
 const obterVisitanteQrStack=()=>{
+  const attributionId=String(new URLSearchParams(location.search).get(QRSTACK_ATTRIBUTION_PARAM)||'').trim();
   let visitorId=localStorage.getItem(QRSTACK_VISITOR_KEY);
+  if(qrstackWebviewState.in_app_browser&&attributionId)visitorId=attributionId;
   if(!visitorId){
-    visitorId=(crypto.randomUUID&&crypto.randomUUID())||`${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    visitorId=attributionId||(crypto.randomUUID&&crypto.randomUUID())||`${Date.now()}-${Math.random().toString(36).slice(2)}`;
     localStorage.setItem(QRSTACK_VISITOR_KEY,visitorId);
   }
+  if(!qrstackWebviewState.in_app_browser&&attributionId)limparPonteAtribuicaoQrStack();
   return visitorId;
 };
 const detectarDispositivo=()=>{
@@ -1134,6 +1158,7 @@ const montarPayloadQrStack=(eventType,extra={})=>{
   };
 };
 const registrarAcessoQrStack=()=>{
+  if(qrstackWebviewState.defer_tracking)return;
   const origem=identificarOrigemAcesso();
   const device=detectarDispositivo();
   const hoje=new Date().toISOString().slice(0,10);
@@ -1221,6 +1246,7 @@ const finalizarTempoPratoQrStack=card=>{
 };
 const finalizarTodosTemposPratoQrStack=()=>{pratoTempoVisivelQrStack.forEach((_,card)=>finalizarTempoPratoQrStack(card));};
 const prepararTrackingPratosQrStack=()=>{
+  if(qrstackWebviewState.defer_tracking)return;
   if(!('IntersectionObserver'in window))return;
   if(!pratoObserverQrStack){
     pratoObserverQrStack=new IntersectionObserver(entries=>{
@@ -1242,8 +1268,21 @@ const prepararTrackingPratosQrStack=()=>{
 };
 window.addEventListener('pagehide',finalizarTodosTemposPratoQrStack);
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')finalizarTodosTemposPratoQrStack();});
-registrarAcessoQrStack();
-prepararTrackingPratosQrStack();
+const registrarPromptWebviewQrStack=()=>{
+  if(!qrstackWebviewState.banner_shown)return;
+  enviarPayloadQrStack({id:criarIdEventoQrStack(),...montarPayloadQrStack('instagram_webview_prompt')});
+};
+if(qrstackWebviewState.defer_tracking){
+  registrarPromptWebviewQrStack();
+  document.addEventListener(QRSTACK_WEBVIEW_DISMISSED_EVENT,()=>{
+    qrstackWebviewState.defer_tracking=false;
+    registrarAcessoQrStack();
+    prepararTrackingPratosQrStack();
+  },{once:true});
+}else{
+  registrarAcessoQrStack();
+  prepararTrackingPratosQrStack();
+}
 </script>
 </body>
 </html>
