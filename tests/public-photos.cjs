@@ -15,6 +15,18 @@ test('retired catalog images cannot reappear',()=>{
 test('approved restaurant photo survives',()=>{
   const url='fotos%20de%20pratos/Arroz%20de%20Polvo.jpg';assert.equal(allow(url),url);
 });
+test('every explicitly identified AI photo is blocked',()=>{
+  const names=['Picadinho carioca','Pastéis de charque com queijo','Stick de pastel de camarão',
+    'Lasanha de cupim','Moqueca de Camarão','Risoto de camarão','Amaro','Camarão Croc',
+    'Zé Mariano','Pudim','Tortas','Recife Antigo','Veneza Brasileira','Cais','Arretada',
+    'Marquês de Olinda','Nordestão','Quarentinha','Abacaxi Refresh','Iced Latte',
+    'Tea Coffee','Hibisco com limão','Folhas de Amora com Morangos'];
+  for(const name of names){
+    const url='fotos%20de%20pratos/'+encodeURIComponent(name)+'.png';
+    assert.equal(allow(url),'',name);
+    assert.ok(!images.some(img=>decodeURIComponent(img.getAttribute()).endsWith('/'+name+'.png')),name+' in initial HTML');
+  }
+});
 test('new restaurant uploads survive without changing static HTML',()=>{
   const url='https://qrstack-api.qrstack.workers.dev/?action=getCatalogImage&key=catalog%2Famaro%2Fnew-upload.webp';assert.equal(allow(url),url);
 });

@@ -344,8 +344,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
       </div>
     </div>
 
-    <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Moqueca%20de%20Camar%C3%A3o.png" alt="Moqueca de Camar&#227;o" loading="lazy"><div class="badge">Executivo</div></div>
+    <div class="card no-photo fi">
       <div class="cbody">
         <div class="cname">Moqueca de Camar&#227;o</div>
         <div class="cdesc">Moqueca de camar&#245;es com banana da terra, lascas de coco, cubos de peixe empanado, arroz branco e pir&#227;o</div>
@@ -923,6 +922,15 @@ const chaveImagemPublica=valor=>{
   try{const url=new URL(valor,location.href);return decodeURIComponent(url.pathname).normalize('NFC');}
   catch{return '';}
 };
+const fotosLegadasIA=new Set([
+  'Picadinho carioca.png','Pastéis de charque com queijo.png','Stick de pastel de camarão.png',
+  'Lasanha de cupim.png','Moqueca de Camarão.png','Risoto de camarão.png',
+  'Amaro.png','Camarão Croc.png','Zé Mariano.png','Pudim.png','Tortas.png',
+  'Recife Antigo.png','Veneza Brasileira.png','Cais.png','Arretada.png',
+  'Marquês de Olinda.png','Nordestão.png','Quarentinha.png','Abacaxi Refresh.png',
+  'Iced Latte.png','Tea Coffee.png','Hibisco com limão.png','Folhas de Amora com Morangos.png'
+].map(nome=>nome.normalize('NFC').toLowerCase()));
+const fotoLegadaIA=valor=>fotosLegadasIA.has(chaveImagemPublica(valor).split('/').pop().toLowerCase());
 const fotosEstaticasAprovadas=new Set(
   [...document.querySelectorAll('.card .cib img')]
     .map(img=>chaveImagemPublica(img.getAttribute('src')))
@@ -935,7 +943,7 @@ const imagemPublicaPermitida=valor=>{
     const upload=url.origin===new URL(qrstackPlatformEndpoint).origin
       &&url.searchParams.get('action')==='getCatalogImage'
       &&(url.searchParams.get('key')||'').startsWith('catalog/amaro/');
-    const estatica=url.origin===location.origin&&fotosEstaticasAprovadas.has(chaveImagemPublica(valor));
+    const estatica=url.origin===location.origin&&!fotoLegadaIA(valor)&&fotosEstaticasAprovadas.has(chaveImagemPublica(valor));
     return upload||estatica?String(valor).trim():'';
   }catch{return '';}
 };
