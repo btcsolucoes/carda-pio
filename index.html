@@ -5,6 +5,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Amaro Caf&eacute; &mdash; Card&aacute;pio</title>
+<link rel="preconnect" href="https://qrstack-api.qrstack.workers.dev" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script>
+// Start today's public data before font loading and HTML parsing finish.
+window.qrstackMenuDate=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Sao_Paulo'}).format(new Date());
+window.qrstackMenuLoad=fetch('https://qrstack-api.qrstack.workers.dev/?action=getMenu&slug=amaro&date='+window.qrstackMenuDate,{signal:AbortSignal.timeout(8000)})
+  .then(response=>response.ok?response.json():null).catch(()=>null);
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--gold:#B8973A;--gold2:#D4AF5A;--gd:#1A2118;--gd2:#2C3B2A;--cream:#F5F0E6;--cream2:#EDE4D0;--white:#fff;--txt:#1a1a1a;--txt2:#777;}
@@ -103,6 +112,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
 
 .fi{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease;}
 .fi.in{opacity:1;transform:translateY(0);}
+.hero .fi{opacity:1;transform:none;transition:none;}
 @media(max-width:600px){.grid,.grid2,.media-grid{grid-template-columns:1fr;}.nl{padding:14px 11px;font-size:8px;letter-spacing:2px;}.dcard{padding:16px;}.dcard-media{width:72px;height:72px;}.footer{grid-template-columns:132px minmax(0,1fr);}.faddr{grid-column:2;}.product-badge{max-width:80px;}.qrstack-lockup{width:66px;padding-top:10px;}.product-copy{font-size:.34rem;}.qrstack-mark{width:66px;height:68px;}.qrstack-wordmark{width:102px;height:24px;}}
 </style>
 </head>
@@ -158,7 +168,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
   <div class="sh fi"><div><span class="stag">Para Compartilhar</span><h2 class="stitle">Entradinhas</h2></div></div>
   <div class="grid">
     <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Panelinha%20de%20Camar%C3%A3o.jpeg" alt="Panelinha de Camar&#245;es" loading="lazy"><div class="badge">Comidinha</div></div>
+      <div class="cib"><img src="fotos%20de%20pratos/Panelinha%20de%20Camar%C3%A3o.jpeg" alt="Panelinha de Camar&#245;es" loading="lazy" srcset="assets/menu-images/73b8ebc6f26d6384-400.webp 400w, assets/menu-images/73b8ebc6f26d6384-800.webp 800w, assets/menu-images/73b8ebc6f26d6384-1200.webp 1200w" sizes="(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px" decoding="async" width="1206" height="1194"><div class="badge">Comidinha</div></div>
       <div class="cbody">
         <div class="cname">Panelinha de Camar&#245;es</div>
         <div class="cdesc">Camar&#245;es temperados com lim&#227;o, shoyu, gengibre, lim&#227;o e azeite temperado. Acompanha torradas da casa</div>
@@ -167,7 +177,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Trio%20Ternurinha.jpg" alt="Trio Ternurinha" loading="lazy"><div class="badge">Comidinha</div></div>
+      <div class="cib"><img src="fotos%20de%20pratos/Trio%20Ternurinha.jpg" alt="Trio Ternurinha" loading="lazy" srcset="assets/menu-images/39239a04dfde5bb7-400.webp 400w, assets/menu-images/39239a04dfde5bb7-800.webp 800w, assets/menu-images/39239a04dfde5bb7-1073.webp 1073w" sizes="(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px" decoding="async" width="1073" height="701"><div class="badge">Comidinha</div></div>
       <div class="cbody">
         <div class="cname">Trio Ternurinha</div>
         <div class="cdesc">Charque desfiada crocante, cebolas crocantes, bast&#245;es de macaxeira e creme de queijo</div>
@@ -192,7 +202,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Croqueta%20de%20Cupim.jpg" alt="Croqueta de Cupim" loading="lazy"><div class="badge">Comidinha</div></div>
+      <div class="cib"><img src="fotos%20de%20pratos/Croqueta%20de%20Cupim.jpg" alt="Croqueta de Cupim" loading="lazy" srcset="assets/menu-images/c2034232089d48df-400.webp 400w, assets/menu-images/c2034232089d48df-800.webp 800w, assets/menu-images/c2034232089d48df-1078.webp 1078w" sizes="(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px" decoding="async" width="1078" height="1599"><div class="badge">Comidinha</div></div>
       <div class="cbody">
         <div class="cname">Croqueta de Cupim</div>
         <div class="cdesc">Por&#231;&#227;o com 5 croquetas de cupim</div>
@@ -201,7 +211,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Dadinhos%20de%20Tapioca.jpeg" alt="Dadinhos de Tapioca com Gel&#233;ia de Pimenta" loading="lazy"><div class="badge">Comidinha</div></div>
+      <div class="cib"><img src="fotos%20de%20pratos/Dadinhos%20de%20Tapioca.jpeg" alt="Dadinhos de Tapioca com Gel&#233;ia de Pimenta" loading="lazy" srcset="assets/menu-images/b6c48943abab1cb1-400.webp 400w, assets/menu-images/b6c48943abab1cb1-800.webp 800w, assets/menu-images/b6c48943abab1cb1-1200.webp 1200w" sizes="(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px" decoding="async" width="1206" height="1574"><div class="badge">Comidinha</div></div>
       <div class="cbody">
         <div class="cname">Dadinhos de Tapioca com Gel&#233;ia de Pimenta</div>
         <div class="cdesc">10 Dadinhos de Tapioca acompanhados com Gel&#233;ia de Pimenta</div>
@@ -210,7 +220,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Mini%20Coxinhas.jpeg" alt="Mini Coxinhas de Frango" loading="lazy"><div class="badge">Comidinha</div></div>
+      <div class="cib"><img src="fotos%20de%20pratos/Mini%20Coxinhas.jpeg" alt="Mini Coxinhas de Frango" loading="lazy" srcset="assets/menu-images/e5262773c1a9382c-400.webp 400w, assets/menu-images/e5262773c1a9382c-800.webp 800w, assets/menu-images/e5262773c1a9382c-1200.webp 1200w" sizes="(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px" decoding="async" width="1206" height="1142"><div class="badge">Comidinha</div></div>
       <div class="cbody">
         <div class="cname">Mini Coxinhas de Frango</div>
         <div class="cdesc">10 mini coxinhas acompanhadas de maionese bacon</div>
@@ -219,7 +229,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/t%C3%A1bua%20do%20porto.png" alt="T&#225;bua do Porto" loading="lazy"><div class="badge">Comidinha</div></div>
+      <div class="cib"><img src="fotos%20de%20pratos/t%C3%A1bua%20do%20porto.png" alt="T&#225;bua do Porto" loading="lazy" srcset="assets/menu-images/a5840cc4f896b6a5-400.webp 400w, assets/menu-images/a5840cc4f896b6a5-800.webp 800w, assets/menu-images/a5840cc4f896b6a5-1200.webp 1200w" sizes="(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px" decoding="async" width="1206" height="1428"><div class="badge">Comidinha</div></div>
       <div class="cbody">
         <div class="cname">T&#225;bua do Porto</div>
         <div class="cdesc">2 Mini croissants, 4 dadinhos de tapioca, 4 mini coxinhas, 3  mini folhados, 2 quiches de queijo do reino, 2 past&#233;is de charque com queijo, 4 mini churros de doce de leite, 2 pasteis de leite condensado, 2 biscoitos artesanais, 2 croquetas de cupim</div>
@@ -228,7 +238,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/t%C3%A1bua%20sertaneja.png" alt="T&#225;bua Sertaneja" loading="lazy"><div class="badge">Comidinha</div></div>
+      <div class="cib"><img src="fotos%20de%20pratos/t%C3%A1bua%20sertaneja.png" alt="T&#225;bua Sertaneja" loading="lazy" srcset="assets/menu-images/69c658d6f3acae91-400.webp 400w, assets/menu-images/69c658d6f3acae91-800.webp 800w, assets/menu-images/69c658d6f3acae91-1200.webp 1200w" sizes="(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px" decoding="async" width="1206" height="1522"><div class="badge">Comidinha</div></div>
       <div class="cbody">
         <div class="cname">T&#225;bua Sertaneja</div>
         <div class="cdesc">1 bolo de rolo com queijo do reino, 1 bolo de noiva, 1 cartola, 2 queijadinhas, 2 quiches de carne de Sol, 5 bolinhos de macaxeira com charque, 2 croquetas de cupim</div>
@@ -242,7 +252,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
   <div class="sh fi"><div><span class="stag">Pratos Principais</span><h2 class="stitle">Executivos</h2></div></div>
   <div class="grid">
     <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Arroz%20de%20Polvo.jpg" alt="Arroz de Polvo" loading="lazy"><div class="badge">Executivo</div></div>
+      <div class="cib"><img src="fotos%20de%20pratos/Arroz%20de%20Polvo.jpg" alt="Arroz de Polvo" loading="lazy" srcset="assets/menu-images/c2439b98c441e7f5-400.webp 400w, assets/menu-images/c2439b98c441e7f5-800.webp 800w, assets/menu-images/c2439b98c441e7f5-1200.webp 1200w" sizes="(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px" decoding="async" width="1206" height="1179"><div class="badge">Executivo</div></div>
       <div class="cbody">
         <div class="cname">Arroz de Polvo</div>
         <div class="cdesc">Arroz com polvo e camar&#245;es frescos, cozido em seus caldos e temperados com vinagrete</div>
@@ -251,7 +261,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Carne%20de%20Sol%20Desarrumada.jpg" alt="Carne de Sol Desarrumada" loading="lazy"><div class="badge">Executivo</div></div>
+      <div class="cib"><img src="fotos%20de%20pratos/Carne%20de%20Sol%20Desarrumada.jpg" alt="Carne de Sol Desarrumada" loading="lazy" srcset="assets/menu-images/64c06e22dd3f012f-400.webp 400w, assets/menu-images/64c06e22dd3f012f-800.webp 800w, assets/menu-images/64c06e22dd3f012f-1132.webp 1132w" sizes="(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px" decoding="async" width="1132" height="1600"><div class="badge">Executivo</div></div>
       <div class="cbody">
         <div class="cname">Carne de Sol Desarrumada</div>
         <div class="cdesc">Carne de sol em cubos montada sobre feij&#227;o verde com molho de queijos, farofa crocante, cebola crocante e pipoca de queijo coalho</div>
@@ -260,7 +270,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Camar%C3%A3o%20Imperador.jpg" alt="Camar&#227;o Imperador" loading="lazy"><div class="badge">Executivo</div></div>
+      <div class="cib"><img src="fotos%20de%20pratos/Camar%C3%A3o%20Imperador.jpg" alt="Camar&#227;o Imperador" loading="lazy" srcset="assets/menu-images/f193f0035292edc8-400.webp 400w, assets/menu-images/f193f0035292edc8-800.webp 800w, assets/menu-images/f193f0035292edc8-1101.webp 1101w" sizes="(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px" decoding="async" width="1101" height="703"><div class="badge">Executivo</div></div>
       <div class="cbody">
         <div class="cname">Camar&#227;o Imperador</div>
         <div class="cdesc">Camar&#245;es empanados e gratinados, com molho pomodoro, sobre pur&#234; de batatas e arroz de br&#243;colis</div>
@@ -269,7 +279,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Charque%20Brejeira.jpg" alt="Charque Brejeira" loading="lazy"><div class="badge">Executivo</div></div>
+      <div class="cib"><img src="fotos%20de%20pratos/Charque%20Brejeira.jpg" alt="Charque Brejeira" loading="lazy" srcset="assets/menu-images/56dc817b9127a7ae-400.webp 400w, assets/menu-images/56dc817b9127a7ae-800.webp 800w, assets/menu-images/56dc817b9127a7ae-1084.webp 1084w" sizes="(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px" decoding="async" width="1084" height="738"><div class="badge">Executivo</div></div>
       <div class="cbody">
         <div class="cname">Charque Brejeira</div>
         <div class="cdesc">Charque desfiada e crocante, arroz cremoso de queijo coalho, farofa tropeira com cuscuz e feij&#227;o verde</div>
@@ -294,7 +304,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Parmegiana%20de%20Frango.jpg" alt="Frango &#224; Parmegiana" loading="lazy"><div class="badge">Executivo</div></div>
+      <div class="cib"><img src="fotos%20de%20pratos/Parmegiana%20de%20Frango.jpg" alt="Frango &#224; Parmegiana" loading="lazy" srcset="assets/menu-images/3d9311def72fc3f4-400.webp 400w, assets/menu-images/3d9311def72fc3f4-800.webp 800w, assets/menu-images/3d9311def72fc3f4-1075.webp 1075w" sizes="(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px" decoding="async" width="1075" height="741"><div class="badge">Executivo</div></div>
       <div class="cbody">
         <div class="cname">Frango &#224; Parmegiana</div>
         <div class="cdesc">Frango empanado e gratinado, linguine ao tomate, fritas ou pur&#234; de batatas</div>
@@ -303,7 +313,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Franguinho%20da%20Moeda.jpg" alt="Franguinho da Moeda" loading="lazy"><div class="badge">Executivo</div></div>
+      <div class="cib"><img src="fotos%20de%20pratos/Franguinho%20da%20Moeda.jpg" alt="Franguinho da Moeda" loading="lazy" srcset="assets/menu-images/ecdfabc92d9b2152-400.webp 400w, assets/menu-images/ecdfabc92d9b2152-800.webp 800w, assets/menu-images/ecdfabc92d9b2152-1098.webp 1098w" sizes="(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px" decoding="async" width="1098" height="718"><div class="badge">Executivo</div></div>
       <div class="cbody">
         <div class="cname">Franguinho da Moeda</div>
         <div class="cdesc">Coxa de Frango temperada com Chimichurri servida com Arroz Biro-Biro e Feij&#227;o Carioca</div>
@@ -328,7 +338,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Maminha%20do%20Apolo.jpg" alt="Maminha do Apolo" loading="lazy"><div class="badge">Executivo</div></div>
+      <div class="cib"><img src="fotos%20de%20pratos/Maminha%20do%20Apolo.jpg" alt="Maminha do Apolo" loading="lazy" srcset="assets/menu-images/ef02918208cc1f99-400.webp 400w, assets/menu-images/ef02918208cc1f99-800.webp 800w, assets/menu-images/ef02918208cc1f99-1109.webp 1109w" sizes="(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px" decoding="async" width="1109" height="724"><div class="badge">Executivo</div></div>
       <div class="cbody">
         <div class="cname">Maminha do Apolo</div>
         <div class="cdesc">Maminha grelhada ao chimichurri, pur&#234; de batata, arroz de alho, picles de maxixe e crispy de cebola</div>
@@ -361,7 +371,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Nhoque%20de%20Batata%20Doce.jpg" alt="Nhoque de Batata Doce" loading="lazy"><div class="badge">Executivo</div></div>
+      <div class="cib"><img src="fotos%20de%20pratos/Nhoque%20de%20Batata%20Doce.jpg" alt="Nhoque de Batata Doce" loading="lazy" srcset="assets/menu-images/849c8d9e211cfa47-400.webp 400w, assets/menu-images/849c8d9e211cfa47-800.webp 800w, assets/menu-images/849c8d9e211cfa47-1200.webp 1200w" sizes="(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px" decoding="async" width="1206" height="779"><div class="badge">Executivo</div></div>
       <div class="cbody">
         <div class="cname">Nhoque de Batata Doce</div>
         <div class="cdesc">Nhoque de batata doce com creme de queijo e ervas e frango crocante com parmes&#227;o e maionese kewpie</div>
@@ -386,7 +396,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Til%C3%A1pia%20Marco%20Zero.jpg" alt="Til&#225;pia Marco Zero" loading="lazy"><div class="badge">Executivo</div></div>
+      <div class="cib"><img src="fotos%20de%20pratos/Til%C3%A1pia%20Marco%20Zero.jpg" alt="Til&#225;pia Marco Zero" loading="lazy" srcset="assets/menu-images/eb141dbb86b571da-400.webp 400w, assets/menu-images/eb141dbb86b571da-800.webp 800w, assets/menu-images/eb141dbb86b571da-1081.webp 1081w" sizes="(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px" decoding="async" width="1081" height="676"><div class="badge">Executivo</div></div>
       <div class="cbody">
         <div class="cname">Til&#225;pia Marco Zero</div>
         <div class="cdesc">Til&#225;pia grelhada em crosta de panko com ervas, pur&#234; de jerimum e arroz de camar&#227;o</div>
@@ -395,7 +405,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Til%C3%A1pia%20Crocante.jpg" alt="Til&#225;pia Crocante" loading="lazy"><div class="badge">Executivo</div></div>
+      <div class="cib"><img src="fotos%20de%20pratos/Til%C3%A1pia%20Crocante.jpg" alt="Til&#225;pia Crocante" loading="lazy" srcset="assets/menu-images/5e363a13e1fcd056-400.webp 400w, assets/menu-images/5e363a13e1fcd056-800.webp 800w, assets/menu-images/5e363a13e1fcd056-1200.webp 1200w" sizes="(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px" decoding="async" width="1206" height="802"><div class="badge">Executivo</div></div>
       <div class="cbody">
         <div class="cname">Til&#225;pia Crocante</div>
         <div class="cdesc">Til&#225;pia empanada na farinha panko e tapioca acompanhada de arroz de moqueca</div>
@@ -438,7 +448,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
   <div class="sh fi"><div><span class="stag">Sobremesas</span><h2 class="stitle">Doces</h2></div></div>
   <div class="grid">
     <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Mini%20Churros%20com%20Doce%20de%20Leite.jpeg" alt="Mini Churros com Doce de Leite" loading="lazy"><div class="badge">Doce</div></div>
+      <div class="cib"><img src="fotos%20de%20pratos/Mini%20Churros%20com%20Doce%20de%20Leite.jpeg" alt="Mini Churros com Doce de Leite" loading="lazy" srcset="assets/menu-images/dc6d0b13db53c53c-400.webp 400w, assets/menu-images/dc6d0b13db53c53c-800.webp 800w, assets/menu-images/dc6d0b13db53c53c-1200.webp 1200w" sizes="(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px" decoding="async" width="1536" height="1024"><div class="badge">Doce</div></div>
       <div class="cbody">
         <div class="cname">Mini Churros com Doce de Leite</div>
         <div class="cdesc">Mini churros crocantes servidos com doce de leite cremoso</div>
@@ -447,7 +457,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Cheesecake%20no%20Palito.png" alt="Cheesecake no Palito" loading="lazy"><div class="badge">Doce</div></div>
+      <div class="cib"><img src="fotos%20de%20pratos/Cheesecake%20no%20Palito.png" alt="Cheesecake no Palito" loading="lazy" srcset="assets/menu-images/d6d3521ca086d791-400.webp 400w, assets/menu-images/d6d3521ca086d791-800.webp 800w, assets/menu-images/d6d3521ca086d791-1200.webp 1200w" sizes="(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px" decoding="async" width="1206" height="973"><div class="badge">Doce</div></div>
       <div class="cbody">
         <div class="cname">Cheesecake no Palito</div>
         <div class="cdesc">Picole de cheesecake com geleia de frutas vermelhas e crumble de castanha</div>
@@ -456,7 +466,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Canoli%20de%20Queijadinha.png" alt="Canoli de Queijadinha" loading="lazy"><div class="badge">Doce</div></div>
+      <div class="cib"><img src="fotos%20de%20pratos/Canoli%20de%20Queijadinha.png" alt="Canoli de Queijadinha" loading="lazy" srcset="assets/menu-images/b0f9af8c66eb3028-400.webp 400w, assets/menu-images/b0f9af8c66eb3028-800.webp 800w, assets/menu-images/b0f9af8c66eb3028-1200.webp 1200w" sizes="(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px" decoding="async" width="1206" height="1284"><div class="badge">Doce</div></div>
       <div class="cbody">
         <div class="cname">Canoli de Queijadinha</div>
         <div class="cdesc">Massa de harumaki recheada com queijadinha, sorvete de creme e crumble de castanha</div>
@@ -502,7 +512,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
   <div class="sh fi"><div><span class="stag">Na Chapa</span><h2 class="stitle">Toasts</h2></div></div>
   <div class="grid">
     <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Toast%20Ro%C3%A7ado.jpeg" alt="Ro&#231;ado" loading="lazy"><div class="badge">Toast</div></div>
+      <div class="cib"><img src="fotos%20de%20pratos/Toast%20Ro%C3%A7ado.jpeg" alt="Ro&#231;ado" loading="lazy" srcset="assets/menu-images/e176239302b86b4a-400.webp 400w, assets/menu-images/e176239302b86b4a-800.webp 800w, assets/menu-images/e176239302b86b4a-1087.webp 1087w" sizes="(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px" decoding="async" width="1087" height="1569"><div class="badge">Toast</div></div>
       <div class="cbody">
         <div class="cname">Ro&#231;ado</div>
         <div class="cdesc">Toast de p&#227;o brioche com queijo coalho chapeado, tomate cereja, picles de cebola roxa, azeite trufado</div>
@@ -511,7 +521,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Toast%20Princesa%20do%20Agreste.jpeg" alt="Princesa do Agreste" loading="lazy"><div class="badge">Toast</div></div>
+      <div class="cib"><img src="fotos%20de%20pratos/Toast%20Princesa%20do%20Agreste.jpeg" alt="Princesa do Agreste" loading="lazy" srcset="assets/menu-images/7573740738ecc21c-400.webp 400w, assets/menu-images/7573740738ecc21c-800.webp 800w, assets/menu-images/7573740738ecc21c-1054.webp 1054w" sizes="(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px" decoding="async" width="1054" height="704"><div class="badge">Toast</div></div>
       <div class="cbody">
         <div class="cname">Princesa do Agreste</div>
         <div class="cdesc">Toast de p&#227;o brioche com queijo manteiga derretido, r&#250;cula, mel de engenho,</div>
@@ -541,7 +551,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Sandu%C3%ADche%20Torre.jpg" alt="Torre Malakoff" loading="lazy"><div class="badge">Sandu&#237;che</div></div>
+      <div class="cib"><img src="fotos%20de%20pratos/Sandu%C3%ADche%20Torre.jpg" alt="Torre Malakoff" loading="lazy" srcset="assets/menu-images/c47129fc8fa55438-400.webp 400w, assets/menu-images/c47129fc8fa55438-800.webp 800w, assets/menu-images/c47129fc8fa55438-1200.webp 1200w" sizes="(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px" decoding="async" width="2774" height="4160"><div class="badge">Sandu&#237;che</div></div>
       <div class="cbody">
         <div class="cname">Torre Malakoff</div>
         <div class="cdesc">P&#227;o brioche longo, carne de sol, queijo coalho, mix de folhas, maionese de bacon</div>
@@ -550,7 +560,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Capibaribe.png?v=fff7559" alt="Capibaribe" loading="lazy"><div class="badge">Sandu&#237;che</div></div>
+      <div class="cib"><img src="fotos%20de%20pratos/Capibaribe.png?v=fff7559" alt="Capibaribe" loading="lazy" srcset="assets/menu-images/4b11248fc3dd9b89-400.webp 400w, assets/menu-images/4b11248fc3dd9b89-800.webp 800w, assets/menu-images/4b11248fc3dd9b89-1200.webp 1200w" sizes="(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px" decoding="async" width="1600" height="1066"><div class="badge">Sandu&#237;che</div></div>
       <div class="cbody">
         <div class="cname">Capibaribe</div>
         <div class="cdesc">Sanduiche estilo oriental no p&#227;o de forma brioche, recheado com camar&#245;es empanados, vinagrete e maionese ervas</div>
@@ -559,7 +569,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Recifense.png?v=fff7559" alt="Recifense" loading="lazy"><div class="badge">Sandu&#237;che</div></div>
+      <div class="cib"><img src="fotos%20de%20pratos/Recifense.png?v=fff7559" alt="Recifense" loading="lazy" srcset="assets/menu-images/cd2f3d6ec88e846f-400.webp 400w, assets/menu-images/cd2f3d6ec88e846f-800.webp 800w, assets/menu-images/cd2f3d6ec88e846f-1200.webp 1200w" sizes="(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px" decoding="async" width="1600" height="1066"><div class="badge">Sandu&#237;che</div></div>
       <div class="cbody">
         <div class="cname">Recifense</div>
         <div class="cdesc">Sanduiche estilo oriental no p&#227;o de forma brioche, recheado com coxa com sobrecoxa desossada empanada, vinagrete e maionese ervas</div>
@@ -581,7 +591,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Tapioca%20Le%C3%A3o%20do%20Norte.jpeg" alt="Le&#227;o do Norte" loading="lazy"><div class="badge">Tapioca</div></div>
+      <div class="cib"><img src="fotos%20de%20pratos/Tapioca%20Le%C3%A3o%20do%20Norte.jpeg" alt="Le&#227;o do Norte" loading="lazy" srcset="assets/menu-images/2c6fefdf22adb424-400.webp 400w, assets/menu-images/2c6fefdf22adb424-800.webp 800w, assets/menu-images/2c6fefdf22adb424-1200.webp 1200w" sizes="(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px" decoding="async" width="1206" height="1110"><div class="badge">Tapioca</div></div>
       <div class="cbody">
         <div class="cname">Le&#227;o do Norte</div>
         <div class="cdesc">Tapioca recheada com carne de sol, queijo coalho e pur&#234; de jerimum</div>
@@ -590,7 +600,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Aurora.png" alt="Aurora" loading="lazy"><div class="badge">Tapioca</div></div>
+      <div class="cib"><img src="fotos%20de%20pratos/Aurora.png" alt="Aurora" loading="lazy" srcset="assets/menu-images/1e598cf6b5e0ef6b-400.webp 400w, assets/menu-images/1e598cf6b5e0ef6b-800.webp 800w, assets/menu-images/1e598cf6b5e0ef6b-1200.webp 1200w" sizes="(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px" decoding="async" width="1206" height="1171"><div class="badge">Tapioca</div></div>
       <div class="cbody">
         <div class="cname">Aurora</div>
         <div class="cdesc">Tapioca recheada com charque e queijo coalho, rendada com queijo coalho</div>
@@ -607,7 +617,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Tapioca%20Doce%20Amaro.jpeg" alt="Doce Amaro" loading="lazy"><div class="badge">Tapioca</div></div>
+      <div class="cib"><img src="fotos%20de%20pratos/Tapioca%20Doce%20Amaro.jpeg" alt="Doce Amaro" loading="lazy" srcset="assets/menu-images/cdd5206f58485efe-400.webp 400w, assets/menu-images/cdd5206f58485efe-800.webp 800w, assets/menu-images/cdd5206f58485efe-1066.webp 1066w" sizes="(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px" decoding="async" width="1066" height="1600"><div class="badge">Tapioca</div></div>
       <div class="cbody">
         <div class="cname">Doce Amaro</div>
         <div class="cdesc">Tapioca recheada com queijo coalho, banana da terra frita e doce de leite</div>
@@ -719,7 +729,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="card beverage-card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Caf%C3%A9%20Filtrado.jpeg" alt="Caf&#233; Filtrado" loading="lazy"><div class="badge">Cafeteria</div></div>
+      <div class="cib"><img src="fotos%20de%20pratos/Caf%C3%A9%20Filtrado.jpeg" alt="Caf&#233; Filtrado" loading="lazy" srcset="assets/menu-images/ca7a07f441027965-400.webp 400w, assets/menu-images/ca7a07f441027965-800.webp 800w, assets/menu-images/ca7a07f441027965-1200.webp 1200w" sizes="(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px" decoding="async" width="1206" height="1406"><div class="badge">Cafeteria</div></div>
       <div class="cbody">
         <div class="cname">Caf&#233; Filtrado</div>
         <div class="cdesc">Caf&#233; filtrado preparado na hora, leve e arom&aacute;tico</div>
@@ -752,7 +762,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="card beverage-card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Vienense.jpeg" alt="Capuccino Vienense" loading="lazy"><div class="badge">Cafeteria</div></div>
+      <div class="cib"><img src="fotos%20de%20pratos/Vienense.jpeg" alt="Capuccino Vienense" loading="lazy" srcset="assets/menu-images/bbfcfef7f548c474-400.webp 400w, assets/menu-images/bbfcfef7f548c474-800.webp 800w, assets/menu-images/bbfcfef7f548c474-1200.webp 1200w" sizes="(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px" decoding="async" width="1206" height="1179"><div class="badge">Cafeteria</div></div>
       <div class="cbody">
         <div class="cname">Capuccino Vienense</div>
         <div class="cdesc">Nutella, caf&#233; expresso, leite vaporizado, finalizado com chantilly</div>
@@ -761,7 +771,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="card beverage-card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Mocha%20Doce%20de%20Leite.jpeg" alt="Mocha Doce de Leite" loading="lazy"><div class="badge">Cafeteria</div></div>
+      <div class="cib"><img src="fotos%20de%20pratos/Mocha%20Doce%20de%20Leite.jpeg" alt="Mocha Doce de Leite" loading="lazy" srcset="assets/menu-images/069454f852cfa7f3-400.webp 400w, assets/menu-images/069454f852cfa7f3-800.webp 800w, assets/menu-images/069454f852cfa7f3-1200.webp 1200w" sizes="(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px" decoding="async" width="1206" height="1223"><div class="badge">Cafeteria</div></div>
       <div class="cbody">
         <div class="cname">Mocha Doce de Leite</div>
         <div class="cdesc">Doce de leite, caf&#233; expresso e leite vaporizado</div>
@@ -783,7 +793,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="card beverage-card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Amarelo%20Picante.jpeg" alt="Amarelo Picante" loading="lazy"><div class="badge">Gelado</div></div>
+      <div class="cib"><img src="fotos%20de%20pratos/Amarelo%20Picante.jpeg" alt="Amarelo Picante" loading="lazy" srcset="assets/menu-images/7d0a00ed0cf5ac31-400.webp 400w, assets/menu-images/7d0a00ed0cf5ac31-800.webp 800w, assets/menu-images/7d0a00ed0cf5ac31-1193.webp 1193w" sizes="(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px" decoding="async" width="1193" height="931"><div class="badge">Gelado</div></div>
       <div class="cbody">
         <div class="cname">Amarelo Picante</div>
         <div class="cdesc">Xarope de maracuj&#225;, xarope de pimenta, caf&#233; gelado e espuma de lim&#227;o</div>
@@ -800,7 +810,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="card beverage-card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Laranja%20Toffee.jpeg" alt="Laranja Toffee" loading="lazy"><div class="badge">Gelado</div></div>
+      <div class="cib"><img src="fotos%20de%20pratos/Laranja%20Toffee.jpeg" alt="Laranja Toffee" loading="lazy" srcset="assets/menu-images/11db552bb40f651d-400.webp 400w, assets/menu-images/11db552bb40f651d-800.webp 800w, assets/menu-images/11db552bb40f651d-1200.webp 1200w" sizes="(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px" decoding="async" width="1206" height="1319"><div class="badge">Gelado</div></div>
       <div class="cbody">
         <div class="cname">Laranja Toffee</div>
         <div class="cdesc">Xarope de laranja, sumo de lim&#227;o, caf&#233; expresso e espuma de lim&#227;o</div>
@@ -809,7 +819,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="card beverage-card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Nutella%20Latte.jpeg" alt="Nutella Latte" loading="lazy"><div class="badge">Gelado</div></div>
+      <div class="cib"><img src="fotos%20de%20pratos/Nutella%20Latte.jpeg" alt="Nutella Latte" loading="lazy" srcset="assets/menu-images/78600bae83672166-400.webp 400w, assets/menu-images/78600bae83672166-800.webp 800w, assets/menu-images/78600bae83672166-1191.webp 1191w" sizes="(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px" decoding="async" width="1191" height="1333"><div class="badge">Gelado</div></div>
       <div class="cbody">
         <div class="cname">Nutella Latte</div>
         <div class="cdesc">Leite, Nutella, caf&#233; expresso e chantilly</div>
@@ -852,7 +862,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
   <div class="sh fi"><div><span class="stag">Gelados</span><h2 class="stitle">Coffee Shakes</h2></div></div>
   <div class="grid">
     <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Avexado.jpg" alt="Avexado" loading="lazy"><div class="badge">Coffee Shake</div></div>
+      <div class="cib"><img src="fotos%20de%20pratos/Avexado.jpg" alt="Avexado" loading="lazy" srcset="assets/menu-images/6dabd59bff08fae3-400.webp 400w, assets/menu-images/6dabd59bff08fae3-800.webp 800w, assets/menu-images/6dabd59bff08fae3-1068.webp 1068w" sizes="(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px" decoding="async" width="1068" height="1527"><div class="badge">Coffee Shake</div></div>
       <div class="cbody">
         <div class="cname">Avexado</div>
         <div class="cdesc">Sorvete de creme, sorvete de chocolate, leite, caf&#233;, chantilly</div>
@@ -861,7 +871,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Oxente.jpg" alt="Oxente" loading="lazy"><div class="badge">Coffee Shake</div></div>
+      <div class="cib"><img src="fotos%20de%20pratos/Oxente.jpg" alt="Oxente" loading="lazy" srcset="assets/menu-images/9b528536c98e365f-400.webp 400w, assets/menu-images/9b528536c98e365f-800.webp 800w, assets/menu-images/9b528536c98e365f-1004.webp 1004w" sizes="(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px" decoding="async" width="1004" height="1600"><div class="badge">Coffee Shake</div></div>
       <div class="cbody">
         <div class="cname">Oxente</div>
         <div class="cdesc">Sorvete de chocolate, leite, caf&#233;, chantilly</div>
@@ -870,7 +880,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--txt
     </div>
 
     <div class="card fi">
-      <div class="cib"><img src="fotos%20de%20pratos/Vixe%20Maria.jpg" alt="Vixe Maria" loading="lazy"><div class="badge">Coffee Shake</div></div>
+      <div class="cib"><img src="fotos%20de%20pratos/Vixe%20Maria.jpg" alt="Vixe Maria" loading="lazy" srcset="assets/menu-images/c18f54baf439c2e9-400.webp 400w, assets/menu-images/c18f54baf439c2e9-800.webp 800w, assets/menu-images/c18f54baf439c2e9-1042.webp 1042w" sizes="(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px" decoding="async" width="1042" height="1600"><div class="badge">Coffee Shake</div></div>
       <div class="cbody">
         <div class="cname">Vixe Maria</div>
         <div class="cdesc">Sorvete de creme, doce de leite, leite, chantilly</div>
@@ -910,7 +920,7 @@ const almocoHojeEndpoint=almocoHojeSec?.dataset.endpoint||'';
 const qrstackPlatformEndpoint=almocoHojeSec?.dataset.platformEndpoint||'';
 const brl=new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'});
 const escapeHtml=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const hojeIso=()=>{const d=new Date();const y=d.getFullYear();const m=String(d.getMonth()+1).padStart(2,'0');const day=String(d.getDate()).padStart(2,'0');return `${y}-${m}-${day}`;};
+const hojeIso=()=>new Intl.DateTimeFormat('en-CA',{timeZone:'America/Sao_Paulo'}).format(new Date());
 const normalizarData=v=>{if(!v)return '';if(typeof v==='string'){const m=v.match(/^(\d{4}-\d{2}-\d{2})/);if(m)return m[1];}const d=new Date(v);return Number.isNaN(d.getTime())?'':d.toISOString().slice(0,10);};
 const normalizarNome=v=>String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
 const normalizarChavePrato=v=>normalizarNome(v).split(' ').filter(parte=>parte!=='a').join(' ');
@@ -947,6 +957,10 @@ const imagemPublicaPermitida=valor=>{
     return upload||estatica?String(valor).trim():'';
   }catch{return '';}
 };
+const fotosResponsivas={"fotos de pratos/Amarelo Picante.jpeg":{"srcset":"assets/menu-images/7d0a00ed0cf5ac31-400.webp 400w, assets/menu-images/7d0a00ed0cf5ac31-800.webp 800w, assets/menu-images/7d0a00ed0cf5ac31-1193.webp 1193w","width":1193,"height":931},"fotos de pratos/Arroz de Polvo.jpg":{"srcset":"assets/menu-images/c2439b98c441e7f5-400.webp 400w, assets/menu-images/c2439b98c441e7f5-800.webp 800w, assets/menu-images/c2439b98c441e7f5-1200.webp 1200w","width":1206,"height":1179},"fotos de pratos/Aurora.png":{"srcset":"assets/menu-images/1e598cf6b5e0ef6b-400.webp 400w, assets/menu-images/1e598cf6b5e0ef6b-800.webp 800w, assets/menu-images/1e598cf6b5e0ef6b-1200.webp 1200w","width":1206,"height":1171},"fotos de pratos/Avexado.jpg":{"srcset":"assets/menu-images/6dabd59bff08fae3-400.webp 400w, assets/menu-images/6dabd59bff08fae3-800.webp 800w, assets/menu-images/6dabd59bff08fae3-1068.webp 1068w","width":1068,"height":1527},"fotos de pratos/Café Filtrado.jpeg":{"srcset":"assets/menu-images/ca7a07f441027965-400.webp 400w, assets/menu-images/ca7a07f441027965-800.webp 800w, assets/menu-images/ca7a07f441027965-1200.webp 1200w","width":1206,"height":1406},"fotos de pratos/Camarão Imperador.jpg":{"srcset":"assets/menu-images/f193f0035292edc8-400.webp 400w, assets/menu-images/f193f0035292edc8-800.webp 800w, assets/menu-images/f193f0035292edc8-1101.webp 1101w","width":1101,"height":703},"fotos de pratos/Canoli de Queijadinha.png":{"srcset":"assets/menu-images/b0f9af8c66eb3028-400.webp 400w, assets/menu-images/b0f9af8c66eb3028-800.webp 800w, assets/menu-images/b0f9af8c66eb3028-1200.webp 1200w","width":1206,"height":1284},"fotos de pratos/Capibaribe.png":{"srcset":"assets/menu-images/4b11248fc3dd9b89-400.webp 400w, assets/menu-images/4b11248fc3dd9b89-800.webp 800w, assets/menu-images/4b11248fc3dd9b89-1200.webp 1200w","width":1600,"height":1066},"fotos de pratos/Carne de Sol Desarrumada.jpg":{"srcset":"assets/menu-images/64c06e22dd3f012f-400.webp 400w, assets/menu-images/64c06e22dd3f012f-800.webp 800w, assets/menu-images/64c06e22dd3f012f-1132.webp 1132w","width":1132,"height":1600},"fotos de pratos/Charque Brejeira.jpg":{"srcset":"assets/menu-images/56dc817b9127a7ae-400.webp 400w, assets/menu-images/56dc817b9127a7ae-800.webp 800w, assets/menu-images/56dc817b9127a7ae-1084.webp 1084w","width":1084,"height":738},"fotos de pratos/Cheesecake no Palito.png":{"srcset":"assets/menu-images/d6d3521ca086d791-400.webp 400w, assets/menu-images/d6d3521ca086d791-800.webp 800w, assets/menu-images/d6d3521ca086d791-1200.webp 1200w","width":1206,"height":973},"fotos de pratos/Croqueta de Cupim.jpg":{"srcset":"assets/menu-images/c2034232089d48df-400.webp 400w, assets/menu-images/c2034232089d48df-800.webp 800w, assets/menu-images/c2034232089d48df-1078.webp 1078w","width":1078,"height":1599},"fotos de pratos/Dadinhos de Tapioca.jpeg":{"srcset":"assets/menu-images/b6c48943abab1cb1-400.webp 400w, assets/menu-images/b6c48943abab1cb1-800.webp 800w, assets/menu-images/b6c48943abab1cb1-1200.webp 1200w","width":1206,"height":1574},"fotos de pratos/Franguinho da Moeda.jpg":{"srcset":"assets/menu-images/ecdfabc92d9b2152-400.webp 400w, assets/menu-images/ecdfabc92d9b2152-800.webp 800w, assets/menu-images/ecdfabc92d9b2152-1098.webp 1098w","width":1098,"height":718},"fotos de pratos/Laranja Toffee.jpeg":{"srcset":"assets/menu-images/11db552bb40f651d-400.webp 400w, assets/menu-images/11db552bb40f651d-800.webp 800w, assets/menu-images/11db552bb40f651d-1200.webp 1200w","width":1206,"height":1319},"fotos de pratos/Maminha do Apolo.jpg":{"srcset":"assets/menu-images/ef02918208cc1f99-400.webp 400w, assets/menu-images/ef02918208cc1f99-800.webp 800w, assets/menu-images/ef02918208cc1f99-1109.webp 1109w","width":1109,"height":724},"fotos de pratos/Mini Churros com Doce de Leite.jpeg":{"srcset":"assets/menu-images/dc6d0b13db53c53c-400.webp 400w, assets/menu-images/dc6d0b13db53c53c-800.webp 800w, assets/menu-images/dc6d0b13db53c53c-1200.webp 1200w","width":1536,"height":1024},"fotos de pratos/Mini Coxinhas.jpeg":{"srcset":"assets/menu-images/e5262773c1a9382c-400.webp 400w, assets/menu-images/e5262773c1a9382c-800.webp 800w, assets/menu-images/e5262773c1a9382c-1200.webp 1200w","width":1206,"height":1142},"fotos de pratos/Mocha Doce de Leite.jpeg":{"srcset":"assets/menu-images/069454f852cfa7f3-400.webp 400w, assets/menu-images/069454f852cfa7f3-800.webp 800w, assets/menu-images/069454f852cfa7f3-1200.webp 1200w","width":1206,"height":1223},"fotos de pratos/Nhoque de Batata Doce.jpg":{"srcset":"assets/menu-images/849c8d9e211cfa47-400.webp 400w, assets/menu-images/849c8d9e211cfa47-800.webp 800w, assets/menu-images/849c8d9e211cfa47-1200.webp 1200w","width":1206,"height":779},"fotos de pratos/Nutella Latte.jpeg":{"srcset":"assets/menu-images/78600bae83672166-400.webp 400w, assets/menu-images/78600bae83672166-800.webp 800w, assets/menu-images/78600bae83672166-1191.webp 1191w","width":1191,"height":1333},"fotos de pratos/Oxente.jpg":{"srcset":"assets/menu-images/9b528536c98e365f-400.webp 400w, assets/menu-images/9b528536c98e365f-800.webp 800w, assets/menu-images/9b528536c98e365f-1004.webp 1004w","width":1004,"height":1600},"fotos de pratos/Panelinha de Camarão.jpeg":{"srcset":"assets/menu-images/73b8ebc6f26d6384-400.webp 400w, assets/menu-images/73b8ebc6f26d6384-800.webp 800w, assets/menu-images/73b8ebc6f26d6384-1200.webp 1200w","width":1206,"height":1194},"fotos de pratos/Parmegiana de Frango.jpg":{"srcset":"assets/menu-images/3d9311def72fc3f4-400.webp 400w, assets/menu-images/3d9311def72fc3f4-800.webp 800w, assets/menu-images/3d9311def72fc3f4-1075.webp 1075w","width":1075,"height":741},"fotos de pratos/Recifense.png":{"srcset":"assets/menu-images/cd2f3d6ec88e846f-400.webp 400w, assets/menu-images/cd2f3d6ec88e846f-800.webp 800w, assets/menu-images/cd2f3d6ec88e846f-1200.webp 1200w","width":1600,"height":1066},"fotos de pratos/Sanduíche Torre.jpg":{"srcset":"assets/menu-images/c47129fc8fa55438-400.webp 400w, assets/menu-images/c47129fc8fa55438-800.webp 800w, assets/menu-images/c47129fc8fa55438-1200.webp 1200w","width":2774,"height":4160},"fotos de pratos/Tapioca Doce Amaro.jpeg":{"srcset":"assets/menu-images/cdd5206f58485efe-400.webp 400w, assets/menu-images/cdd5206f58485efe-800.webp 800w, assets/menu-images/cdd5206f58485efe-1066.webp 1066w","width":1066,"height":1600},"fotos de pratos/Tapioca Leão do Norte.jpeg":{"srcset":"assets/menu-images/2c6fefdf22adb424-400.webp 400w, assets/menu-images/2c6fefdf22adb424-800.webp 800w, assets/menu-images/2c6fefdf22adb424-1200.webp 1200w","width":1206,"height":1110},"fotos de pratos/Tilápia Crocante.jpg":{"srcset":"assets/menu-images/5e363a13e1fcd056-400.webp 400w, assets/menu-images/5e363a13e1fcd056-800.webp 800w, assets/menu-images/5e363a13e1fcd056-1200.webp 1200w","width":1206,"height":802},"fotos de pratos/Tilápia Marco Zero.jpg":{"srcset":"assets/menu-images/eb141dbb86b571da-400.webp 400w, assets/menu-images/eb141dbb86b571da-800.webp 800w, assets/menu-images/eb141dbb86b571da-1081.webp 1081w","width":1081,"height":676},"fotos de pratos/Toast Princesa do Agreste.jpeg":{"srcset":"assets/menu-images/7573740738ecc21c-400.webp 400w, assets/menu-images/7573740738ecc21c-800.webp 800w, assets/menu-images/7573740738ecc21c-1054.webp 1054w","width":1054,"height":704},"fotos de pratos/Toast Roçado.jpeg":{"srcset":"assets/menu-images/e176239302b86b4a-400.webp 400w, assets/menu-images/e176239302b86b4a-800.webp 800w, assets/menu-images/e176239302b86b4a-1087.webp 1087w","width":1087,"height":1569},"fotos de pratos/Trio Ternurinha.jpg":{"srcset":"assets/menu-images/39239a04dfde5bb7-400.webp 400w, assets/menu-images/39239a04dfde5bb7-800.webp 800w, assets/menu-images/39239a04dfde5bb7-1073.webp 1073w","width":1073,"height":701},"fotos de pratos/Vienense.jpeg":{"srcset":"assets/menu-images/bbfcfef7f548c474-400.webp 400w, assets/menu-images/bbfcfef7f548c474-800.webp 800w, assets/menu-images/bbfcfef7f548c474-1200.webp 1200w","width":1206,"height":1179},"fotos de pratos/Vixe Maria.jpg":{"srcset":"assets/menu-images/c18f54baf439c2e9-400.webp 400w, assets/menu-images/c18f54baf439c2e9-800.webp 800w, assets/menu-images/c18f54baf439c2e9-1042.webp 1042w","width":1042,"height":1600},"fotos de pratos/tábua do porto.png":{"srcset":"assets/menu-images/a5840cc4f896b6a5-400.webp 400w, assets/menu-images/a5840cc4f896b6a5-800.webp 800w, assets/menu-images/a5840cc4f896b6a5-1200.webp 1200w","width":1206,"height":1428},"fotos de pratos/tábua sertaneja.png":{"srcset":"assets/menu-images/69c658d6f3acae91-400.webp 400w, assets/menu-images/69c658d6f3acae91-800.webp 800w, assets/menu-images/69c658d6f3acae91-1200.webp 1200w","width":1206,"height":1522}};
+const dadosFotoResponsiva=valor=>{try{return fotosResponsivas[decodeURIComponent(new URL(valor,location.href).pathname).split('/carda-pio/').pop()]||fotosResponsivas[decodeURIComponent(String(valor).split('?')[0])];}catch{return null;}};
+const atributosFotoResponsiva=valor=>{const foto=dadosFotoResponsiva(valor);return foto?`srcset="${foto.srcset}" sizes="(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px" decoding="async" width="${foto.width}" height="${foto.height}"`: 'decoding="async"';};
+const aplicarFotoResponsiva=(img,valor)=>{const foto=dadosFotoResponsiva(valor);img.decoding='async';if(foto){img.srcset=foto.srcset;img.sizes='(max-width: 600px) calc(100vw - 44px), (max-width: 960px) 45vw, 300px';img.width=foto.width;img.height=foto.height;}else{img.removeAttribute('srcset');img.removeAttribute('sizes');}img.src=valor;};
 const obterImagemPrato=nome=>imagemPublicaPermitida(fotosPratos[normalizarNome(nome)]||'');
 let descricoesPratos={};
 let precosPratos={};
@@ -963,12 +977,17 @@ const renderStatus=msg=>{if(!almocoHojeLista)return;almocoHojeLista.innerHTML=`<
 const renderPratos=pratos=>{if(!almocoHojeLista)return;almocoHojeLista.innerHTML=pratos.map(item=>`<article class="dcard"><div class="almoco-meta"><span class="stag">Prato do dia</span><div class="dname">${escapeHtml(item.prato)}</div></div><div class="dprice">${brl.format(item.precoNumerico)}</div></article>`).join('');};
 const carregarAlmocoHoje=async()=>{if(!almocoHojeLista)return;if(!almocoHojeEndpoint||almocoHojeEndpoint==='COLE_AQUI_A_URL_DO_WEB_APP'){renderStatus('N&atilde;o foi poss&iacute;vel carregar o card&aacute;pio de hoje.');return;}try{const res=await fetch(almocoHojeEndpoint,{cache:'no-store'});if(!res.ok)throw new Error('request_failed');const data=await res.json();const pratos=Array.isArray(data)?data:(data&&data.ok===true&&Array.isArray(data.pratos)?data.pratos:null);if(!pratos)throw new Error('invalid_payload');const pratosHoje=prepararPratosHoje(pratos);if(!pratosHoje.length){renderStatus('Card&aacute;pio de hoje ainda n&atilde;o informado.');return;}renderPratos(pratosHoje);}catch(err){renderStatus('N&atilde;o foi poss&iacute;vel carregar o card&aacute;pio de hoje.');}};
 const renderStatusBonito=msg=>{if(!almocoHojeLista)return;almocoHojeLista.innerHTML=`<div class="dcard almoco-status"><div class="almoco-meta"><div class="dname">Almo&ccedil;o de Hoje</div><p class="almoco-text">${escapeHtml(msg)}</p></div></div>`;};
-const renderPratosBonito=pratos=>{if(!almocoHojeLista)return;const unicos=[...new Map(pratos.map(item=>{const prato=item.prato.trim();return [`${normalizarNome(prato)}|${item.precoNumerico}`,{...item,prato}];})).values()];almocoHojeLista.innerHTML=unicos.map(item=>{const imagem=obterImagemPrato(item.prato);const descricao=obterDescricaoPrato(item);const media=imagem?`<div class="cib"><img src="${imagem}" alt="${escapeHtml(item.prato)}" loading="lazy"><div class="badge">Almo&ccedil;o</div></div>`:'';return `<article class="card fi almoco-card${media?'':' no-photo'}">${media}<div class="cbody"><div class="cname">${escapeHtml(item.prato)}</div><div class="cdesc">${escapeHtml(descricao)}</div><div class="cfoot"><div class="cprice">${brl.format(item.precoNumerico)}</div><div class="diam"></div></div></div></article>`;}).join('');almocoHojeLista.querySelectorAll('.fi').forEach(el=>io.observe(el));prepararTrackingPratosQrStack();};
+const renderPratosBonito=pratos=>{if(!almocoHojeLista)return;const unicos=[...new Map(pratos.map(item=>{const prato=item.prato.trim();return [`${normalizarNome(prato)}|${item.precoNumerico}`,{...item,prato}];})).values()];almocoHojeLista.innerHTML=unicos.map(item=>{const imagem=obterImagemPrato(item.prato);const descricao=obterDescricaoPrato(item);const media=imagem?`<div class="cib"><img ${atributosFotoResponsiva(imagem)} src="${imagem}" alt="${escapeHtml(item.prato)}" loading="lazy"><div class="badge">Almo&ccedil;o</div></div>`:'';return `<article class="card fi almoco-card${media?'':' no-photo'}">${media}<div class="cbody"><div class="cname">${escapeHtml(item.prato)}</div><div class="cdesc">${escapeHtml(descricao)}</div><div class="cfoot"><div class="cprice">${brl.format(item.precoNumerico)}</div><div class="diam"></div></div></div></article>`;}).join('');almocoHojeLista.querySelectorAll('img').forEach(img=>aplicarFotoResponsiva(img,img.getAttribute('src')));almocoHojeLista.querySelectorAll('.fi').forEach(el=>io.observe(el));prepararTrackingPratosQrStack();};
 const normalizarPrecoCatalogo=valor=>{const numero=normalizarPreco(valor);if(numero!==null&&/^\s*(?:R\$\s*)?[\d.,]+\s*$/.test(String(valor||'')))return brl.format(numero);return String(valor||'').trim();};
 const criarSecaoCatalogo=({section_id,section_title,category})=>{const id=String(section_id||'catalogo').replace(/[^a-zA-Z0-9_-]/g,'-');let secao=document.getElementById(id);if(secao)return secao;const titulo=section_title||category||'Cat&aacute;logo';secao=document.createElement('section');secao.id=id;secao.className='sec';secao.innerHTML=`<div class="sh fi"><div><span class="stag">Card&aacute;pio</span><h2 class="stitle">${escapeHtml(titulo)}</h2></div></div><div class="grid"></div>`;document.querySelector('.footer')?.before(secao);const link=document.createElement('a');link.className='nl';link.href=`#${id}`;link.textContent=titulo;link.addEventListener('click',()=>setNavAtiva(id));document.querySelector('.nrow')?.append(link);secao.querySelectorAll('.fi').forEach(el=>io.observe(el));nio.observe(secao);return secao;};
 const criarCardCatalogo=item=>{const card=document.createElement('div');card.className='card no-photo fi';card.innerHTML=`<div class="cbody"><div class="cname"></div><div class="cdesc"></div><div class="cfoot"><div class="cprice"></div><div class="diam"></div></div></div>`;atualizarCardCatalogo(card,item,true);io.observe(card);return card;};
-const atualizarCardCatalogo=(card,item,permitirNovaImagem=false)=>{card.dataset.catalogId=item.id||'';card.querySelector('.cname').textContent=item.name||'';card.querySelector('.cdesc').textContent=item.description||'';card.querySelector('.cprice').textContent=normalizarPrecoCatalogo(item.price);let media=card.querySelector('.cib');const imagem=imagemPublicaPermitida(item.image_url);const chaveFoto=normalizarNome(item.name);if(media&&imagem){media.querySelector('img').src=imagem;media.querySelector('img').alt=item.name||'';media.querySelector('.badge').textContent=item.section_title||item.category||'Cardápio';card.classList.remove('no-photo');fotosPratos[chaveFoto]=imagem;}else if(!media&&imagem&&permitirNovaImagem){media=document.createElement('div');media.className='cib';media.innerHTML='<img loading="lazy"><div class="badge"></div>';card.prepend(media);media.querySelector('img').src=imagem;media.querySelector('img').alt=item.name||'';media.querySelector('.badge').textContent=item.section_title||item.category||'Cardápio';card.classList.remove('no-photo');fotosPratos[chaveFoto]=imagem;}else if(media&&!imagem){media.remove();card.classList.add('no-photo');fotosPratos[chaveFoto]='';}else if(!media){card.classList.add('no-photo');fotosPratos[chaveFoto]='';}};
-const obterCatalogoQrStack=()=>new Promise((resolve,reject)=>{const callback=`qrstackCatalog${Date.now()}${Math.random().toString(36).slice(2)}`;const script=document.createElement('script');const timeout=setTimeout(()=>finalizar(null,new Error('catalog_timeout')),8000);const finalizar=(data,error)=>{clearTimeout(timeout);script.remove();try{delete window[callback];}catch{window[callback]=undefined;}if(error)reject(error);else resolve(data);};window[callback]=data=>finalizar(data,null);const url=new URL(qrstackPlatformEndpoint);url.searchParams.set('action','getCatalog');url.searchParams.set('slug','amaro');url.searchParams.set('fresh',Date.now());url.searchParams.set('callback',callback);script.src=url;script.async=true;script.onerror=()=>finalizar(null,new Error('catalog_request_failed'));document.head.append(script);});
+const atualizarCardCatalogo=(card,item,permitirNovaImagem=false)=>{card.dataset.catalogId=item.id||'';card.querySelector('.cname').textContent=item.name||'';card.querySelector('.cdesc').textContent=item.description||'';card.querySelector('.cprice').textContent=normalizarPrecoCatalogo(item.price);let media=card.querySelector('.cib');const imagem=imagemPublicaPermitida(item.image_url);const chaveFoto=normalizarNome(item.name);if(media&&imagem){aplicarFotoResponsiva(media.querySelector('img'),imagem);media.querySelector('img').alt=item.name||'';media.querySelector('.badge').textContent=item.section_title||item.category||'Cardápio';card.classList.remove('no-photo');fotosPratos[chaveFoto]=imagem;}else if(!media&&imagem&&permitirNovaImagem){media=document.createElement('div');media.className='cib';media.innerHTML='<img loading="lazy"><div class="badge"></div>';card.prepend(media);aplicarFotoResponsiva(media.querySelector('img'),imagem);media.querySelector('img').alt=item.name||'';media.querySelector('.badge').textContent=item.section_title||item.category||'Cardápio';card.classList.remove('no-photo');fotosPratos[chaveFoto]=imagem;}else if(media&&!imagem){media.remove();card.classList.add('no-photo');fotosPratos[chaveFoto]='';}else if(!media){card.classList.add('no-photo');fotosPratos[chaveFoto]='';}};
+const obterCatalogoQrStack=async()=>{
+  const url=new URL(qrstackPlatformEndpoint);url.searchParams.set('action','getCatalog');url.searchParams.set('slug','amaro');
+  const response=await fetch(url,{signal:AbortSignal.timeout(8000)});
+  if(!response.ok)throw new Error('catalog_request_failed');
+  const data=await response.json();if(data?.ok!==true)throw new Error('catalog_invalid_payload');return data;
+};
 const sincronizarCatalogoQrStack=async()=>{if(!qrstackPlatformEndpoint)return;try{const data=await obterCatalogoQrStack();const itens=Array.isArray(data.items)?data.items:[];const cards=[...document.querySelectorAll('.card')];const porNome=new Map(cards.map(card=>[normalizarNome(card.querySelector('.cname')?.textContent),card]).filter(([nome])=>nome));for(const item of itens){if(!item?.name)continue;const chaveId=normalizarNome(String(item.id||'').replace(/^catalog_/,'').replace(/-/g,' '));let card=cards.find(entry=>entry.dataset.catalogId===item.id)||porNome.get(normalizarNome(item.name))||porNome.get(chaveId);const secao=criarSecaoCatalogo(item);const grade=secao.querySelector('.grid');if(!card){card=criarCardCatalogo(item);cards.push(card);}else atualizarCardCatalogo(card,item,true);if(grade&&card.parentElement!==grade)grade.append(card);}reconstruirIndicesPratos();prepararTrackingPratosQrStack();}catch(err){console.warn('Catálogo QrStack indisponível:',err);}};
 let pratosHojeExibidos=[];
 const carregarAlmocoHojeBonito=async()=>{
@@ -977,7 +996,7 @@ const carregarAlmocoHojeBonito=async()=>{
     const controller=new AbortController();
     const timer=setTimeout(()=>controller.abort(),timeoutMs);
     try{
-      const res=await fetch(url,{cache:'no-store',signal:controller.signal});
+      const res=await fetch(url,{signal:controller.signal});
       if(!res.ok)throw new Error('menu_request_failed');
       return await res.json();
     }finally{clearTimeout(timer);}
@@ -995,7 +1014,7 @@ const carregarAlmocoHojeBonito=async()=>{
     url.searchParams.set('action','getMenu');
     url.searchParams.set('slug','amaro');
     url.searchParams.set('date',hojeIso());
-    const data=await obterJson(url,8000);
+    const data=typeof window!=='undefined'&&window.qrstackMenuDate===hojeIso()&&window.qrstackMenuLoad?await window.qrstackMenuLoad:await obterJson(url,8000);
     if(data?.ok!==true)throw new Error('platform_invalid_payload');
     if(!data.menu||Number(data.menu.is_published)!==1)return[];
     if(!Array.isArray(data.items))throw new Error('platform_items_invalid');
