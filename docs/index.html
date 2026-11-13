@@ -1230,7 +1230,7 @@ const processarFilaAcessosQrStack=async()=>{
     let fila=lerFilaAcessosQrStack();
     for(const payload of [...fila]){
       try{
-        const response=await fetch(QRSTACK_ANALYTICS_ENDPOINT,{method:'POST',mode:'cors',keepalive:true,headers:{'Content-Type':'text/plain;charset=UTF-8'},body:JSON.stringify(payload),signal:AbortSignal.timeout(15000)});
+        const response=await fetch(QRSTACK_ANALYTICS_ENDPOINT,{method:'POST',mode:'cors',keepalive:true,headers:{'Content-Type':'text/plain;charset=UTF-8'},body:JSON.stringify(payload),signal:AbortSignal.timeout(30000)});
         if(!response.ok){const retry=response.headers.get('Retry-After');const seconds=Number(retry);proximoEnvioAnalyticsQrStack=Math.max(Date.now()+30000,Number.isFinite(seconds)&&seconds>0?Date.now()+seconds*1000:Date.parse(retry)||0);}
         const result=await response.json();
         if(!response.ok||result.ok!==true)throw new Error('tracking_not_confirmed');
