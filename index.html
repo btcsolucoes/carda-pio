@@ -1195,29 +1195,46 @@ const salvarResumoQrStack=resumo=>localStorage.setItem(QRSTACK_ANALYTICS_KEY,JSO
 const criarIdEventoQrStack=()=>(crypto.randomUUID&&crypto.randomUUID())||`event-${Date.now()}-${Math.random().toString(36).slice(2)}`;
 const enviarPayloadQrStack=payload=>{
   if(!QRSTACK_ANALYTICS_ENDPOINT)return;
-  const completo={id:payload.id||criarIdEventoQrStack(),...payload};
-  const body=JSON.stringify(completo);
-  if(navigator.sendBeacon){
-    navigator.sendBeacon(QRSTACK_ANALYTICS_ENDPOINT,new Blob([body],{type:'text/plain;charset=UTF-8'}));
-  }else{
-    fetch(QRSTACK_ANALYTICS_ENDPOINT,{method:'POST',mode:'cors',keepalive:true,headers:{'Content-Type':'text/plain;charset=UTF-8'},body}).catch(()=>{});
-  }
+  enfileirarAcessoQrStack({id:criarIdEventoQrStack(),...payload});
 };
+let proximoEnvioAnalyticsQrStack=0;
 let processandoFilaAcessosQrStack=false;
-const lerFilaAcessosQrStack=()=>{try{return JSON.parse(localStorage.getItem(QRSTACK_PENDING_PAGEVIEWS_KEY)||'[]')||[];}catch{return [];}};
-const salvarFilaAcessosQrStack=fila=>localStorage.setItem(QRSTACK_PENDING_PAGEVIEWS_KEY,JSON.stringify(fila.slice(-50)));
+const eventosPendentesMemoriaQrStack=new Map();
+const chaveEventoPendenteQrStack=id=>`${QRSTACK_PENDING_PAGEVIEWS_KEY}:event:${id}`;
+const salvarEventoPendenteQrStack=payload=>{
+  eventosPendentesMemoriaQrStack.set(payload.id,payload);
+  try{localStorage.setItem(chaveEventoPendenteQrStack(payload.id),JSON.stringify(payload));eventosPendentesMemoriaQrStack.delete(payload.id);}catch{}
+};
+const lerFilaAcessosQrStack=()=>{
+  const eventos=new Map(eventosPendentesMemoriaQrStack);
+  try{
+    const legados=JSON.parse(localStorage.getItem(QRSTACK_PENDING_PAGEVIEWS_KEY)||'[]');
+    for(const item of legados)if(item?.id)eventos.set(item.id,item);
+    const prefixo=chaveEventoPendenteQrStack('');
+    for(let i=0;i<localStorage.length;i++){const chave=localStorage.key(i);if(chave?.startsWith(prefixo)){const item=JSON.parse(localStorage.getItem(chave));if(item?.id)eventos.set(item.id,item);}}
+  }catch{}
+  return [...eventos.values()];
+};
+const confirmarEventoPendenteQrStack=id=>{
+  eventosPendentesMemoriaQrStack.delete(id);
+  try{
+    localStorage.removeItem(chaveEventoPendenteQrStack(id));
+    const legados=JSON.parse(localStorage.getItem(QRSTACK_PENDING_PAGEVIEWS_KEY)||'[]');
+    if(legados.some(item=>item.id===id))localStorage.setItem(QRSTACK_PENDING_PAGEVIEWS_KEY,JSON.stringify(legados.filter(item=>item.id!==id)));
+  }catch{}
+};
 const processarFilaAcessosQrStack=async()=>{
-  if(processandoFilaAcessosQrStack||!navigator.onLine)return;
+  if(processandoFilaAcessosQrStack||!navigator.onLine||Date.now()<proximoEnvioAnalyticsQrStack)return;
   processandoFilaAcessosQrStack=true;
   try{
     let fila=lerFilaAcessosQrStack();
     for(const payload of [...fila]){
       try{
-        const response=await fetch(QRSTACK_ANALYTICS_ENDPOINT,{method:'POST',mode:'cors',keepalive:true,headers:{'Content-Type':'text/plain;charset=UTF-8'},body:JSON.stringify(payload)});
+        const response=await fetch(QRSTACK_ANALYTICS_ENDPOINT,{method:'POST',mode:'cors',keepalive:true,headers:{'Content-Type':'text/plain;charset=UTF-8'},body:JSON.stringify(payload),signal:AbortSignal.timeout(15000)});
+        if(!response.ok){const retry=response.headers.get('Retry-After');const seconds=Number(retry);proximoEnvioAnalyticsQrStack=Math.max(Date.now()+30000,Number.isFinite(seconds)&&seconds>0?Date.now()+seconds*1000:Date.parse(retry)||0);}
         const result=await response.json();
         if(!response.ok||result.ok!==true)throw new Error('tracking_not_confirmed');
-        fila=fila.filter(item=>item.id!==payload.id);
-        salvarFilaAcessosQrStack(fila);
+        confirmarEventoPendenteQrStack(payload.id);
       }catch{
         break;
       }
@@ -1227,9 +1244,7 @@ const processarFilaAcessosQrStack=async()=>{
   }
 };
 const enfileirarAcessoQrStack=payload=>{
-  const fila=lerFilaAcessosQrStack();
-  if(!fila.some(item=>item.id===payload.id))fila.push(payload);
-  salvarFilaAcessosQrStack(fila);
+  salvarEventoPendenteQrStack(payload);
   processarFilaAcessosQrStack();
   setTimeout(processarFilaAcessosQrStack,2500);
   setTimeout(processarFilaAcessosQrStack,9000);
@@ -1336,7 +1351,7 @@ const registrarToquePratoQrStack=card=>{
   window.qrstackAnalytics={...(window.qrstackAnalytics||{}),ultimoEvento:payload,verResumo:()=>lerResumoQrStack()};
 };
 const iniciarTempoPratoQrStack=card=>{
-  if(pratoTempoVisivelQrStack.has(card))return;
+  if(document.visibilityState==='hidden'||pratoTempoVisivelQrStack.has(card))return;
   pratoTempoVisivelQrStack.set(card,performance.now());
   window.setTimeout(()=>{if(pratoTempoVisivelQrStack.has(card))registrarVisualizacaoPratoQrStack(card);},900);
 };
@@ -1346,7 +1361,7 @@ const finalizarTempoPratoQrStack=card=>{
   pratoTempoVisivelQrStack.delete(card);
   const durationMs=Math.round(performance.now()-inicio);
   if(durationMs<1200)return;
-  const dados=obterDadosPratoQrStack(card);
+  const dados=dadosPratoQrStack(card);
   if(!dados)return;
   const observeKey=`qrstack:dish-observe:${QRSTACK_ANALYTICS_CLIENT}:${obterSessaoQrStack()}:${dados.dishKey}`;
   if(sessionStorage.getItem(observeKey))return;
@@ -1382,7 +1397,7 @@ const prepararTrackingPratosQrStack=()=>{
   });
 };
 window.addEventListener('pagehide',finalizarTodosTemposPratoQrStack);
-document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')finalizarTodosTemposPratoQrStack();});
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden'){finalizarTodosTemposPratoQrStack();}else{document.querySelectorAll('.card').forEach(card=>{const r=card.getBoundingClientRect();const visible=Math.max(0,Math.min(r.bottom,innerHeight)-Math.max(r.top,0));if(r.height&&visible/r.height>=0.55)iniciarTempoPratoQrStack(card);});processarFilaAcessosQrStack();}});
 const registrarPromptWebviewQrStack=()=>{
   if(!qrstackWebviewState.banner_shown)return;
   enviarPayloadQrStack({id:criarIdEventoQrStack(),...montarPayloadQrStack('instagram_webview_prompt')});
